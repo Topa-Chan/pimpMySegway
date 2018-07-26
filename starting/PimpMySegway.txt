@@ -21,7 +21,7 @@ Engines(3):
 Custom (8):
 	Deep Fried
 	Cup Holders
-	Tassles
+	Tassels
 	Extra Batteries
 	Horn
 	Basket
@@ -30,7 +30,7 @@ Custom (8):
 	
 Pre-Built(5)
 1. Deafault - Black, Normal, Electric, Bluetooth Speakers
-2. Memester - No Color, Normal Tires, Gas Engine, Deep Fried, Bluetooth Speakers
+2. Memester - No Colour, Normal Tires, Gas Engine, Deep Fried, Bluetooth Speakers
 3. Little Kid - Blue, Bike, Electric, Tassles, Horn, Basket
 4. Rich Kid - Gold, Normal, Dual, Glitter, Extra Batteries, Cup Holder
 5. Deep South - Green, Tractor, Gas, Cup Holder, Horn

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Default",
+    "Colour": "Black",
+    "Tires": "Normal",
+    "Engine": "Electric",
+    "Customs": [
+      "Bluetooth Speakers"
+    ]
+  },
+  {
+    "Name": "Memester",
+    "Colour": ""
+  }
+]
