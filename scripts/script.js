@@ -6,3 +6,9 @@ var customAdds = ['Deep Fried', 'Cup Holders', 'Tassels', 'Extra Batteries', 'Ho
 
 
 var preBuilts;
+var homePage;
+var confirmPage;
+var customPage;
+var checkoutPage;
+var thankYouPage;
+
