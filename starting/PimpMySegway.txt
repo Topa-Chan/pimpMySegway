@@ -21,7 +21,7 @@ Engines(3):
 Custom (8):
 	Deep Fried
 	Cup Holders
-	Tassles
+	Tassels
 	Extra Batteries
 	Horn
 	Basket
