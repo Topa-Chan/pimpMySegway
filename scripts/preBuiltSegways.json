@@ -10,6 +10,51 @@
   },
   {
     "Name": "Memester",
-    "Colour": ""
+    "Colour": "",
+    "Tires": "Normal",
+    "Engine": "Petrol",
+    "Customs": [
+      "Deep Fried",
+      "Bluetooth Speakers"
+    ]
+  },
+  {
+    "Name": "Little Kid",
+    "Colour": "Blue",
+    "Tires": "Bike",
+    "Engine": "Electric",
+    "Customs": [
+      "Tassels",
+      "Horn",
+      "Basket"
+    ]
+  },
+  {
+    "Name": "Rich Kid",
+    "Colour": "Gold",
+    "Tires": "Normal",
+    "Engine": "Dual",
+    "Customs": [
+      "Glitter",
+      "Extra Batteries",
+      "Cup Holders"
+    ]
+  },
+  {
+    "Name": "Deep South",
+    "Colour": "Green",
+    "Tires": "Tractor",
+    "Engine": "Petrol",
+    "Customs": [
+      "Cup Holders",
+      "Horn"
+    ]
+  },
+  {
+    "Name": "Custom",
+    "Colour": "",
+    "Tires": "",
+    "Engine": "",
+    "Customs": []
   }
 ]
