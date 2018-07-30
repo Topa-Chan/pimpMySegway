@@ -1,3 +1,4 @@
+var request = new XMLHttpRequest();
 //Main Div
 var segwayApp = document.getElementById("segway");
 
@@ -37,7 +38,7 @@ thankYouPage.setAttribute("id", "thank_you_page");
 
 //Loading in JSON date
 function loadData() {
-  request.open('GET', '../scripts/segway.json');
+  request.open('GET', 'scripts/segway.json');
   request.onload = loadComplete;
   request.send();
 }
@@ -50,10 +51,10 @@ function loadComplete(evt) {
 
 
 //Building buttons
-colours.forEach(buildButton);
-tireTypes.forEach(buildButton);
-engineTypes.forEach(buildButton);
-customAdds.forEach(buildButton);
+colours.forEach(buildOption);
+tireTypes.forEach(buildOption);
+engineTypes.forEach(buildOption);
+customAdds.forEach(buildOption);
 
 //Build Options Function
 function buildOption(item, index, arr, isCustom){
@@ -96,7 +97,7 @@ function buildOrderButton(isCustom, segwayName) {
 }
 
 //Build Modify Button Function
-function buildOrderButton() {
+function buildModifyButton() {
   
 }
 
@@ -129,15 +130,6 @@ function optionClicked(evt) {
     console.log("Custom")
     //toppingsActive(evt);
   }
-  if (name === "add") {
-    console.log("Add")
-  }
-  if (name === "modify") {
-    console.log("Modify")
-  }
-  if (name === "mainMenu") {
-    console.log("Main Menu")
-  }
 }
 
 //Tab Clicked Evt
@@ -163,7 +155,6 @@ function createSegwaySpecial(imgSource, name, description, isCustom) {
   divInfo.setAttribute("class", "flex-col");
 
   var divName = document.createElement("div");
-  divName.setAttribute("id", pizzaId);
   divName.setAttribute("class", "segName");
   divName.textContent = name;
 
@@ -171,7 +162,7 @@ function createSegwaySpecial(imgSource, name, description, isCustom) {
   divDesc.setAttribute("class", "segDesc");  
   divDesc.textContent = description;
 
-  var orderButton = createAddToOrderButton(isCustom, name);
+  var orderButton = buildOrderButton(isCustom, name);
   
   divInfo.appendChild(divName);
   divInfo.appendChild(divDesc);
@@ -189,6 +180,7 @@ function buildHomePage(json) {
   segwayApp.innerHTML = '';
   var isCustom = false;
   for (var index in json.specials) {
+    console.log(json.specials[index])
     if (json.specials[index].Name === "Custom") {
       isCustom = true;
     }
