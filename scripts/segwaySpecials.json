@@ -1,0 +1,34 @@
+{
+  "segway": [
+    {
+      "Name": "Custom",
+      "ImageSource": "images/",
+      "Description": "description"
+    },
+    {
+      "Name": "Default",
+      "ImageSource": "images/",
+      "Description": "description"
+    },
+    {
+      "Name": "Memester",
+      "ImageSource": "images/",
+      "Description": "description"
+    },
+    {
+      "Name": "Little Kid",
+      "ImageSource": "images/",
+      "Description": "description"
+    },
+    {
+      "Name": "Rich Kid",
+      "ImageSource": "images/",
+      "Description": "description"
+    },
+    {
+      "Name": "Deep South",
+      "ImageSource": "images/",
+      "Description": "description"
+    }
+  ]
+}
