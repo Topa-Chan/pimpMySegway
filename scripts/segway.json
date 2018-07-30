@@ -1,5 +1,5 @@
 {
-  "segway": [
+  "specials": [
     {
       "Name": "Custom",
       "ImageSource": "images/",
@@ -29,6 +29,66 @@
       "Name": "Deep South",
       "ImageSource": "images/",
       "Description": "For our deep southern customers Seg-Bois has our Deep South segway ready and waiting for you to ride as it's built with classic tractor tires, petrol engine, nice cup holders, a horn, and a slick green finish just like the trackers back home."
+    }
+  ],
+  "preBuilt": [
+    {
+      "Name": "Custom",
+      "Colour": "",
+      "Tires": "",
+      "Engine": "",
+      "Customs": []
+    },
+    {
+      "Name": "Default",
+      "Colour": "Black",
+      "Tires": "Normal",
+      "Engine": "Electric",
+      "Customs": [
+        "Bluetooth Speakers"
+      ]
+    },
+    {
+      "Name": "Memester",
+      "Colour": "",
+      "Tires": "Normal",
+      "Engine": "Petrol",
+      "Customs": [
+        "Deep Fried",
+        "Bluetooth Speakers"
+      ]
+    },
+    {
+      "Name": "Little Kid",
+      "Colour": "Blue",
+      "Tires": "Bike",
+      "Engine": "Electric",
+      "Customs": [
+        "Tassels",
+        "Horn",
+        "Basket"
+      ]
+    },
+    {
+      "Name": "Rich Kid",
+      "Colour": "Gold",
+      "Tires": "Normal",
+      "Engine": "Dual",
+      "Customs": [
+        "Glitter",
+        "Extra Batteries",
+        "Cup Holders"
+      ]
+    },
+    {
+      "Name": "Deep South",
+      "Colour": "Green",
+      "Tires": "Tractor",
+      "Engine": "Petrol",
+      "Customs": [
+        "Cup Holders",
+        "Horn"
+      ]
     }
   ]
 }
