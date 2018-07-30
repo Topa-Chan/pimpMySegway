@@ -10,6 +10,12 @@ var engineTypes = ['Electric', 'Petrol', 'Dual'];
 engineTypes.name = "Engines";
 var customAdds = ['Deep Fried', 'Cup Holders', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter']
 customAdds.name = "Customs";
+var addBtn = ['Add To Order'];
+addBtn.name = "Add";
+var modifyBtn = ['Modify'];
+modifyBtn.name = "Modify";
+var mainMenuBtn = ['Back To Main Menu'];
+mainMenuBtn.name = "MainMenu";
 
 //Tab Elements 
 var colourTab = document.createElement("div");
@@ -58,6 +64,14 @@ function buildButton(item, index, arr){
   }
   if (arr.name === "Add") {
     buttons[index].setAttribute('class', 'btn add');
+    customTab.appendChild(buttons[index]);
+  }
+  if (arr.name === "Modify") {
+    buttons[index].setAttribute('class', 'btn modify');
+    customTab.appendChild(buttons[index]);
+  }
+  if (arr.name === "MainMenu") {
+    buttons[index].setAttribute('class', 'btn mainMenu');
     customTab.appendChild(buttons[index]);
   }
   // container.appendChild(buttons[index]);
