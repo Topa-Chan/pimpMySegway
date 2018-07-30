@@ -1,7 +1,7 @@
 //Main Div
 var segwayApp = document.getElementById("segway");
 
-//Buttons
+//Option Buttons
 var colours = ['Gold', 'Red', 'Green', 'Blue', 'Black'];
 colours.name = "Colours";
 var tireTypes = ['Bike', 'Tractor', 'Normal'];
@@ -10,12 +10,6 @@ var engineTypes = ['Electric', 'Petrol', 'Dual'];
 engineTypes.name = "Engines";
 var customAdds = ['Deep Fried', 'Cup Holders', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter']
 customAdds.name = "Customs";
-var addBtn = ['Add To Order'];
-addBtn.name = "Add";
-var modifyBtn = ['Modify'];
-modifyBtn.name = "Modify";
-var mainMenuBtn = ['Back To Main Menu'];
-mainMenuBtn.name = "MainMenu";
 
 //Tab Elements 
 var colourTab = document.createElement("div");
@@ -39,8 +33,8 @@ var thankYouPage;
 //Building buttons
 
 
-//Build Buttons Function
-function buildButton(item, index, arr){
+//Build Options Function
+function buildOption(item, index, arr, isCustom){
   console.log("Array Name: " + arr.name);
   console.log("button " + item + " at index " + index + ' created.');
   buttons[index] = document.createElement('div');
@@ -62,24 +56,16 @@ function buildButton(item, index, arr){
     buttons[index].setAttribute('class', 'btn custom');
     customTab.appendChild(buttons[index]);
   }
-  if (arr.name === "Add") {
-    buttons[index].setAttribute('class', 'btn add');
-    customTab.appendChild(buttons[index]);
-  }
-  if (arr.name === "Modify") {
-    buttons[index].setAttribute('class', 'btn modify');
-    customTab.appendChild(buttons[index]);
-  }
-  if (arr.name === "MainMenu") {
-    buttons[index].setAttribute('class', 'btn mainMenu');
-    customTab.appendChild(buttons[index]);
-  }
-  // container.appendChild(buttons[index]);
-  buttons[index].addEventListener('click', btnClicked);
+  buttons[index].addEventListener('click', optionClicked);
 }
 
-//Button Clicked Evt
-function btnClicked(evt) {
+//Build Button Function
+function buildButton() {
+  
+}
+
+//Option Clicked Evt
+function optionClicked(evt) {
   console.log(evt.target.innerText + " clicked");
   // evt.target.style.backgroundColor = "#21f";
   var preSplitName = evt.target.attributes[0].value;
@@ -110,6 +96,22 @@ function btnClicked(evt) {
   if (name === "add") {
     console.log("Add")
   }
+  if (name === "modify") {
+    console.log("Modify")
+  }
+  if (name === "mainMenu") {
+    console.log("Main Menu")
+  }
+}
+
+//Tab Clicked Evt
+function tabClicked(evt) {
+
+}
+
+//Button Clicked Evt
+function buttonClicked(evt) {
+
 }
 
 //Building Pages
