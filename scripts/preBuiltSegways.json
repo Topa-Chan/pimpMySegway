@@ -1,5 +1,12 @@
 [
   {
+    "Name": "Custom",
+    "Colour": "",
+    "Tires": "",
+    "Engine": "",
+    "Customs": []
+  },
+  {
     "Name": "Default",
     "Colour": "Black",
     "Tires": "Normal",
@@ -49,12 +56,5 @@
       "Cup Holders",
       "Horn"
     ]
-  },
-  {
-    "Name": "Custom",
-    "Colour": "",
-    "Tires": "",
-    "Engine": "",
-    "Customs": []
   }
 ]
