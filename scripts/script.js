@@ -57,6 +57,10 @@ function buildButton(item, index, arr){
     buttons[index].setAttribute('class', 'btn custom');
     customTab.appendChild(buttons[index]);
   }
+  if (arr.name === "Add") {
+    buttons[index].setAttribute('class', 'btn add');
+    customTab.appendChild(buttons[index]);
+  }
   // container.appendChild(buttons[index]);
   buttons[index].addEventListener('click', btnClicked);
 }
@@ -89,6 +93,9 @@ function btnClicked(evt) {
   if (name === "custom") {
     console.log("Custom")
     //toppingsActive(evt);
+  }
+  if (name === "add") {
+    console.log("Add")
   }
 }
 
