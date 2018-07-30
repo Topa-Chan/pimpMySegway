@@ -32,7 +32,10 @@ var checkoutPage;
 var thankYouPage;
 
 //Building buttons
-
+colours.forEach(buildButton);
+tireTypes.forEach(buildButton);
+engineTypes.forEach(buildButton);
+customAdds.forEach(buildButton);
 
 //Build Buttons Function
 function buildButton(item, index, arr){
