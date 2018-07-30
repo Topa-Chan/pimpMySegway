@@ -24,11 +24,30 @@ var tabs = [colourTab, tireTab, engineTab, customTab];
 var buttons = [];
 
 //Page
-var homePage;
-var confirmPage;
-var customPage;
-var checkoutPage;
-var thankYouPage;
+var homePage = document.createElement("div");
+homePage.setAttribute("id", "home_page");
+var confirmPage = document.createElement("div");
+confirmPage.setAttribute("id", "confirm_page");
+var customPage = document.createElement("div");
+customPage.setAttribute("id", "custom_page");
+var checkoutPage = document.createElement("div");
+checkoutPage.setAttribute("id", "checkout_page");
+var thankYouPage = document.createElement("div");
+thankYouPage.setAttribute("id", "thank_you_page");
+
+//Loading in JSON date
+function loadData() {
+  request.open('GET', '../scripts/segway.json');
+  request.onload = loadComplete;
+  request.send();
+}
+
+function loadComplete(evt) {
+  var json = JSON.parse(request.responseText);
+  buildHomePage(json);
+}
+
+
 
 //Building buttons
 
@@ -59,8 +78,22 @@ function buildOption(item, index, arr, isCustom){
   buttons[index].addEventListener('click', optionClicked);
 }
 
-//Build Button Function
-function buildButton() {
+//Build Order Button Function
+function buildOrderButton(isCustom, segwayName) {
+  var buttonDiv = document.createElement("div");
+  buttonDiv.setAttribute("class", "bottom-btn");
+  buttonDiv.textContent = 'Add To Order';
+  if (isCustom) {
+    buttonDiv.addEventListener('click', buildCustomPage(tabs, segwayName));
+  } else {
+    buttonDiv.addEventListener('click', buildConfirmPage(segwayName));
+  }
+
+  return buttonDiv;
+}
+
+//Build Modify Button Function
+function buildOrderButton() {
   
 }
 
@@ -114,50 +147,72 @@ function buttonClicked(evt) {
 
 }
 
-//Building Pages
-buildCustomPage(customPage, tabs);
+//Building Segway Specials
+function createSegwaySpecial(imgSource, name, description, isCustom) {
+  var divContainer = document.createElement("div");
+  divContainer.setAttribute("class", "flex-row");
 
-function buildPage(page, tab) {
+  var img = document.createElement("img");
+  img.setAttribute("class", "segwayPic");
+  img.setAttribute("src", imgSource);
+
+  var divInfo = document.createElement("div");
+  divInfo.setAttribute("class", "flex-col");
+
+  var divName = document.createElement("div");
+  divName.setAttribute("id", pizzaId);
+  divName.setAttribute("class", "segName");
+  divName.textContent = name;
+
+  var divDesc = document.createElement("div");
+  divDesc.setAttribute("class", "segDesc");  
+  divDesc.textContent = description;
+
+  var orderButton = createAddToOrderButton(isCustom, name);
+  
+  divInfo.appendChild(divName);
+  divInfo.appendChild(divDesc);
+  divInfo.appendChild(orderButton);
+
+  divContainer.appendChild(img);
+  divContainer.appendChild(divInfo);
+  
+  return divContainer;
+}
+
+
+//Building Pages
+function buildHomePage(json) {
+  segwayApp.innerHTML = '';
+  var isCustom = false;
+  for (var index in json.specials) {
+    if (json.specials[index].Name === "Custom") {
+      isCustom = true;
+    }
+    segwayApp.appendChild(createSegwaySpecial(json.specials[index].ImageSource, json.specials[index].Name, json.specials[index].Description, isCustom))
+  }
+}
+
+function buildCustomPage(tab, segwayType) {
+  segwayApp.innerHTML = '';
   for (var i = 0; i < tab.length; i++) {
     console.log("Tab: " + tab[i]);
   }
-  page = document.createElement("div");
-  page.appendChild()
-  segwayApp.appendChild(page);
-
-  if (page === "homePage") {
-    buildHomePage();
-  }
-  if (page === "confirmPage") {
-    buildConfirmPage();
-  }
-  if (page === "customPage") {
-    buildCustomPage();
-  }
-  if (page === "checkoutPage") {
-    buildCheckoutPage();
-  }
-  if (page === "thankYouPage") {
-    buildThanksPage();
-  }
+  //customPage.appendChild()
+  segwayApp.appendChild(customPage);
 }
 
-function buildHomePage() {
-  
-}
-
-function buildCustomPage() {
-
-}
-
-function buildConfirmPage() {
-
+function buildConfirmPage(segwayType) {
+  segwayApp.innerHTML = '';
 }
 
 function buildCheckoutPage() {
-
+  segwayApp.innerHTML = '';
 }
 
 function buildThanksPage() {
-
+  segwayApp.innerHTML = '';
 }
+
+
+loadData();
