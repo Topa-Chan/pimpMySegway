@@ -50,7 +50,10 @@ function loadComplete(evt) {
 
 
 //Building buttons
-
+colours.forEach(buildButton);
+tireTypes.forEach(buildButton);
+engineTypes.forEach(buildButton);
+customAdds.forEach(buildButton);
 
 //Build Options Function
 function buildOption(item, index, arr, isCustom){
