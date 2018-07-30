@@ -24,7 +24,6 @@ var tabs = [colourTab, tireTab, engineTab, customTab];
 var buttons = [];
 
 //Page
-var preBuilts;
 var homePage;
 var confirmPage;
 var customPage;
@@ -102,11 +101,47 @@ function btnClicked(evt) {
 //Building Pages
 buildCustomPage(customPage, tabs);
 
-function buildCustomPage(page, tab) {
+function buildPage(page, tab) {
   for (var i = 0; i < tab.length; i++) {
     console.log("Tab: " + tab[i]);
   }
   page = document.createElement("div");
   page.appendChild()
   segwayApp.appendChild(page);
+
+  if (page === "homePage") {
+    buildHomePage();
+  }
+  if (page === "confirmPage") {
+    buildConfirmPage();
+  }
+  if (page === "customPage") {
+    buildCustomPage();
+  }
+  if (page === "checkoutPage") {
+    buildCheckoutPage();
+  }
+  if (page === "thankYouPage") {
+    buildThanksPage();
+  }
+}
+
+function buildHomePage() {
+  
+}
+
+function buildCustomPage() {
+
+}
+
+function buildConfirmPage() {
+
+}
+
+function buildCheckoutPage() {
+
+}
+
+function buildThanksPage() {
+
 }
