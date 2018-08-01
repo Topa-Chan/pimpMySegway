@@ -1,53 +1,101 @@
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  margin: 40px;
+  border-radius: 7px;
+  align-items: center;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  align-items: center;
+  margin: 0 20px;
+  width: 100%;
+  height: 170px;
+  background-color: #FFC76D;
+  padding: 20px;
+}
 .tab {
   
-  }
+}
+
+.btn {
+  background-color: #FF463F;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 1em;
+  width: 90px;
+  cursor: pointer;
+}
+
+.colourTab {
+
+}
+
+.tireTab {
+
+}
+
+.engineTab {
+
+}
+
+.customTab {
+
+}
+
+.colour {
+
+}
+
+.tire {
+
+}
+
+.engine {
+
+}
+
+.custom {
   
-  .btn {
+}
+
+.add {
   
-  }
+}
+
+.modify {
+
+}
+
+.mainMenu {
   
-  .colourTab {
-  
-  }
-  
-  .tireTab {
-  
-  }
-  
-  .engineTab {
-  
-  }
-  
-  .customTab {
-  
-  }
-  
-  .colour {
-  
-  }
-  
-  .tire {
-  
-  }
-  
-  .engine {
-  
-  }
-  
-  .custom {
-    
-  }
-  
-  .add {
-    
-  }
-  
-  .modify {
-  
-  }
-  
-  .mainMenu {
-    
-  }
+}
+
+.segwayPic {
+  border-radius: 3px;
+}
+
+.segName {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.segDesc {
+  font-size: 1.2em;
+  text-align: center;
+}
+.bottom-btn {
+  @extend .btn;
+  margin-top: auto;
+}
   
   

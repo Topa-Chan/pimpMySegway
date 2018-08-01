@@ -9,12 +9,12 @@ var tireTypes = ['Bike', 'Tractor', 'Normal'];
 tireTypes.name = "Tires";
 var engineTypes = ['Electric', 'Petrol', 'Dual'];
 engineTypes.name = "Engines";
-var customAdds = ['Deep Fried', 'Cup Holders', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter']
+var customAdds = ['Deep Fried', 'Cup Holders', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter'];
 customAdds.name = "Customs";
 
 //Tab Elements 
 var colourTab = document.createElement("div");
-colourTab.setAttribute('class', 'colourTab tab')
+colourTab.setAttribute('class', 'colourTab tab');
 var tireTab = document.createElement("div");
 tireTab.setAttribute('class', 'tireTab tab')
 var engineTab = document.createElement("div");
@@ -58,8 +58,8 @@ customAdds.forEach(buildOption);
 
 //Build Options Function
 function buildOption(item, index, arr, isCustom){
-  console.log("Array Name: " + arr.name);
-  console.log("button " + item + " at index " + index + ' created.');
+  // console.log("Array Name: " + arr.name);
+  // console.log("button " + item + " at index " + index + ' created.');
   buttons[index] = document.createElement('div');
   buttons[index].textContent = item;
   // buttons[index].setAttribute('class', 'btn');
@@ -103,31 +103,31 @@ function buildModifyButton() {
 
 //Option Clicked Evt
 function optionClicked(evt) {
-  console.log(evt.target.innerText + " clicked");
+  // console.log(evt.target.innerText + " clicked");
   // evt.target.style.backgroundColor = "#21f";
   var preSplitName = evt.target.attributes[0].value;
-  console.log("Pre Split: " + preSplitName);
+  // console.log("Pre Split: " + preSplitName);
   var splitName = preSplitName.split(" ");
-  console.log("Split Name: " + splitName);
+  // console.log("Split Name: " + splitName);
   var name = splitName[1];
-  console.log("Name: " + name)
+  // console.log("Name: " + name)
   if (name === "colour") {
-    console.log("Colour");
+    // console.log("Colour");
     //crustBtnNames.forEach(checkActive, evt);
     //evt.target.classList.add("active");
   } 
   if (name === "tire") {
-    console.log("Tire");
+    // console.log("Tire");
     //cheeseBtnNames.forEach(checkActive, evt);
     //evt.target.classList.add("active");
   }
   if (name === "engine") {
-    console.log("Engine")
+    // console.log("Engine")
     //sauceBtnNames.forEach(checkActive, evt);
     //evt.target.classList.add("active");
   }
   if (name === "custom") {
-    console.log("Custom")
+    // console.log("Custom")
     //toppingsActive(evt);
   }
 }
@@ -143,8 +143,9 @@ function buttonClicked(evt) {
 }
 
 //Building Segway Specials
-function createSegwaySpecial(imgSource, name, description, isCustom) {
+function createSegwaySpecial(imgSource, name, description, segId, isCustom) {
   var divContainer = document.createElement("div");
+  //divContainer.setAttribute("id", segId);
   divContainer.setAttribute("class", "flex-row");
 
   var img = document.createElement("img");
@@ -155,6 +156,7 @@ function createSegwaySpecial(imgSource, name, description, isCustom) {
   divInfo.setAttribute("class", "flex-col");
 
   var divName = document.createElement("div");
+  divName.setAttribute("id", segId);
   divName.setAttribute("class", "segName");
   divName.textContent = name;
 
@@ -170,28 +172,27 @@ function createSegwaySpecial(imgSource, name, description, isCustom) {
 
   divContainer.appendChild(img);
   divContainer.appendChild(divInfo);
-  
+  console.log(divContainer);
   return divContainer;
 }
-
 
 //Building Pages
 function buildHomePage(json) {
   segwayApp.innerHTML = '';
-  var isCustom = false;
+  var html = '';
   for (var index in json.specials) {
-    console.log(json.specials[index])
-    if (json.specials[index].Name === "Custom") {
-      isCustom = true;
-    }
-    segwayApp.appendChild(createSegwaySpecial(json.specials[index].ImageSource, json.specials[index].Name, json.specials[index].Description, isCustom))
+    var isCustom = json.specials[index].Name == "Custom";
+    var div = createSegwaySpecial(json.specials[index].ImageSource, json.specials[index].Name, json.specials[index].Description, json.specials[index].Id, isCustom);
+    // segwayApp.appendChild(div);
+    html += div.outerHTML;
   }
+  segwayApp.innerHTML = html;
 }
 
 function buildCustomPage(tab, segwayType) {
   segwayApp.innerHTML = '';
   for (var i = 0; i < tab.length; i++) {
-    console.log("Tab: " + tab[i]);
+    // console.log("Tab: " + tab[i]);
   }
   //customPage.appendChild()
   segwayApp.appendChild(customPage);
