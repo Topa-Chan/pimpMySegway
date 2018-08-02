@@ -9,6 +9,7 @@ imgDiv.setAttribute("class", "segboi_img");
 
 //Segway Image []
 var segboi = [];
+var finalBoi = {};
 
 //json
 var json;
@@ -23,7 +24,7 @@ var tireTypes = ['Bike', 'Tractor', 'Normal'];
 tireTypes.name = "Tires";
 var engineTypes = ['Electric', 'Petrol', 'Dual'];
 engineTypes.name = "Engines";
-var customAdds = ['Deep Fried', 'Cup Holders', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter'];
+var customAdds = ['Deep Fried', 'Cup Holder', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter'];
 customAdds.name = "Customs";
 
 //Page Button Options
@@ -181,7 +182,7 @@ function optionClicked(evt) {
     console.log(evt.target.textContent);
     evt.target.classList.add("active");
     //'colour_base.png'
-    segboi.push("url(" + evt.target.textContent.toLowerCase() + "_Base.png)");
+    segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Base.png)");
   } 
   if (name === "tire") {
     // console.log("Tire");
@@ -190,7 +191,7 @@ function optionClicked(evt) {
     console.log(evt.target.textContent);
     evt.target.classList.add("active");
     //'tireType_Tires.png'
-    segboi.push("url(" + evt.target.textContent.toLowerCase() + "_Tires.png)");
+    segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Tires.png)");
   }
   if (name === "engine") {
     // console.log("Engine")
@@ -205,12 +206,44 @@ function optionClicked(evt) {
     console.log(evt.target.textContent);
     evt.target.classList.add("active");
     switch(evt.target.textContent) {
-      
+      case "Deep Fried":
+        //DEEP FRIED
+        evt.target.classList.add("active");
+        segboi.push("url(images/deepfried.png)");
+        break;
+      case "Cup Holder":
+        evt.target.classList.add("active");
+        segboi.push("url(images/cupHolder.png)");
+        break;
+      case "Tassels":
+        evt.target.classList.add("active");
+        segboi.push("url(images/tassels.png)");
+        break;
+      case "Extra Batteries":
+        evt.target.classList.add("active");
+        //Don't need to change picture
+        break;
+      case "Horn":
+        evt.target.classList.add("active");
+        segboi.push("url(images/horn.png)");
+        break;
+      case "Basket":
+        evt.target.classList.add("active");
+        segboi.push("url(images/basket.png)");
+        break;
+      case "Bluetooth Speakers":
+        evt.target.classList.add("active");
+        segboi.push("url(images/bluetoothlight.png)");
+        break;
+      case "Glitter":
+        evt.target.classList.add("active");
+        segboi.push("url(images/glitter.png)");
       default:
         break;
     }
     //Have to focus on text content of the button to see what pic is needed
   }
+  buildSegway(segboi_img_check);
 }
 
 //Making Segway Picture
@@ -220,6 +253,10 @@ function buildSegway(x) {
     imgDiv.style.background = "url(images/default_segboi.png)";
   } else {
     //Logic for building image(s)
+    imgDiv.style.background = "none";
+    for (var i = 0; i < segboi.length; i++) {
+      imgDiv.style.background = segboi[i];
+    }
   }
 }
 
