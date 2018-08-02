@@ -27,7 +27,7 @@ var checkOutBtnList = ["Modify", "Add To Order"];
 var colourTab = document.createElement("div");
 colourTab.setAttribute('class', 'colourTab tab');
 var tireTab = document.createElement("div");
-tireTab.setAttribute('class', 'tireTab tab')
+tireTab.setAttribute('class', 'tireTab tab');
 var engineTab = document.createElement("div");
 engineTab.setAttribute('class', 'engineTab tab');
 var customTab = document.createElement("div");
