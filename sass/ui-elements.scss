@@ -1,3 +1,21 @@
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  margin: 40px;
+  border-radius: 7px;
+  align-items: center;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  align-items: center;
+  margin: 0 20px;
+  width: 100%;
+  height: 170px;
+  background-color: #FFC76D;
+  padding: 20px;
+}
 .tab {
   
 }
@@ -17,30 +35,6 @@
   cursor: pointer;
 }
 
-.btn-theme-1 {
-  padding: 25px 30px !important;
-  width: 150px;
-  font-size: 1.2em;
-  margin: 40px 0;
-}
-#thanks-msg {
-  font-size: 2.5em;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.thanks {
-  margin: auto;
-  height: 50%;
-  width: 80%;
-  border-radius: 3px;
-  margin-top: 10%;
-}
-
-.right-mar {
-  margin-right: 50px;
-}
-  
 .colourTab {
 
 }
@@ -70,7 +64,29 @@
 }
 
 .custom {
-  
+}
+.btn-theme-1 {
+  padding: 25px 30px !important;
+  width: 150px;
+  font-size: 1.2em;
+  margin: 40px 0;
+}
+#thanks-msg {
+  font-size: 2.5em;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.thanks {
+  margin: auto;
+  height: 50%;
+  width: 80%;
+  border-radius: 3px;
+  margin-top: 10%;
+}
+
+.right-mar {
+  margin-right: 50px;
 }
 
 .add {
@@ -83,6 +99,41 @@
 
 .mainMenu {
   
+}
+
+.segwayPic {
+  border-radius: 3px;
+}
+
+.segName {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.segDesc {
+  font-size: 1.2em;
+  text-align: center;
+}
+.bottom-btn {
+  @extend .btn;
+  margin-top: auto;
+}
+
+.top-btn {
+  @extend .btn;
+  margin-bottom: auto;
+}
+
+.nav {
+  overflow: hidden;
+  background-color: #FF463F;
+}
+
+.nav-item:hover {
+  color: #fff;
+  border-bottom: 5px solid #FFC76D;
+  margin-top: 10px;
 }
   
   
