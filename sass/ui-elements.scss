@@ -64,6 +64,7 @@
 }
 
 .custom {
+}
 .btn-theme-1 {
   padding: 25px 30px !important;
   width: 150px;
@@ -86,8 +87,6 @@
 
 .right-mar {
   margin-right: 50px;
-}
-  
 }
 
 .add {
@@ -120,47 +119,21 @@
   @extend .btn;
   margin-top: auto;
 }
-  
-  }
-  
-  .tireTab {
-  
-  }
-  
-  .engineTab {
-  
-  }
-  
-  .customTab {
-  
-  }
-  
-  .colour {
-  
-  }
-  
-  .tire {
-  
-  }
-  
-  .engine {
-  
-  }
-  
-  .custom {
-    
-  }
-  
-  .add {
-    
-  }
-  
-  .modify {
-  
-  }
-  
-  .mainMenu {
-    
-  }
+
+.top-btn {
+  @extend .btn;
+  margin-bottom: auto;
+}
+
+.nav {
+  overflow: hidden;
+  background-color: #FF463F;
+}
+
+.nav-item:hover {
+  color: #fff;
+  border-bottom: 5px solid #FFC76D;
+  margin-top: 10px;
+}
   
   
