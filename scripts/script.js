@@ -185,7 +185,7 @@ function optionClicked(evt) {
     segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Base.png)");
   } 
   if (name === "tire") {
-    // console.log("Tire");
+    console.log("Tire");
     //cheeseBtnNames.forEach(checkActive, evt);
     //evt.target.classList.add("active");
     console.log(evt.target.textContent);
@@ -194,14 +194,14 @@ function optionClicked(evt) {
     segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Tires.png)");
   }
   if (name === "engine") {
-    // console.log("Engine")
+    console.log("Engine")
     //sauceBtnNames.forEach(checkActive, evt);
     console.log(evt.target.textContent);
     evt.target.classList.add("active");
     //Don't need to change photo
   }
   if (name === "custom") {
-    // console.log("Custom")
+    console.log("Custom")
     //toppingsActive(evt);
     console.log(evt.target.textContent);
     evt.target.classList.add("active");
