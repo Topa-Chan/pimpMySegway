@@ -56,8 +56,8 @@ function loadData() {
 
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  buildHomePage(json);
-  //buildThanksPage(thankYouBtnList);
+  //buildHomePage();
+  buildThanksPage(thankYouBtnList);
   //buildConfirmPage(confirmBtnList);
   //buildCheckoutPage(checkOutBtnList);
 }
@@ -124,8 +124,7 @@ function thankYouCreateButtons(button) {
   btn.setAttribute("class", "right-mar");
   btn.setAttribute("class", "btn btn-theme-1");
   btn.textContent = button
-  //btn.addEventListener('click', buildHomePage(json));
-
+  btn.setAttribute("onclick", `buildHomePage()`);
   return btn;
 }
 
@@ -238,7 +237,7 @@ function createNavBar(navItemsList) {
   var homeLink = document.createElement("div");
   homeLink.setAttribute("class", "nav-item");
   homeLink.addEventListener('click', function(){
-    buildHomePage(json);
+    buildHomePage();
   });
   homeLink.textContent = "Segway Specials";
 
@@ -247,7 +246,7 @@ function createNavBar(navItemsList) {
 }
 
 //Building Pages
-function buildHomePage(json) {
+function buildHomePage() {
   segwayApp.innerHTML = '';
   createNavBar(pagesList);
   var html = '';
