@@ -67,7 +67,7 @@ function loadComplete(evt) {
   buildHomePage();
   //buildThanksPage(thankYouBtnList);
   //buildConfirmPage(confirmBtnList);
-  //buildCheckoutPage(checkOutBtnList);
+  buildCheckoutPage(checkOutBtnList);
 }
 
 //Building buttons
@@ -357,10 +357,107 @@ function buildConfirmPage(segwayType) {
   segwayApp.appendChild(divContainer);
 }
 
-function buildCheckoutPage() {
+function buildCheckoutPage(customs_list) {
   segwayApp.innerHTML = '';
+
   var containerOutline = document.createElement("div");
-  containerOutline.setAttribute("class", "flex-row outline");
+  containerOutline.setAttribute("class", "flex-row container outline");
+
+  var innerContainer = document.createElement("div");
+  innerContainer.setAttribute("class", "flex-col");
+
+  var colourContainer = document.createElement("div");
+  colourContainer.setAttribute("id", "colourArea");
+  colourContainer.setAttribute("class", "flex-row box-area");
+  
+  var colourLabel = document.createElement("div");
+  colourLabel.setAttribute("class", "inner-box");
+  colourLabel.textContent = "Colour:";
+
+  var colourValue = document.createElement("div");
+  colourValue.setAttribute("class", "inner-box");
+  colourValue.textContent = "Placeholder";
+
+  colourContainer.appendChild(colourLabel);
+  colourContainer.appendChild(colourValue);
+
+  var tiresContainer = document.createElement("div");
+  tiresContainer.setAttribute("id", "tiresArea");
+  tiresContainer.setAttribute("class", "flex-row box-area");
+  
+  var tiresLabel = document.createElement("div");
+  tiresLabel.setAttribute("class", "inner-box");
+  tiresLabel.textContent = "Tires:";
+
+  var tiresValue = document.createElement("div");
+  tiresValue.setAttribute("class", "inner-box");
+  tiresValue.textContent = "Placeholder";
+
+  tiresContainer.appendChild(tiresLabel);
+  tiresContainer.appendChild(tiresValue);
+
+  var engineContainer = document.createElement("div");
+  engineContainer.setAttribute("id", "engineArea");
+  engineContainer.setAttribute("class", "flex-row box-area");
+  
+  var engineLabel = document.createElement("div");
+  engineLabel.setAttribute("class", "inner-box");
+  engineLabel.textContent = "Engine:";
+
+  var engineValue = document.createElement("div");
+  engineValue.setAttribute("class", "inner-box");
+  engineValue.textContent = "Placeholder";
+
+  engineContainer.appendChild(engineLabel);
+  engineContainer.appendChild(engineValue);
+
+  var customContainer = document.createElement("div");
+  customContainer.setAttribute("id", "customArea");
+  customContainer.setAttribute("class", "flex-row box-area");
+
+  var customLabel = document.createElement("div");
+  customLabel.setAttribute("class", "inner-box");
+  customLabel.textContent = "Customs:";
+
+  var customValue = document.createElement("div");
+  customValue.setAttribute("id", "customsList");
+  customValue.setAttribute("class", "inner-box list");
+
+  for (var index in customs_list) {
+    var tempItem = document.createElement("div");
+    tempItem.setAttribute("class", "list-item");
+    tempItem.textContent = customs_list[index];
+    customValue.appendChild(tempItem);
+  }
+
+  var totalContainer = document.createElement("div");
+  totalContainer.setAttribute("id", "totalArea");
+  totalContainer.setAttribute("class", "flex-row box-area");
+  
+  var totalLabel = document.createElement("div");
+  totalLabel.setAttribute("class", "inner-box");
+  totalLabel.textContent = "Total:";
+
+  var totalValue = document.createElement("div");
+  totalValue.setAttribute("class", "inner-box");
+  totalValue.textContent = "Placeholder";
+
+  totalContainer.appendChild(totalLabel);
+  totalContainer.appendChild(totalValue);
+
+  
+
+
+
+  var btnContainer = document.createElement("div");
+  btnContainer.setAttribute("id", "btnArea");
+  btnContainer.setAttribute("class", "flex-row box-area");
+  
+  // Add build button function
+
+  btnContainer.appendChild(btn1);
+  btnContainer.appendChild(btn2);
+
   
   segwayApp.appendChild(containerOutline);
 }
