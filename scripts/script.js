@@ -64,8 +64,8 @@ function loadData() {
 
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  //buildHomePage();
-  buildThanksPage(thankYouBtnList);
+  buildHomePage();
+  //buildThanksPage(thankYouBtnList);
   //buildConfirmPage(confirmBtnList);
   //buildCheckoutPage(checkOutBtnList);
 }
