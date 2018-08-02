@@ -1,6 +1,14 @@
 var request = new XMLHttpRequest();
+
 //Main Div
 var segwayApp = document.getElementById("segway");
+
+//Segway Image Div
+var imgDiv = document.createElement('div');
+imgDiv.setAttribute("class", "segboi_img");
+
+//Segway Image []
+var segboi = [];
 
 //json
 var json;
@@ -145,6 +153,7 @@ function buildModifyButton() {
 
 //Option Clicked Evt
 function optionClicked(evt) {
+  var segboi_img_check = 1;
   // console.log(evt.target.innerText + " clicked");
   // evt.target.style.backgroundColor = "#21f";
   var preSplitName = evt.target.attributes[0].value;
@@ -152,25 +161,54 @@ function optionClicked(evt) {
   var splitName = preSplitName.split(" ");
   // console.log("Split Name: " + splitName);
   var name = splitName[1];
+  console.log(name);
   // console.log("Name: " + name)
   if (name === "colour") {
-    // console.log("Colour");
+    console.log("Colour");
     //crustBtnNames.forEach(checkActive, evt);
     //evt.target.classList.add("active");
+    console.log(evt.target.textContent);
+    evt.target.classList.add("active");
+    //'colour_base.png'
+    segboi.push("url(" + evt.target.textContent.toLowerCase() + "_Base.png)");
   } 
   if (name === "tire") {
     // console.log("Tire");
     //cheeseBtnNames.forEach(checkActive, evt);
     //evt.target.classList.add("active");
+    console.log(evt.target.textContent);
+    evt.target.classList.add("active");
+    //'tireType_Tires.png'
+    segboi.push("url(" + evt.target.textContent.toLowerCase() + "_Tires.png)");
   }
   if (name === "engine") {
     // console.log("Engine")
     //sauceBtnNames.forEach(checkActive, evt);
-    //evt.target.classList.add("active");
+    console.log(evt.target.textContent);
+    evt.target.classList.add("active");
+    //Don't need to change photo
   }
   if (name === "custom") {
     // console.log("Custom")
     //toppingsActive(evt);
+    console.log(evt.target.textContent);
+    evt.target.classList.add("active");
+    switch(evt.target.textContent) {
+      
+      default:
+        break;
+    }
+    //Have to focus on text content of the button to see what pic is needed
+  }
+}
+
+//Making Segway Picture
+function buildSegway(x) {
+  if (x === 0) {
+    console.log("We are going to build the base segway");
+    imgDiv.style.background = "url(images/default_segboi.png)";
+  } else {
+    //Logic for building image(s)
   }
 }
 
@@ -233,10 +271,36 @@ function buildHomePage(json) {
 
 function buildCustomPage(tab, segwayType) {
   segwayApp.innerHTML = '';
+  buildSegway(0);
+  var preSplitName = evt.target.attributes[0].value;
+  var splitName = preSplitName.split(" ");
+  var name = splitName[0];
+  console.log(name);
+  var tabContainer = document.createElement('div');
   for (var i = 0; i < tab.length; i++) {
-    // console.log("Tab: " + tab[i]);
+    console.log("Tab: " + tab[i]);
+    var tab = document.createElement('div');
+    tab.setAttribute('class', 'tab');
+    switch(name) {
+      case "colourTab":
+        tab.textContent = "Colours";
+        break;
+      case "tireTab":
+        tab.textContent = "Tires";
+        break;
+      case "engineTab":
+        tab.textContent = "Engines";
+        break;  
+      case "customTab":
+        tab.textContent = "Custom Mods";
+        break;
+      default:
+        break;
+    }
+    tabContainer.appendChild(tab);
   }
-  //customPage.appendChild()
+  customPage.appendChild(imgDiv);
+  customPage.appendChild(tabContainer);
   segwayApp.appendChild(customPage);
 }
 
