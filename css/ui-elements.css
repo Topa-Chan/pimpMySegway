@@ -32,13 +32,8 @@ h1 {
   padding: 20px; }
 
 .tab {
+  border: 1px dashed #FAB;
   flex: 1;
-  text-align: center;
-  border: 1px solid #00f;
-  height: 50px;
-  min-width: 75px; }
-
-.tabs:hover {
   cursor: pointer; }
 
 .btn, .bottom-btn, .top-btn {
@@ -54,6 +49,34 @@ h1 {
   font-size: 1em;
   width: 90px;
   cursor: pointer; }
+
+.active {
+  background-color: #32CD32; }
+
+#custom_page {
+  display: flex;
+  flex-direction: column; }
+
+.tabContainer {
+  display: flex;
+  flex-direction: row;
+  border: 1px dashed #FAB;
+  width: 450px; }
+
+.btnContainer {
+  flex-direction: column;
+  order: 1;
+  border: 1px dashed #32CD32;
+  width: 450px; }
+
+#tire {
+  display: none; }
+
+#engine {
+  display: none; }
+
+#custom {
+  display: none; }
 
 .btn-theme-1 {
   padding: 25px 30px !important;

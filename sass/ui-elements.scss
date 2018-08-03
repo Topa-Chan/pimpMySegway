@@ -34,11 +34,9 @@ h1 {
   padding: 20px;
 }
 .tab {
+  border: 1px dashed #FAB;
   flex: 1;
-  text-align: center;
-  border: 1px solid #00f;
-  height: 50px;
-  min-width: 75px;
+  cursor: pointer;
 }
 
 .tabs:hover {
@@ -59,37 +57,59 @@ h1 {
   width: 90px;
   cursor: pointer;
 }
+.active {
+  background-color: #32CD32;
+}
+
+
+#custom_page {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabContainer {
+  display: flex;
+  flex-direction: row;
+  border: 1px dashed #FAB;
+  width: 450px;
+
+}
+
+.btnContainer {
+  flex-direction: column;
+  order: 1;
+  border: 1px dashed #32CD32;
+  width: 450px;
+}
 
 .colourTab {
-
 }
 
 .tireTab {
-
 }
 
 .engineTab {
-
 }
 
 .customTab {
+}
+
+#colour {
 
 }
 
-.colour {
-
+#tire {
+  display: none;
 }
 
-.tire {
-
+#engine {
+  display: none;
 }
 
-.engine {
-
+#custom {
+  display: none;
 }
 
-.custom {
-}
 .btn-theme-1 {
   padding: 25px 30px !important;
   width: 150px;
