@@ -17,7 +17,9 @@
   padding: 20px;
 }
 .tab {
-  
+  border: 1px dashed #FAB;
+  flex: 1;
+  cursor: pointer;
 }
 
 .btn {
@@ -34,37 +36,59 @@
   width: 90px;
   cursor: pointer;
 }
+.active {
+  background-color: #32CD32;
+}
+
+
+#custom_page {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabContainer {
+  display: flex;
+  flex-direction: row;
+  border: 1px dashed #FAB;
+  width: 450px;
+
+}
+
+.btnContainer {
+  flex-direction: column;
+  order: 1;
+  border: 1px dashed #32CD32;
+  width: 450px;
+}
 
 .colourTab {
-
 }
 
 .tireTab {
-
 }
 
 .engineTab {
-
 }
 
 .customTab {
+}
+
+#colour {
 
 }
 
-.colour {
-
+#tire {
+  display: none;
 }
 
-.tire {
-
+#engine {
+  display: none;
 }
 
-.engine {
-
+#custom {
+  display: none;
 }
 
-.custom {
-}
 .btn-theme-1 {
   padding: 25px 30px !important;
   width: 150px;
@@ -135,5 +159,3 @@
   border-bottom: 5px solid #FFC76D;
   margin-top: 10px;
 }
-  
-  

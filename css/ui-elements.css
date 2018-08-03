@@ -16,6 +16,11 @@
   background-color: #FFC76D;
   padding: 20px; }
 
+.tab {
+  border: 1px dashed #FAB;
+  flex: 1;
+  cursor: pointer; }
+
 .btn, .bottom-btn, .top-btn {
   background-color: #FF463F;
   border: none;
@@ -29,6 +34,34 @@
   font-size: 1em;
   width: 90px;
   cursor: pointer; }
+
+.active {
+  background-color: #32CD32; }
+
+#custom_page {
+  display: flex;
+  flex-direction: column; }
+
+.tabContainer {
+  display: flex;
+  flex-direction: row;
+  border: 1px dashed #FAB;
+  width: 450px; }
+
+.btnContainer {
+  flex-direction: column;
+  order: 1;
+  border: 1px dashed #32CD32;
+  width: 450px; }
+
+#tire {
+  display: none; }
+
+#engine {
+  display: none; }
+
+#custom {
+  display: none; }
 
 .btn-theme-1 {
   padding: 25px 30px !important;
@@ -78,3 +111,5 @@
   color: #fff;
   border-bottom: 5px solid #FFC76D;
   margin-top: 10px; }
+
+/*# sourceMappingURL=ui-elements.css.map */
