@@ -351,10 +351,8 @@ function buildCustomPage(tab, segwayType) {
   var name = splitName[0];
   console.log(name);
   var tabContainer = document.createElement('div');
-  for (var i = 0; i < tab.length; i++) {
-    console.log("Tab: " + tab[i]);
-    var tab = document.createElement('div');
-    tab.setAttribute('class', 'tab');
+  for (var i = 0; i < tabs.length; i++) {
+    console.log("Tab: " + tabs[i]);
     switch(name) {
       case "colourTab":
         tab.textContent = "Colours";
