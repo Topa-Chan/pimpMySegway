@@ -96,5 +96,16 @@
         "Horn"
       ]
     }
+  ],
+  "finalBoi": [
+    {
+      "Name": "",
+      "Colour": "",
+      "Tires": "",
+      "Engine": "",
+      "Customs": [
+        
+      ]
+    }
   ]
 }
