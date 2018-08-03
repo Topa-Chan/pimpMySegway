@@ -1,9 +1,21 @@
 var request = new XMLHttpRequest();
+
 //Main Div
 var segwayApp = document.getElementById("segway");
 
+//Segway Image Div
+var imgDiv = document.createElement('div');
+imgDiv.setAttribute("class", "segboi_img");
+
+//Segway Image []
+var segboi = [];
+var finalBoi = {};
+
 //json
 var json;
+
+//segway options list
+var segway_options = ["Colors", "Tires", "Engine", "Customs", "Total"];
 
 //Pages List
 var pagesList = ['Segway Specials'];
@@ -15,7 +27,7 @@ var tireTypes = ['Bike', 'Tractor', 'Normal'];
 tireTypes.name = "Tires";
 var engineTypes = ['Electric', 'Petrol', 'Dual'];
 engineTypes.name = "Engines";
-var customAdds = ['Deep Fried', 'Cup Holders', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter'];
+var customAdds = ['Deep Fried', 'Cup Holder', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter'];
 customAdds.name = "Customs";
 
 //Page Button Options
@@ -54,12 +66,14 @@ function loadData() {
   request.send();
 }
 
+//test custom list
+
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  //buildHomePage(json);
-  //buildThanksPage(thankYouBtnList);
-  //buildConfirmPage(confirmBtnList);
-  buildCheckoutPage(checkOutBtnList);
+  //buildHomePage();
+  //buildThanksPage();
+  //buildConfirmPage();
+  buildCheckoutPage();
 }
 
 //Building buttons
@@ -124,13 +138,11 @@ function thankYouCreateButtons(button) {
   btn.setAttribute("class", "right-mar");
   btn.setAttribute("class", "btn btn-theme-1");
   btn.textContent = button
-  //btn.addEventListener('click', buildHomePage(json));
-
+  btn.setAttribute("onclick", `buildHomePage()`);
   return btn;
 }
 
 function confirmCreateButtons(button, segName) {
-
   var btnRow = document.createElement("div");
   btnRow.setAttribute("class", "flex-row");
   var btn = document.createElement("div");
@@ -150,13 +162,24 @@ function confirmCreateButtons(button, segName) {
   return btnRow;
 }
 
-//Build Modify Button Function
-function buildModifyButton() {
-  
+function checkoutCreateButton(button, segName) {
+  var btn = document.createElement("div");
+  btn.setAttribute("class", "bottom-btn");
+  btn.textContent = button;
+
+  if (button == "Modify") {
+    btn.classList.add("right-mar");
+    btn.setAttribute("onclick", `buildCustomPage('${tabs}','${segName}')`);
+  }
+  else if (button == "Add To Order") {
+    btn.setAttribute("onclick", `buildThanksPage()`);
+  }
+  return btn;
 }
 
 //Option Clicked Evt
 function optionClicked(evt) {
+  var segboi_img_check = 1;
   // console.log(evt.target.innerText + " clicked");
   // evt.target.style.backgroundColor = "#21f";
   var preSplitName = evt.target.attributes[0].value;
@@ -164,35 +187,95 @@ function optionClicked(evt) {
   var splitName = preSplitName.split(" ");
   // console.log("Split Name: " + splitName);
   var name = splitName[1];
+  console.log(name);
   // console.log("Name: " + name)
   if (name === "colour") {
-    // console.log("Colour");
+    console.log("Colour");
     //crustBtnNames.forEach(checkActive, evt);
     //evt.target.classList.add("active");
+    console.log(evt.target.textContent);
+    evt.target.classList.add("active");
+    //'colour_base.png'
+    segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Base.png)");
   } 
   if (name === "tire") {
-    // console.log("Tire");
+    console.log("Tire");
     //cheeseBtnNames.forEach(checkActive, evt);
     //evt.target.classList.add("active");
+    console.log(evt.target.textContent);
+    evt.target.classList.add("active");
+    //'tireType_Tires.png'
+    segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Tires.png)");
   }
   if (name === "engine") {
-    // console.log("Engine")
+    console.log("Engine")
     //sauceBtnNames.forEach(checkActive, evt);
-    //evt.target.classList.add("active");
+    console.log(evt.target.textContent);
+    evt.target.classList.add("active");
+    //Don't need to change photo
   }
   if (name === "custom") {
-    // console.log("Custom")
+    console.log("Custom")
     //toppingsActive(evt);
+    console.log(evt.target.textContent);
+    evt.target.classList.add("active");
+    switch(evt.target.textContent) {
+      case "Deep Fried":
+        //DEEP FRIED
+        evt.target.classList.add("active");
+        segboi.push("url(images/deepfried.png)");
+        break;
+      case "Cup Holder":
+        evt.target.classList.add("active");
+        segboi.push("url(images/cupHolder.png)");
+        break;
+      case "Tassels":
+        evt.target.classList.add("active");
+        segboi.push("url(images/tassels.png)");
+        break;
+      case "Extra Batteries":
+        evt.target.classList.add("active");
+        //Don't need to change picture
+        break;
+      case "Horn":
+        evt.target.classList.add("active");
+        segboi.push("url(images/horn.png)");
+        break;
+      case "Basket":
+        evt.target.classList.add("active");
+        segboi.push("url(images/basket.png)");
+        break;
+      case "Bluetooth Speakers":
+        evt.target.classList.add("active");
+        segboi.push("url(images/bluetoothlight.png)");
+        break;
+      case "Glitter":
+        evt.target.classList.add("active");
+        segboi.push("url(images/glitter.png)");
+      default:
+        break;
+    }
+    //Have to focus on text content of the button to see what pic is needed
+  }
+  buildSegway(segboi_img_check);
+}
+
+//Making Segway Picture
+function buildSegway(x) {
+  if (x === 0) {
+    console.log("We are going to build the base segway");
+    imgDiv.style.background = "url(images/default_segboi.png)";
+  } else {
+    //Logic for building image(s)
+    imgDiv.style.background = "none";
+    for (var i = 0; i < segboi.length; i++) {
+      imgDiv.style.background = segboi[i];
+    }
   }
 }
 
 //Tab Clicked Evt
 function tabClicked(evt) {
-
-}
-
-//Button Clicked Evt
-function buttonClicked(evt) {
 
 }
 
@@ -238,7 +321,7 @@ function createNavBar(navItemsList) {
   var homeLink = document.createElement("div");
   homeLink.setAttribute("class", "nav-item");
   homeLink.addEventListener('click', function(){
-    buildHomePage(json);
+    buildHomePage();
   });
   homeLink.textContent = "Segway Specials";
 
@@ -247,7 +330,7 @@ function createNavBar(navItemsList) {
 }
 
 //Building Pages
-function buildHomePage(json) {
+function buildHomePage() {
   segwayApp.innerHTML = '';
   createNavBar(pagesList);
   var html = '';
@@ -262,10 +345,34 @@ function buildHomePage(json) {
 
 function buildCustomPage(tab, segwayType) {
   segwayApp.innerHTML = '';
-  for (var i = 0; i < tab.length; i++) {
-    // console.log("Tab: " + tab[i]);
+  buildSegway(0);
+  var preSplitName = evt.target.attributes[0].value;
+  var splitName = preSplitName.split(" ");
+  var name = splitName[0];
+  console.log(name);
+  var tabContainer = document.createElement('div');
+  for (var i = 0; i < tabs.length; i++) {
+    console.log("Tab: " + tabs[i]);
+    switch(name) {
+      case "colourTab":
+        tab.textContent = "Colours";
+        break;
+      case "tireTab":
+        tab.textContent = "Tires";
+        break;
+      case "engineTab":
+        tab.textContent = "Engines";
+        break;  
+      case "customTab":
+        tab.textContent = "Custom Mods";
+        break;
+      default:
+        break;
+    }
+    tabContainer.appendChild(tab);
   }
-  //customPage.appendChild()
+  customPage.appendChild(imgDiv);
+  customPage.appendChild(tabContainer);
   segwayApp.appendChild(customPage);
 }
 
@@ -294,7 +401,7 @@ function buildConfirmPage(segwayType) {
   segwayApp.appendChild(divContainer);
 }
 
-function buildCheckoutPage(customs_list) {
+function buildCheckoutPage(customs_list, segName) {
   segwayApp.innerHTML = '';
 
   var containerOutline = document.createElement("div");
@@ -367,6 +474,10 @@ function buildCheckoutPage(customs_list) {
     customValue.appendChild(tempItem);
   }
 
+  customContainer.appendChild(customLabel);
+  customContainer.appendChild(customValue);
+
+
   var totalContainer = document.createElement("div");
   totalContainer.setAttribute("id", "totalArea");
   totalContainer.setAttribute("class", "flex-row box-area");
@@ -382,24 +493,27 @@ function buildCheckoutPage(customs_list) {
   totalContainer.appendChild(totalLabel);
   totalContainer.appendChild(totalValue);
 
-  
-
-
-
   var btnContainer = document.createElement("div");
   btnContainer.setAttribute("id", "btnArea");
-  btnContainer.setAttribute("class", "flex-row box-area");
+  btnContainer.setAttribute("class", "flex-row box-area more-space");
   
-  // Add build button function
+  for (var index in checkOutBtnList) {
+    btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index], segName));
+  }
 
-  btnContainer.appendChild(btn1);
-  btnContainer.appendChild(btn2);
+  innerContainer.appendChild(colourContainer);
+  innerContainer.appendChild(tiresContainer);
+  innerContainer.appendChild(engineContainer);
+  innerContainer.appendChild(customContainer);
+  innerContainer.appendChild(totalContainer);
+  innerContainer.appendChild(btnContainer);
 
-  
+  containerOutline.appendChild(innerContainer);
+
   segwayApp.appendChild(containerOutline);
 }
 
-function buildThanksPage(btn_array) {
+function buildThanksPage() {
   segwayApp.innerHTML = '';
   var container = document.createElement("div");
   container.setAttribute("class", "flex-col thanks");
@@ -411,8 +525,8 @@ function buildThanksPage(btn_array) {
   var btnDiv = document.createElement("div");
   btnDiv.setAttribute("class", "flex-row");
 
-  for (var index in btn_array) {
-    var tempBtn = thankYouCreateButtons(btn_array[index]);
+  for (var index in thankYouBtnList) {
+    var tempBtn = thankYouCreateButtons(thankYouBtnList[index]);
     btnDiv.appendChild(tempBtn);
   }
   container.appendChild(msg);

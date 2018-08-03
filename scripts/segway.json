@@ -15,7 +15,7 @@
     {
       "Name": "Memester",
       "Id": "memester",
-      "ImageSource": "images/",
+      "ImageSource": "images/memester.png",
       "Description": "Only the greatest meme master can handle our pimped out Memester, built with petrol engine, our regular tries, deep fried paint job, and bluetooth speaker."
     },
     {
@@ -94,6 +94,17 @@
       "Customs": [
         "Cup Holders",
         "Horn"
+      ]
+    }
+  ],
+  "finalBoi": [
+    {
+      "Name": "",
+      "Colour": "",
+      "Tires": "",
+      "Engine": "",
+      "Customs": [
+        
       ]
     }
   ]
