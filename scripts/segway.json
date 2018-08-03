@@ -97,15 +97,14 @@
       ]
     }
   ],
-  "finalBoi": [
-    {
-      "Name": "",
-      "Colour": "",
-      "Tires": "",
-      "Engine": "",
-      "Customs": [
-        
-      ]
-    }
-  ]
+  "finalBoi": {
+    "Colour": "Green",
+    "Tires": "Normal",
+    "Engine": "Electric",
+    "Customs": [
+      "Horn",
+      "Glitter",
+      "Basket"
+    ]
+  }
 }

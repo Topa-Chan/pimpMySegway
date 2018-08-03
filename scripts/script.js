@@ -15,7 +15,7 @@ var finalBoi = {};
 var json;
 
 //segway options list
-var segway_options = ["Colors", "Tires", "Engine", "Customs", "Total"];
+var segway_options = ["Colour", "Tires", "Engine", "Customs", "Total"];
 
 //Pages List
 var pagesList = ['Segway Specials'];
@@ -401,7 +401,7 @@ function buildConfirmPage(segwayType) {
   segwayApp.appendChild(divContainer);
 }
 
-function buildCheckoutPage(customs_list, segName) {
+function buildCheckoutPage() {
   segwayApp.innerHTML = '';
 
   var containerOutline = document.createElement("div");
@@ -409,6 +409,10 @@ function buildCheckoutPage(customs_list, segName) {
 
   var innerContainer = document.createElement("div");
   innerContainer.setAttribute("class", "flex-col");
+
+  for (var index in segway_options) {
+    console.log(json.finalBoi[segway_options[index]]);
+  }
 
   var colourContainer = document.createElement("div");
   colourContainer.setAttribute("id", "colourArea");
@@ -467,12 +471,12 @@ function buildCheckoutPage(customs_list, segName) {
   customValue.setAttribute("id", "customsList");
   customValue.setAttribute("class", "inner-box list");
 
-  for (var index in customs_list) {
-    var tempItem = document.createElement("div");
-    tempItem.setAttribute("class", "list-item");
-    tempItem.textContent = customs_list[index];
-    customValue.appendChild(tempItem);
-  }
+  // for (var index in customs_list) {
+  //   var tempItem = document.createElement("div");
+  //   tempItem.setAttribute("class", "list-item");
+  //   tempItem.textContent = customs_list[index];
+  //   customValue.appendChild(tempItem);
+  // }
 
   customContainer.appendChild(customLabel);
   customContainer.appendChild(customValue);
@@ -498,7 +502,7 @@ function buildCheckoutPage(customs_list, segName) {
   btnContainer.setAttribute("class", "flex-row box-area more-space");
   
   for (var index in checkOutBtnList) {
-    btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index], segName));
+    //btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index], segName));
   }
 
   innerContainer.appendChild(colourContainer);
