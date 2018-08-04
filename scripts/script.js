@@ -9,6 +9,7 @@ imgDiv.setAttribute("class", "segboi_img");
 
 //Segway Image []
 var segboi = [];
+
 //var finalBoi = {};
 
 //json
@@ -134,24 +135,14 @@ function buildOrderButton(isCustom, segwayName) {
   buttonDiv.setAttribute("class", "bottom-btn");
   buttonDiv.textContent = 'Add To Order';
   if (isCustom) {
-    buttonDiv.setAttribute("onclick", `buildCustomPage('${tabs}','${segwayName}')`);
+    buttonDiv.setAttribute("onclick", `buildCustomPage('${segwayName}')`);
   } else {
     buttonDiv.setAttribute("onclick", `buildConfirmPage('${segwayName}')`);
   }
-  // if (isCustom) {
-  //   buttonDiv.addEventListener('click', function(){
-  //     console.log("I click");
-  //     buildCustomPage(tabs, segwayName)
-  //   });
-  // } else {
-  //   buttonDiv.addEventListener('click', function(){
-  //     console.log("I click");
-  //     buildConfirmPage(segwayName, confirmBtnList);
-  //   });
-  // }
 
   return buttonDiv;
 }
+
 //Page Button Functions
 function thankYouCreateButtons(button) {
   var btn = document.createElement("div");
@@ -171,7 +162,7 @@ function confirmCreateButtons(button, segName) {
 
   if (button == "Modify") {
     btn.setAttribute("class", "bottom-btn");
-    btn.setAttribute("onclick", `buildCustomPage('${tabs}','${segName}')`);
+    btn.setAttribute("onclick", `buildCustomPage('${segName}')`);
   }
   else if (button == "Add To Order") {
     btn.setAttribute("class", "top-btn");
@@ -189,7 +180,7 @@ function checkoutCreateButton(button, segName) {
 
   if (button == "Modify") {
     btn.classList.add("right-mar");
-    btn.setAttribute("onclick", `buildCustomPage('${tabs}','${segName}')`);
+    btn.setAttribute("onclick", `buildCustomPage('${segName}')`);
   }
   else if (button == "Add To Order") {
     btn.setAttribute("onclick", `buildThanksPage()`);
@@ -293,6 +284,30 @@ function optionClicked(evt) {
     evt.target.classList.remove("active");
   }
   buildSegway(segboi_img_check);
+}
+
+//Getting Segway from Json
+function getJsonSegway(name) {
+  switch(name) {
+    case "Custom":
+      console.log("Custom segboi chosen");
+      break;
+    case "Default":
+      console.log("Default segboi chosen");
+      break;
+    case "Memester":
+      console.log("Memester segboi chosen");
+      break;
+    case "Little Kid":
+      console.log("Little Kid segboi chosen");
+      break;
+    case "Rich Kid":
+      console.log("Rich Kid segboi chosen");
+      break;
+    case "Deep South":
+      console.log("Deep South segboi chosen");
+      break;
+  }
 }
 
 //Making Segway Picture
@@ -449,7 +464,7 @@ function buildHomePage() {
   segwayApp.innerHTML = html;
 }
 
-function buildCustomPage(tab, segwayType) {
+function buildCustomPage(segwayType) {
   console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
   buildSegway(0);
