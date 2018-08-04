@@ -242,10 +242,12 @@ function optionClicked(evt) {
     switch(evt.target.textContent) {
       case "Deep Fried":
         //DEEP FRIED
+        colourBtns.forEach(multipleSingleOptions);
         evt.target.classList.add("active");
         segboi.push("url(images/deepfried.png)");
+        console.log(document.getElementById("custom"));
         break;
-      case "Cup Holder":
+        case "Cup Holder":
         evt.target.classList.add("active");
         segboi.push("url(images/cupHolder.png)");
         break;
@@ -257,25 +259,29 @@ function optionClicked(evt) {
         evt.target.classList.add("active");
         //Don't need to change picture
         break;
-      case "Horn":
+        case "Horn":
         evt.target.classList.add("active");
         segboi.push("url(images/horn.png)");
         break;
-      case "Basket":
+        case "Basket":
         evt.target.classList.add("active");
         segboi.push("url(images/basket.png)");
         break;
-      case "Bluetooth Speakers":
+        case "Bluetooth Speakers":
         evt.target.classList.add("active");
         segboi.push("url(images/bluetoothlight.png)");
         break;
-      case "Glitter":
+        case "Glitter":
         evt.target.classList.add("active");
         segboi.push("url(images/glitter.png)");
-      default:
+        default:
         break;
-    }
+      }
+    } 
     //Have to focus on text content of the button to see what pic is needed
+  } else {
+    // evt.target.classList.add("notActive");
+    evt.target.classList.remove("active");
   }
   buildSegway(segboi_img_check);
 }

@@ -2,16 +2,16 @@ Pimping way-segs
 Customize Segway Options
 
 Colours(5):
-	Gold -
-	Red -
-	Green -
-	Blue -
-	Black -
+	Gold - $1080
+	Red - $930
+	Green - $825
+	Blue - $930
+	Black - $825
 
 Tires(3):
-	Bike -
+	Bike - 
 	Tactor -
-	Normal -
+	Normal - 
 
 Engines(3):
 	electric -
