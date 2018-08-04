@@ -4,7 +4,7 @@ var request = new XMLHttpRequest();
 var segwayApp = document.getElementById("segway");
 
 //Segway Image Div
-var imgDiv = document.createElement('div');
+var imgDiv = document.createElement('canvas');
 imgDiv.setAttribute("class", "segboi_img");
 
 //Segway Image []
@@ -77,7 +77,8 @@ function loadComplete(evt) {
   //buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
-  buildCheckoutPage();
+  //buildCheckoutPage();
+  buildCustomPage();
 }
 
 //Tab Container
@@ -452,6 +453,8 @@ function buildCustomPage(tab, segwayType) {
   console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
   buildSegway(0);
+  var custom_pageContainer = document.createElement('div');
+  custom_pageContainer.setAttribute('class', 'custom_pageContainer');
   // console.log(name);
   tabContainer.setAttribute('class', 'tabContainer');
   for (var i = 0; i < tabs.length; i++) {
@@ -482,9 +485,10 @@ function buildCustomPage(tab, segwayType) {
     //console.log(tab[i]);
     tabContainer.appendChild(tabs[i]);
   }
+  custom_pageContainer.appendChild(tabContainer);
+  custom_pageContainer.appendChild(btnContainer);
   customPage.appendChild(imgDiv);
-  customPage.appendChild(tabContainer);
-  customPage.appendChild(btnContainer);
+  customPage.appendChild(custom_pageContainer);
   segwayApp.appendChild(customPage);
 }
 

@@ -2,8 +2,8 @@ body {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
-  -moz-user-select: none; 
-  -ms-user-select: none; 
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 h1 {
@@ -37,6 +37,8 @@ h1 {
   border: 1px dashed #FAB;
   flex: 1;
   cursor: pointer;
+  padding: 10px;
+  text-align: center;
 }
 
 .tabs:hover {
@@ -63,23 +65,32 @@ h1 {
 }
 
 #custom_page {
+  padding: 50px;
   display: flex;
+}
+
+.custom_pageContainer {
+  //display: flex;
   flex-direction: column;
+  // padding-top: 25px;
+  padding-left: 225px;
 }
 
 .tabContainer {
   display: flex;
   flex-direction: row;
   border: 1px dashed #FAB;
-  width: 450px;
-
+  width: 350px;
 }
 
 .btnContainer {
   flex-direction: row;
   order: 1;
   border: 1px dashed #32CD32;
-  width: 450px;
+  width: 235px;
+  padding-left: 115px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .colourTab {
@@ -135,7 +146,7 @@ h1 {
 }
 
 .add {
-  
+
 }
 
 .modify {
@@ -143,7 +154,14 @@ h1 {
 }
 
 .mainMenu {
-  
+
+}
+
+.segboi_img {
+  height: 470px;
+  width: 309px;
+  border: 2px dashed chartreuse;
+  margin-right: 200px;
 }
 
 .segwayPic {
@@ -180,8 +198,7 @@ h1 {
   border-bottom: 5px solid #FFC76D;
   margin-top: 10px;
 }
-<<<<<<< HEAD
-  
+
 .container {
   height: 450px;
 }
