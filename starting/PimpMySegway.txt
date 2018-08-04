@@ -9,31 +9,31 @@ Colours(5):
 	Black - $825
 
 Tires(3):
-	Bike - 
-	Tactor -
-	Normal - 
+	Bike - $2040
+	Tactor - $2502
+	Normal - $2124
 
 Engines(3):
-	electric -
-	gas -
-	dual -
+	electric - $3500
+	gas - $3350
+	dual - $6800
 
 Custom (8):
-	Deep Fried -
-	Cup Holders -
-	Tassels -
-	Extra Batteries -
-	Horn 
-	Basket - 
-	Bluetooth Speakers - 
-	Glitter - 
+	Deep Fried - $570
+	Cup Holders - $130
+	Tassels - $110
+	Extra Batteries -$450
+	Horn - $250 
+	Basket - $350
+	Bluetooth Speakers - $450
+	Glitter - $570
 	
 Pre-Built(5)
-1. Deafault - Black, Normal, Electric, Bluetooth Speakers -
-2. Memester - No Colour, Normal Tires, Gas Engine, Deep Fried, Bluetooth Speakers -
-3. Little Kid - Blue, Bike, Electric, Tassles, Horn, Basket -
-4. Rich Kid - Gold, Normal, Dual, Glitter, Extra Batteries, Cup Holder -
-5. Deep South - Green, Tractor, Gas, Cup Holder, Horn -
+1. Deafault - Black, Normal, Electric, Bluetooth Speakers - $6899
+2. Memester - No Colour, Normal Tires, Gas Engine, Deep Fried, Bluetooth Speakers - $6494
+3. Little Kid - Blue, Bike, Electric, Tassles, Horn, Basket - $7180
+4. Rich Kid - Gold, Normal, Dual, Glitter, Extra Batteries, Cup Holder - $11154
+5. Deep South - Green, Tractor, Gas, Cup Holder, Horn - $7057
 6. Custom Build
 
 	
