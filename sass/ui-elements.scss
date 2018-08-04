@@ -36,10 +36,10 @@
   width: 90px;
   cursor: pointer;
 }
+
 .active {
   background-color: #32CD32;
 }
-
 
 #custom_page {
   display: flex;
@@ -55,7 +55,7 @@
 }
 
 .btnContainer {
-  flex-direction: column;
+  flex-direction: row;
   order: 1;
   border: 1px dashed #32CD32;
   width: 450px;
@@ -158,4 +158,8 @@
   color: #fff;
   border-bottom: 5px solid #FFC76D;
   margin-top: 10px;
+}
+
+.notActive {
+  background-color: #FF463F;
 }
