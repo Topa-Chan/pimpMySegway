@@ -4,7 +4,7 @@ var request = new XMLHttpRequest();
 var segwayApp = document.getElementById("segway");
 
 //Segway Image Div
-var imgDiv = document.createElement('div');
+var imgDiv = document.createElement('canvas');
 imgDiv.setAttribute("class", "segboi_img");
 
 //Segway Image []
@@ -77,7 +77,8 @@ function loadComplete(evt) {
   //buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
-  buildCheckoutPage();
+  //buildCheckoutPage();
+  buildCustomPage();
 }
 
 //Tab Container
@@ -102,6 +103,7 @@ function buildOption(item, index, arr, isCustom){
   if (arr.name === "Colours") {
     buttons[index].setAttribute('class', 'btn');
     buttons[index].setAttribute('id', 'colour');
+    buttons[index].style.display = "block";
     btnContainer.appendChild(buttons[index]);
     colourBtns.push(buttons[index]);
   }
@@ -207,45 +209,54 @@ function optionClicked(evt) {
   // var name = splitName[1];
   var name = btnNameID;
   console.log(name);
-  // console.log("Name: " + name)
-  if (name === "colour") {
-    console.log("Colour");
-    //crustBtnNames.forEach(checkActive, evt);
-    //evt.target.classList.add("active");
-    console.log(evt.target.textContent);
-    evt.target.classList.add("active");
-    console.log(evt.target.attributes[0].value);
-    //'colour_base.png'
-    segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Base.png)");
-  } 
-  if (name === "tire") {
-    console.log("Tire");
-    //cheeseBtnNames.forEach(checkActive, evt);
-    //evt.target.classList.add("active");
-    console.log(evt.target.textContent);
-    evt.target.classList.add("active");
-    //'tireType_Tires.png'
-    segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Tires.png)");
-  }
-  if (name === "engine") {
-    console.log("Engine")
-    //sauceBtnNames.forEach(checkActive, evt);
-    console.log(evt.target.textContent);
-    evt.target.classList.add("active");
-    //Don't need to change photo
-  }
-  if (name === "custom") {
-    console.log("Custom")
-    //toppingsActive(evt);
-    console.log(evt.target.textContent);
-    evt.target.classList.add("active");
-    switch(evt.target.textContent) {
-      case "Deep Fried":
+  // console.log("Name: " + name
+  //If Statement for active or not
+  if (!isActive(evt)) {
+    if (name === "colour") {
+      console.log("Colour btn was clicked");
+      //crustBtnNames.forEach(checkActive, evt);
+      //evt.target.classList.add("active");
+      colourBtns.forEach(multipleSingleOptions);
+      evt.target.classList.add("active");
+      if (document.getElementById("custom").classList.contains("active")) {
+        console.log("THIS IS DEEP FRIED!");
+        document.getElementById("custom").classList.remove("active");
+      }
+      //'colour_base.png'
+      segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Base.png)");
+    } 
+    if (name === "tire") {
+      console.log("Tire");
+      //cheeseBtnNames.forEach(checkActive, evt);
+      //evt.target.classList.add("active");
+      console.log(evt.target.textContent);
+      tireBtns.forEach(multipleSingleOptions);
+      evt.target.classList.add("active");
+      //'tireType_Tires.png'
+      segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Tires.png)");
+    }
+    if (name === "engine") {
+      console.log("Engine")
+      //sauceBtnNames.forEach(checkActive, evt);
+      console.log(evt.target.textContent);
+      engineBtns.forEach(multipleSingleOptions);
+      evt.target.classList.add("active");
+      //Don't need to change photo
+    }
+    if (name === "custom") {
+      console.log("Custom")
+      //toppingsActive(evt);
+      console.log(evt.target.textContent);
+      evt.target.classList.add("active");
+      switch(evt.target.textContent) {
+        case "Deep Fried":
         //DEEP FRIED
+        colourBtns.forEach(multipleSingleOptions);
         evt.target.classList.add("active");
         segboi.push("url(images/deepfried.png)");
+        console.log(document.getElementById("custom"));
         break;
-      case "Cup Holder":
+        case "Cup Holder":
         evt.target.classList.add("active");
         segboi.push("url(images/cupHolder.png)");
         break;
@@ -257,25 +268,29 @@ function optionClicked(evt) {
         evt.target.classList.add("active");
         //Don't need to change picture
         break;
-      case "Horn":
+        case "Horn":
         evt.target.classList.add("active");
         segboi.push("url(images/horn.png)");
         break;
-      case "Basket":
+        case "Basket":
         evt.target.classList.add("active");
         segboi.push("url(images/basket.png)");
         break;
-      case "Bluetooth Speakers":
+        case "Bluetooth Speakers":
         evt.target.classList.add("active");
         segboi.push("url(images/bluetoothlight.png)");
         break;
-      case "Glitter":
+        case "Glitter":
         evt.target.classList.add("active");
         segboi.push("url(images/glitter.png)");
-      default:
+        default:
         break;
-    }
+      }
+    } 
     //Have to focus on text content of the button to see what pic is needed
+  } else {
+    // evt.target.classList.add("notActive");
+    evt.target.classList.remove("active");
   }
   buildSegway(segboi_img_check);
 }
@@ -337,13 +352,37 @@ function tabClicked(evt) {
 //Set Display of Buttons
 function displayBtns(item, index, arr) {
   console.log("In display btns function");
-  console.log(arr.name);
   arr[index].style.display = "block";
 }
 
 function hideBtns(item, index, arr) {
   console.log("In hide btns function");
   arr[index].style.display = "none";
+}
+
+//Check Btn for Active class
+function isActive(evt) {
+  console.log("This is inside the isActive()!");
+  console.log("This is the btn that was clicked! " + evt.target.textContent);
+  if (evt.target.attributes[0].value.includes("active")) {
+    console.log("There is active");
+    return true;
+  } else if (evt.target.attributes[0].value.includes("notActive")) {
+    console.log("Not active");
+    return false;
+  } 
+}
+
+//Check for single options
+function multipleSingleOptions(item, index, arr) {
+  if (arr[index].attributes[0].value.includes("active")) {
+    arr[index].classList.remove("active");
+  } 
+}
+
+//Button Clicked Evt
+function buttonClicked(evt) {
+
 }
 
 //Building Segway Specials
@@ -414,6 +453,8 @@ function buildCustomPage(tab, segwayType) {
   console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
   buildSegway(0);
+  var custom_pageContainer = document.createElement('div');
+  custom_pageContainer.setAttribute('class', 'custom_pageContainer');
   // console.log(name);
   tabContainer.setAttribute('class', 'tabContainer');
   for (var i = 0; i < tabs.length; i++) {
@@ -444,9 +485,10 @@ function buildCustomPage(tab, segwayType) {
     //console.log(tab[i]);
     tabContainer.appendChild(tabs[i]);
   }
+  custom_pageContainer.appendChild(tabContainer);
+  custom_pageContainer.appendChild(btnContainer);
   customPage.appendChild(imgDiv);
-  customPage.appendChild(tabContainer);
-  customPage.appendChild(btnContainer);
+  customPage.appendChild(custom_pageContainer);
   segwayApp.appendChild(customPage);
 }
 

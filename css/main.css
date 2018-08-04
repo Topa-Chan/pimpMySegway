@@ -81,6 +81,11 @@ h1 {
 .tab {
   border: 1px dashed #FAB;
   flex: 1;
+  cursor: pointer;
+  padding: 10px;
+  text-align: center; }
+
+.tabs:hover {
   cursor: pointer; }
 
 .btn, .bottom-btn, .top-btn {
@@ -101,20 +106,27 @@ h1 {
   background-color: #32CD32; }
 
 #custom_page {
-  display: flex;
-  flex-direction: column; }
+  padding: 50px;
+  display: flex; }
+
+.custom_pageContainer {
+  flex-direction: column;
+  padding-left: 225px; }
 
 .tabContainer {
   display: flex;
   flex-direction: row;
   border: 1px dashed #FAB;
-  width: 450px; }
+  width: 350px; }
 
 .btnContainer {
-  flex-direction: column;
+  flex-direction: row;
   order: 1;
   border: 1px dashed #32CD32;
-  width: 450px; }
+  width: 235px;
+  padding-left: 115px;
+  padding-top: 10px;
+  padding-bottom: 10px; }
 
 #tire {
   display: none; }
@@ -145,6 +157,12 @@ h1 {
 
 .right-mar {
   margin-right: 50px; }
+
+.segboi_img {
+  height: 470px;
+  width: 309px;
+  border: 2px dashed chartreuse;
+  margin-right: 200px; }
 
 .segwayPic {
   border-radius: 3px; }
@@ -190,3 +208,5 @@ h1 {
 
 .active {
   background-color: #21f; }
+
+/*# sourceMappingURL=main.css.map */
