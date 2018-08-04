@@ -14,6 +14,9 @@ var segboi = [];
 //json
 var json;
 
+//segway options list
+var segway_options = ["Colour", "Tires", "Engine", "Customs", "Total"];
+
 //Pages List
 var pagesList = ['Segway Specials'];
 
@@ -67,12 +70,14 @@ function loadData() {
   request.send();
 }
 
+//test custom list
+
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
   //buildHomePage();
-  buildThanksPage(thankYouBtnList);
-  //buildConfirmPage(confirmBtnList);
-  //buildCheckoutPage(checkOutBtnList);
+  //buildThanksPage();
+  //buildConfirmPage();
+  buildCheckoutPage();
 }
 
 //Tab Container
@@ -157,7 +162,6 @@ function thankYouCreateButtons(button) {
 }
 
 function confirmCreateButtons(button, segName) {
-
   var btnRow = document.createElement("div");
   btnRow.setAttribute("class", "flex-row");
   var btn = document.createElement("div");
@@ -177,9 +181,19 @@ function confirmCreateButtons(button, segName) {
   return btnRow;
 }
 
-//Build Modify Button Function
-function buildModifyButton() {
-  
+function checkoutCreateButton(button, segName) {
+  var btn = document.createElement("div");
+  btn.setAttribute("class", "bottom-btn");
+  btn.textContent = button;
+
+  if (button == "Modify") {
+    btn.classList.add("right-mar");
+    btn.setAttribute("onclick", `buildCustomPage('${tabs}','${segName}')`);
+  }
+  else if (button == "Add To Order") {
+    btn.setAttribute("onclick", `buildThanksPage()`);
+  }
+  return btn;
 }
 
 //Option Clicked Evt
@@ -501,13 +515,121 @@ function buildConfirmPage(segwayType) {
 
 function buildCheckoutPage() {
   segwayApp.innerHTML = '';
+
   var containerOutline = document.createElement("div");
-  containerOutline.setAttribute("class", "flex-row outline");
+  containerOutline.setAttribute("class", "flex-row container outline");
+
+  var innerContainer = document.createElement("div");
+  innerContainer.setAttribute("class", "flex-col");
+
+  for (var index in segway_options) {
+    console.log(json.finalBoi[segway_options[index]]);
+  }
+
+  var colourContainer = document.createElement("div");
+  colourContainer.setAttribute("id", "colourArea");
+  colourContainer.setAttribute("class", "flex-row box-area");
   
+  var colourLabel = document.createElement("div");
+  colourLabel.setAttribute("class", "inner-box");
+  colourLabel.textContent = "Colour:";
+
+  var colourValue = document.createElement("div");
+  colourValue.setAttribute("class", "inner-box");
+  colourValue.textContent = "Placeholder";
+
+  colourContainer.appendChild(colourLabel);
+  colourContainer.appendChild(colourValue);
+
+  var tiresContainer = document.createElement("div");
+  tiresContainer.setAttribute("id", "tiresArea");
+  tiresContainer.setAttribute("class", "flex-row box-area");
+  
+  var tiresLabel = document.createElement("div");
+  tiresLabel.setAttribute("class", "inner-box");
+  tiresLabel.textContent = "Tires:";
+
+  var tiresValue = document.createElement("div");
+  tiresValue.setAttribute("class", "inner-box");
+  tiresValue.textContent = "Placeholder";
+
+  tiresContainer.appendChild(tiresLabel);
+  tiresContainer.appendChild(tiresValue);
+
+  var engineContainer = document.createElement("div");
+  engineContainer.setAttribute("id", "engineArea");
+  engineContainer.setAttribute("class", "flex-row box-area");
+  
+  var engineLabel = document.createElement("div");
+  engineLabel.setAttribute("class", "inner-box");
+  engineLabel.textContent = "Engine:";
+
+  var engineValue = document.createElement("div");
+  engineValue.setAttribute("class", "inner-box");
+  engineValue.textContent = "Placeholder";
+
+  engineContainer.appendChild(engineLabel);
+  engineContainer.appendChild(engineValue);
+
+  var customContainer = document.createElement("div");
+  customContainer.setAttribute("id", "customArea");
+  customContainer.setAttribute("class", "flex-row box-area");
+
+  var customLabel = document.createElement("div");
+  customLabel.setAttribute("class", "inner-box");
+  customLabel.textContent = "Customs:";
+
+  var customValue = document.createElement("div");
+  customValue.setAttribute("id", "customsList");
+  customValue.setAttribute("class", "inner-box list");
+
+  // for (var index in customs_list) {
+  //   var tempItem = document.createElement("div");
+  //   tempItem.setAttribute("class", "list-item");
+  //   tempItem.textContent = customs_list[index];
+  //   customValue.appendChild(tempItem);
+  // }
+
+  customContainer.appendChild(customLabel);
+  customContainer.appendChild(customValue);
+
+
+  var totalContainer = document.createElement("div");
+  totalContainer.setAttribute("id", "totalArea");
+  totalContainer.setAttribute("class", "flex-row box-area");
+  
+  var totalLabel = document.createElement("div");
+  totalLabel.setAttribute("class", "inner-box");
+  totalLabel.textContent = "Total:";
+
+  var totalValue = document.createElement("div");
+  totalValue.setAttribute("class", "inner-box");
+  totalValue.textContent = "Placeholder";
+
+  totalContainer.appendChild(totalLabel);
+  totalContainer.appendChild(totalValue);
+
+  var btnContainer = document.createElement("div");
+  btnContainer.setAttribute("id", "btnArea");
+  btnContainer.setAttribute("class", "flex-row box-area more-space");
+  
+  for (var index in checkOutBtnList) {
+    //btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index], segName));
+  }
+
+  innerContainer.appendChild(colourContainer);
+  innerContainer.appendChild(tiresContainer);
+  innerContainer.appendChild(engineContainer);
+  innerContainer.appendChild(customContainer);
+  innerContainer.appendChild(totalContainer);
+  innerContainer.appendChild(btnContainer);
+
+  containerOutline.appendChild(innerContainer);
+
   segwayApp.appendChild(containerOutline);
 }
 
-function buildThanksPage(btn_array) {
+function buildThanksPage() {
   segwayApp.innerHTML = '';
   var container = document.createElement("div");
   container.setAttribute("class", "flex-col thanks");
@@ -519,8 +641,8 @@ function buildThanksPage(btn_array) {
   var btnDiv = document.createElement("div");
   btnDiv.setAttribute("class", "flex-row");
 
-  for (var index in btn_array) {
-    var tempBtn = thankYouCreateButtons(btn_array[index]);
+  for (var index in thankYouBtnList) {
+    var tempBtn = thankYouCreateButtons(thankYouBtnList[index]);
     btnDiv.appendChild(tempBtn);
   }
   container.appendChild(msg);
