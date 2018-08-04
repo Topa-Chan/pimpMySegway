@@ -1,3 +1,20 @@
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;
+}
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.outline {
+  border: 1px dashed #000;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -17,7 +34,13 @@
   padding: 20px;
 }
 .tab {
-  
+  border: 1px dashed #FAB;
+  flex: 1;
+  cursor: pointer;
+}
+
+.tabs:hover {
+  cursor: pointer;
 }
 
 .btn {
@@ -34,37 +57,59 @@
   width: 90px;
   cursor: pointer;
 }
+.active {
+  background-color: #32CD32;
+}
+
+
+#custom_page {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabContainer {
+  display: flex;
+  flex-direction: row;
+  border: 1px dashed #FAB;
+  width: 450px;
+
+}
+
+.btnContainer {
+  flex-direction: column;
+  order: 1;
+  border: 1px dashed #32CD32;
+  width: 450px;
+}
 
 .colourTab {
-
 }
 
 .tireTab {
-
 }
 
 .engineTab {
-
 }
 
 .customTab {
+}
+
+#colour {
 
 }
 
-.colour {
-
+#tire {
+  display: none;
 }
 
-.tire {
-
+#engine {
+  display: none;
 }
 
-.engine {
-
+#custom {
+  display: none;
 }
 
-.custom {
-}
 .btn-theme-1 {
   padding: 25px 30px !important;
   width: 150px;
@@ -136,4 +181,24 @@
   margin-top: 10px;
 }
   
-  
+.container {
+  height: 450px;
+}
+
+.inner-box {
+  width: 50%;
+  text-align: left;
+}
+
+.flex-tabs {
+  width: 100%;
+  height: 20%;
+  align-content: center;
+  justify-content: center;
+  // margin: 0px !important;
+  margin-bottom: 400px;
+}
+
+.active {
+  background-color: #21f;
+}
