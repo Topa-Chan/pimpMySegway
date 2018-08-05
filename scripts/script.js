@@ -9,6 +9,7 @@ imgDiv.setAttribute("class", "segboi_img");
 
 //Segway Image []
 var segboi = [];
+var segboiStr = "";
 //var finalBoi = {};
 
 //json
@@ -302,11 +303,25 @@ function buildSegway(x) {
     console.log(x);
     imgDiv.style.background = "url(images/default_segboi.png)";
   } else {
+    console.log("Building custom segboi");
     //Logic for building image(s)
     imgDiv.style.background = "none";
+    console.log("Segboi length: " + segboi.length);
     for (var i = 0; i < segboi.length; i++) {
-      imgDiv.style.background = segboi[i];
+      console.log("I: " + i);
+      console.log("Segboi arr: " + segboi[i]);
+      if (i === 0) {
+        console.log("In first url part");
+        segboiStr = segboi[i];
+        console.log("First url: " + segboi[i]);
+      } else {
+        console.log("Inside else");
+        segboiStr += ", " + segboi[i];
+        console.log(segboi[i]);
+      }
     }
+    console.log("Segboi String: " + segboiStr);
+    imgDiv.style.background = segboiStr;
   }
 }
 
