@@ -465,15 +465,25 @@ function buildSegway(x) {
 //Check to see if user chose a pre-built segway
 function checkIfPre_built() {
   console.log("Checking if segboi is pre-built");
+  console.log("Checking Mods Length: " + pre_built_CheckObj.Mods.length);
   //Check if Default
-  if (pre_built_CheckObj.Body === "Black" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers")) {
+  if (pre_built_CheckObj.Body === "Black" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers") && pre_built_CheckObj.Mods.length === 1) {
     console.log("A PRE-BUILT: DEFAULT HAS BEEN BUILT");
-  } else if (pre_built_CheckObj.Body === "Deep Fried" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Petrol" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers")) {
+    //Check if Memester
+  } else if (pre_built_CheckObj.Body === "Deep Fried" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Petrol" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers") && pre_built_CheckObj.Mods.length === 1) {
     console.log("A PRE-BUILT: MEMESTER HAS BEEN BUILT");
-  } else if (pre_built_CheckObj.Body === "Blue" && pre_built_CheckObj.Tires === "Bike" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Tassels") && pre_built_CheckObj.Mods.includes("Horn") && pre_built_CheckObj.Mods.includes("Basket")) {
+    //Check if Little Kid
+  } else if (pre_built_CheckObj.Body === "Blue" && pre_built_CheckObj.Tires === "Bike" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Tassels") && pre_built_CheckObj.Mods.includes("Horn") && pre_built_CheckObj.Mods.includes("Basket") && pre_built_CheckObj.Mods.length === 3) {
     console.log("A PRE-BUILT: LITTLE KID HAS BEEN BUILT");
-  } else if (pre_built_CheckObj.Body === "Gold" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engines === "Dual" && pre_built_CheckObj.Mods.includes("Glitter") && pre_built_CheckObj.Mods.includes("Extra Batteries") && pre_built_CheckObj.Mods.includes("Cup Holder")) {
+    //Check if Rich Kid
+  } else if (pre_built_CheckObj.Body === "Gold" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Dual" && pre_built_CheckObj.Mods.includes("Glitter") && pre_built_CheckObj.Mods.includes("Extra Batteries") && pre_built_CheckObj.Mods.includes("Cup Holder") && pre_built_CheckObj.Mods.length === 3) {
     console.log("A PRE-BUILT: RICH KID HAS BEEN BUILT");
+    //Check if Deep South
+  } else if (pre_built_CheckObj.Body === "Green" && pre_built_CheckObj.Tires === "Tractor" && pre_built_CheckObj.Engine === "Petrol" && pre_built_CheckObj.Mods.includes("Cup Holder") && pre_built_CheckObj.Mods.includes("Horn") && pre_built_CheckObj.Mods.length === 2) {
+    console.log("A PRE-BUILT: DEEP SOUTH HAS BEEN BUILT");
+    //Otherwise it's a custom build
+  } else {
+    console.log("THIS IS A CUSTOM BUILD");
   }
 }
 
