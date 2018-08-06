@@ -3,6 +3,16 @@ var request = new XMLHttpRequest();
 //Main Div
 var segwayApp = document.getElementById("segway");
 
+//User's Segway Object
+var finalBoi = {
+  Index: "5",
+  Colour: "",
+  Tires: "",
+  Engine: "",
+  Customs: [
+  ]
+}
+
 //Segway Image Div & Img Canvases
 var imgDiv = document.createElement('div');
 imgDiv.setAttribute("class", "segboi_img");
@@ -22,7 +32,6 @@ imgDiv.appendChild(modsImg);
 //Segway Image []
 var modsArr = [];
 var removeMod = "";
-//var finalBoi = {};
 
 //json
 var json;
@@ -91,14 +100,12 @@ function loadData() {
   request.send();
 }
 
-//test custom list
-
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  buildHomePage();
+  //buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
-  //buildCheckoutPage();
+  buildCheckoutPage();
   //buildCustomPage();
 }
 
@@ -173,16 +180,15 @@ function thankYouCreateButtons(button) {
   return btn;
 }
 
-function confirmCreateButtons(button, segName) {
+function confirmCreateButtons(button) {
   var btnRow = document.createElement("div");
   btnRow.setAttribute("class", "flex-row");
   var btn = document.createElement("div");
   btn.setAttribute("class", "btn btn-theme-1");
   btn.textContent = button;
-
   if (button == "Modify") {
     btn.setAttribute("class", "bottom-btn");
-    btn.setAttribute("onclick", `buildCustomPage('${segName}')`);
+    btn.setAttribute("onclick", `buildCustomPage()`);
   }
   else if (button == "Add To Order") {
     btn.setAttribute("class", "top-btn");
@@ -193,14 +199,14 @@ function confirmCreateButtons(button, segName) {
   return btnRow;
 }
 
-function checkoutCreateButton(button, segName) {
+function checkoutCreateButton(button) {
   var btn = document.createElement("div");
   btn.setAttribute("class", "bottom-btn");
   btn.textContent = button;
 
   if (button == "Modify") {
     btn.classList.add("right-mar");
-    btn.setAttribute("onclick", `buildCustomPage('${segName}')`);
+    btn.setAttribute("onclick", `buildCustomPage()`);
   }
   else if (button == "Add To Order") {
     btn.setAttribute("onclick", `buildThanksPage()`);
@@ -302,6 +308,7 @@ function optionClicked(evt) {
         case "Extra Batteries":
           evt.target.classList.add("active");
           //Don't need to change picture
+          modsArr.push("Extra Batteries");
           pre_built_CheckObj.Mods.push(evt.target.textContent);
           break;
         case "Horn":
@@ -358,16 +365,20 @@ function optionClicked(evt) {
         removeMod = "bluetoothlight";
       } else if (evt.target.innerHTML === "Cup Holder") {
         removeMod = "cupHolder";
+      } else if (evt.target.innerHTML === "Extra Batteries") {
+        removeMod = "Extra Batteries";
       } else {
         removeMod = evt.target.innerHTML.toLowerCase();
       }
       console.log("Remove MOD: " + removeMod);
       for (var i = 0; i < modsArr.length; i++) {
-        if (modsArr[i] === "url(images/" + removeMod + ".png)") {
+        if (modsArr[i] === "url(images/" + removeMod + ".png)" || removeMod === "Extra Batteries") {
           console.log("THIS IS THE BOI");
           console.log(modsArr[i]);
           modsArr.splice(i, 1);
+          console.log(pre_built_CheckObj.Mods);
           pre_built_CheckObj.Mods.splice(i, 1);
+          console.log(pre_built_CheckObj.Mods);
         } else {
           console.log("WE NEED A DIFFERENT BOI");
         }
@@ -377,17 +388,11 @@ function optionClicked(evt) {
   console.log(modsArr);
   console.log(pre_built_CheckObj);
   buildSegway(segboi_img_check);
+  checkIfPre_built();
 }
 
 //Getting Segway from Json
 function getJsonSegway(type) {
-  var finalBoi = {
-    Colour: "",
-    Tires: "",
-    Engine: "",
-    Customs: [
-    ]
-  }
   finalBoi.Colour = json.preBuilt[type].Colour;
   finalBoi.Tires = json.preBuilt[type].Tires;
   finalBoi.Engine = json.preBuilt[type].Engine;
@@ -427,6 +432,8 @@ function buildSegway(x) {
       console.log("Mods arr: " + modsArr[i]);
       if (i === 0) {
         modsStr = modsArr[i];
+      } else if (modsArr[i] === "Extra Batteries") {
+        console.log("BATTERIES");
       } else {
         modsStr += ", " + modsArr[i];
       }
@@ -452,6 +459,21 @@ function buildSegway(x) {
     // }
     // console.log("Segboi String: " + segboiStr);
     // imgDiv.style.background = segboiStr;
+  }
+}
+
+//Check to see if user chose a pre-built segway
+function checkIfPre_built() {
+  console.log("Checking if segboi is pre-built");
+  //Check if Default
+  if (pre_built_CheckObj.Body === "Black" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers")) {
+    console.log("A PRE-BUILT: DEFAULT HAS BEEN BUILT");
+  } else if (pre_built_CheckObj.Body === "Deep Fried" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Petrol" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers")) {
+    console.log("A PRE-BUILT: MEMESTER HAS BEEN BUILT");
+  } else if (pre_built_CheckObj.Body === "Blue" && pre_built_CheckObj.Tires === "Bike" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Tassels") && pre_built_CheckObj.Mods.includes("Horn") && pre_built_CheckObj.Mods.includes("Basket")) {
+    console.log("A PRE-BUILT: LITTLE KID HAS BEEN BUILT");
+  } else if (pre_built_CheckObj.Body === "Gold" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engines === "Dual" && pre_built_CheckObj.Mods.includes("Glitter") && pre_built_CheckObj.Mods.includes("Extra Batteries") && pre_built_CheckObj.Mods.includes("Cup Holder")) {
+    console.log("A PRE-BUILT: RICH KID HAS BEEN BUILT");
   }
 }
 
@@ -590,11 +612,13 @@ function buildHomePage() {
     // segwayApp.appendChild(div);
     html += div.outerHTML;
   }
+  console.log("final boi in home page");
+  console.log(finalBoi);
   segwayApp.innerHTML = html;
 }
 
-function buildCustomPage(segwayType) {
-  var finalSegway = getJsonSegway(segwayType);
+function buildCustomPage() {
+  var finalSegway = getJsonSegway();
   console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
   buildSegway(0);
@@ -652,7 +676,7 @@ function buildConfirmPage(segwayType) {
   btnArea.setAttribute("class", "flex-col");
 
   for (var index in confirmBtnList) {
-    var temp_btn = confirmCreateButtons(confirmBtnList[index]);
+    var temp_btn = confirmCreateButtons(confirmBtnList[index], finalSegway);
     btnArea.appendChild(temp_btn);
   }
 
@@ -663,8 +687,10 @@ function buildConfirmPage(segwayType) {
   segwayApp.appendChild(divContainer);
 }
 
-function buildCheckoutPage(segwayObject) {
+function buildCheckoutPage() {
   segwayApp.innerHTML = '';
+  console.log("final boi in checkout page");
+  console.log(finalBoi);
 
   var containerOutline = document.createElement("div");
   containerOutline.setAttribute("class", "flex-row container outline");
@@ -673,7 +699,7 @@ function buildCheckoutPage(segwayObject) {
   innerContainer.setAttribute("class", "flex-col");
 
   for (var index in segway_options) {
-    console.log(json.finalBoi[segway_options[index]]);
+    console.log(index);
   }
 
   var colourContainer = document.createElement("div");
