@@ -3,6 +3,16 @@ var request = new XMLHttpRequest();
 //Main Div
 var segwayApp = document.getElementById("segway");
 
+//User's Segway Object
+var finalBoi = {
+  Index: "5",
+  Colour: "",
+  Tires: "",
+  Engine: "",
+  Customs: [
+  ]
+}
+
 //Segway Image Div & Img Canvases
 var imgDiv = document.createElement('div');
 imgDiv.setAttribute("class", "segboi_img");
@@ -22,7 +32,6 @@ imgDiv.appendChild(modsImg);
 //Segway Image []
 var modsArr = [];
 var removeMod = "";
-//var finalBoi = {};
 
 //json
 var json;
@@ -91,14 +100,12 @@ function loadData() {
   request.send();
 }
 
-//test custom list
-
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  buildHomePage();
+  //buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
-  //buildCheckoutPage();
+  buildCheckoutPage();
   //buildCustomPage();
 }
 
@@ -173,16 +180,15 @@ function thankYouCreateButtons(button) {
   return btn;
 }
 
-function confirmCreateButtons(button, segName) {
+function confirmCreateButtons(button) {
   var btnRow = document.createElement("div");
   btnRow.setAttribute("class", "flex-row");
   var btn = document.createElement("div");
   btn.setAttribute("class", "btn btn-theme-1");
   btn.textContent = button;
-
   if (button == "Modify") {
     btn.setAttribute("class", "bottom-btn");
-    btn.setAttribute("onclick", `buildCustomPage('${segName}')`);
+    btn.setAttribute("onclick", `buildCustomPage()`);
   }
   else if (button == "Add To Order") {
     btn.setAttribute("class", "top-btn");
@@ -193,14 +199,14 @@ function confirmCreateButtons(button, segName) {
   return btnRow;
 }
 
-function checkoutCreateButton(button, segName) {
+function checkoutCreateButton(button) {
   var btn = document.createElement("div");
   btn.setAttribute("class", "bottom-btn");
   btn.textContent = button;
 
   if (button == "Modify") {
     btn.classList.add("right-mar");
-    btn.setAttribute("onclick", `buildCustomPage('${segName}')`);
+    btn.setAttribute("onclick", `buildCustomPage()`);
   }
   else if (button == "Add To Order") {
     btn.setAttribute("onclick", `buildThanksPage()`);
@@ -387,13 +393,6 @@ function optionClicked(evt) {
 
 //Getting Segway from Json
 function getJsonSegway(type) {
-  var finalBoi = {
-    Colour: "",
-    Tires: "",
-    Engine: "",
-    Customs: [
-    ]
-  }
   finalBoi.Colour = json.preBuilt[type].Colour;
   finalBoi.Tires = json.preBuilt[type].Tires;
   finalBoi.Engine = json.preBuilt[type].Engine;
@@ -566,7 +565,7 @@ function buttonClicked(evt) {
 function createSegwaySpecial(imgSource, name, description, segId, isCustom, segwayType) {
   var divContainer = document.createElement("div");
   //divContainer.setAttribute("id", segId);
-  divContainer.setAttribute("class", "flex-row");
+  divContainer.setAttribute("class", "flex-col specialStyle");
 
   var img = document.createElement("img");
   img.setAttribute("class", "segwayPic");
@@ -576,9 +575,10 @@ function createSegwaySpecial(imgSource, name, description, segId, isCustom, segw
   divInfo.setAttribute("class", "flex-col");
 
   var divName = document.createElement("div");
-  divName.setAttribute("id", segId);
+  //divName.setAttribute("id", segId);
   divName.setAttribute("class", "segName");
   divName.textContent = name;
+  console.log(divName);
 
   var divDesc = document.createElement("div");
   divDesc.setAttribute("class", "segDesc");  
@@ -623,11 +623,13 @@ function buildHomePage() {
     // segwayApp.appendChild(div);
     html += div.outerHTML;
   }
+  console.log("final boi in home page");
+  console.log(finalBoi);
   segwayApp.innerHTML = html;
 }
 
-function buildCustomPage(segwayType) {
-  var finalSegway = getJsonSegway(segwayType);
+function buildCustomPage() {
+  var finalSegway = getJsonSegway();
   console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
   buildSegway(0);
@@ -685,7 +687,7 @@ function buildConfirmPage(segwayType) {
   btnArea.setAttribute("class", "flex-col");
 
   for (var index in confirmBtnList) {
-    var temp_btn = confirmCreateButtons(confirmBtnList[index]);
+    var temp_btn = confirmCreateButtons(confirmBtnList[index], finalSegway);
     btnArea.appendChild(temp_btn);
   }
 
@@ -696,8 +698,10 @@ function buildConfirmPage(segwayType) {
   segwayApp.appendChild(divContainer);
 }
 
-function buildCheckoutPage(segwayObject) {
+function buildCheckoutPage() {
   segwayApp.innerHTML = '';
+  console.log("final boi in checkout page");
+  console.log(finalBoi);
 
   var containerOutline = document.createElement("div");
   containerOutline.setAttribute("class", "flex-row container outline");
@@ -706,7 +710,7 @@ function buildCheckoutPage(segwayObject) {
   innerContainer.setAttribute("class", "flex-col");
 
   for (var index in segway_options) {
-    console.log(json.finalBoi[segway_options[index]]);
+    console.log(index);
   }
 
   var colourContainer = document.createElement("div");

@@ -5,6 +5,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: #f2ebd9;
 }
 h1 {
   font-size: 20px;
@@ -21,6 +22,7 @@ h1 {
   margin: 40px;
   border-radius: 7px;
   align-items: center;
+  background-color: #f4be58;
 }
 .flex-col {
   display: flex;
@@ -30,7 +32,6 @@ h1 {
   margin: 0 20px;
   width: 100%;
   height: 170px;
-  background-color: #FFC76D;
   padding: 20px;
 }
 .tab {
@@ -46,7 +47,7 @@ h1 {
 }
 
 .btn {
-  background-color: #FF463F;
+  background-color: #ad1e1e;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -156,6 +157,14 @@ h1 {
 .mainMenu {
 
 }
+.specialStyle{
+  width: 500px;
+  height: fit-content;
+}
+#segway{
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .segboi_img {
   height: 470px;
@@ -174,6 +183,9 @@ canvas {
 
 .segwayPic {
   border-radius: 3px;
+  margin: 0 20px;
+  padding: 20px;
+  border-radius: 3px;
 }
 
 .segName {
@@ -188,7 +200,7 @@ canvas {
 }
 .bottom-btn {
   @extend .btn;
-  margin-top: auto;
+  margin-top: 30px;
 }
 
 .top-btn {
@@ -198,7 +210,7 @@ canvas {
 
 .nav {
   overflow: hidden;
-  background-color: #FF463F;
+  background-color: #ad1e1e;
 }
 
 .nav-item:hover {
