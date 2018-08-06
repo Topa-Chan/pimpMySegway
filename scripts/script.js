@@ -302,6 +302,7 @@ function optionClicked(evt) {
         case "Extra Batteries":
           evt.target.classList.add("active");
           //Don't need to change picture
+          modsArr.push("Extra Batteries");
           pre_built_CheckObj.Mods.push(evt.target.textContent);
           break;
         case "Horn":
@@ -358,16 +359,20 @@ function optionClicked(evt) {
         removeMod = "bluetoothlight";
       } else if (evt.target.innerHTML === "Cup Holder") {
         removeMod = "cupHolder";
+      } else if (evt.target.innerHTML === "Extra Batteries") {
+        removeMod = "Extra Batteries";
       } else {
         removeMod = evt.target.innerHTML.toLowerCase();
       }
       console.log("Remove MOD: " + removeMod);
       for (var i = 0; i < modsArr.length; i++) {
-        if (modsArr[i] === "url(images/" + removeMod + ".png)") {
+        if (modsArr[i] === "url(images/" + removeMod + ".png)" || removeMod === "Extra Batteries") {
           console.log("THIS IS THE BOI");
           console.log(modsArr[i]);
           modsArr.splice(i, 1);
+          console.log(pre_built_CheckObj.Mods);
           pre_built_CheckObj.Mods.splice(i, 1);
+          console.log(pre_built_CheckObj.Mods);
         } else {
           console.log("WE NEED A DIFFERENT BOI");
         }
@@ -377,6 +382,7 @@ function optionClicked(evt) {
   console.log(modsArr);
   console.log(pre_built_CheckObj);
   buildSegway(segboi_img_check);
+  checkIfPre_built();
 }
 
 //Getting Segway from Json
@@ -427,6 +433,8 @@ function buildSegway(x) {
       console.log("Mods arr: " + modsArr[i]);
       if (i === 0) {
         modsStr = modsArr[i];
+      } else if (modsArr[i] === "Extra Batteries") {
+        console.log("BATTERIES");
       } else {
         modsStr += ", " + modsArr[i];
       }
@@ -452,6 +460,21 @@ function buildSegway(x) {
     // }
     // console.log("Segboi String: " + segboiStr);
     // imgDiv.style.background = segboiStr;
+  }
+}
+
+//Check to see if user chose a pre-built segway
+function checkIfPre_built() {
+  console.log("Checking if segboi is pre-built");
+  //Check if Default
+  if (pre_built_CheckObj.Body === "Black" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers")) {
+    console.log("A PRE-BUILT: DEFAULT HAS BEEN BUILT");
+  } else if (pre_built_CheckObj.Body === "Deep Fried" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Petrol" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers")) {
+    console.log("A PRE-BUILT: MEMESTER HAS BEEN BUILT");
+  } else if (pre_built_CheckObj.Body === "Blue" && pre_built_CheckObj.Tires === "Bike" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Tassels") && pre_built_CheckObj.Mods.includes("Horn") && pre_built_CheckObj.Mods.includes("Basket")) {
+    console.log("A PRE-BUILT: LITTLE KID HAS BEEN BUILT");
+  } else if (pre_built_CheckObj.Body === "Gold" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engines === "Dual" && pre_built_CheckObj.Mods.includes("Glitter") && pre_built_CheckObj.Mods.includes("Extra Batteries") && pre_built_CheckObj.Mods.includes("Cup Holder")) {
+    console.log("A PRE-BUILT: RICH KID HAS BEEN BUILT");
   }
 }
 
