@@ -102,11 +102,11 @@ function loadData() {
 
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  buildHomePage();
+  //buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
   //buildCheckoutPage();
-  //buildCustomPage();
+  buildCustomPage();
 }
 
 //Tab Container
