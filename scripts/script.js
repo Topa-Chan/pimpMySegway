@@ -101,10 +101,10 @@ function loadData() {
 
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  //buildHomePage();
+  buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
-  buildCheckoutPage();
+  //buildCheckoutPage();
   //buildCustomPage();
 }
 
@@ -371,7 +371,7 @@ function optionClicked(evt) {
       }
       console.log("Remove MOD: " + removeMod);
       for (var i = 0; i < modsArr.length; i++) {
-        if (modsArr[i] === "url(images/" + removeMod + ".png)" || removeMod === "Extra Batteries") {
+        if (modsArr[i] === "url(images/" + removeMod + ".png)" || (removeMod === "Extra Batteries" && modsArr[i] === removeMod)) {
           console.log("THIS IS THE BOI");
           console.log(modsArr[i]);
           modsArr.splice(i, 1);
@@ -407,7 +407,7 @@ function buildSegway(x) {
   if (x === 0) {
     console.log("We are going to build the base segway");
     console.log(x);
-    bodyImg.style.background = "url(images/default_segboi.png)";
+    bodyImg.style.background = "url(images/original.png)";
   } else {
     console.log("Building custom segboi");
     //Logic for building image(s)
@@ -468,18 +468,23 @@ function checkIfPre_built() {
   //Check if Default
   if (pre_built_CheckObj.Body === "Black" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers") && pre_built_CheckObj.Mods.length === 1) {
     console.log("A PRE-BUILT: DEFAULT HAS BEEN BUILT");
+    alert("A pre-built segway has been built! $300 discount has been applied");
     //Check if Memester
   } else if (pre_built_CheckObj.Body === "Deep Fried" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Petrol" && pre_built_CheckObj.Mods.includes("Bluetooth Speakers") && pre_built_CheckObj.Mods.length === 1) {
     console.log("A PRE-BUILT: MEMESTER HAS BEEN BUILT");
+    alert("A pre-built segway has been built! $300 discount has been applied");
     //Check if Little Kid
   } else if (pre_built_CheckObj.Body === "Blue" && pre_built_CheckObj.Tires === "Bike" && pre_built_CheckObj.Engine === "Electric" && pre_built_CheckObj.Mods.includes("Tassels") && pre_built_CheckObj.Mods.includes("Horn") && pre_built_CheckObj.Mods.includes("Basket") && pre_built_CheckObj.Mods.length === 3) {
     console.log("A PRE-BUILT: LITTLE KID HAS BEEN BUILT");
+    alert("A pre-built segway has been built! $300 discount has been applied");
     //Check if Rich Kid
   } else if (pre_built_CheckObj.Body === "Gold" && pre_built_CheckObj.Tires === "Normal" && pre_built_CheckObj.Engine === "Dual" && pre_built_CheckObj.Mods.includes("Glitter") && pre_built_CheckObj.Mods.includes("Extra Batteries") && pre_built_CheckObj.Mods.includes("Cup Holder") && pre_built_CheckObj.Mods.length === 3) {
     console.log("A PRE-BUILT: RICH KID HAS BEEN BUILT");
+    alert("A pre-built segway has been built! $300 discount has been applied");
     //Check if Deep South
   } else if (pre_built_CheckObj.Body === "Green" && pre_built_CheckObj.Tires === "Tractor" && pre_built_CheckObj.Engine === "Petrol" && pre_built_CheckObj.Mods.includes("Cup Holder") && pre_built_CheckObj.Mods.includes("Horn") && pre_built_CheckObj.Mods.length === 2) {
     console.log("A PRE-BUILT: DEEP SOUTH HAS BEEN BUILT");
+    alert("A pre-built segway has been built! $300 discount has been applied");
     //Otherwise it's a custom build
   } else {
     console.log("THIS IS A CUSTOM BUILD");
@@ -624,8 +629,13 @@ function buildHomePage() {
 }
 
 function buildCustomPage() {
+  //var finalSegway = getJsonSegway();
+  //console.log(finalSegway);
+  //Make new Method call here
+  setActiveBtns();
+  console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
-  buildSegway(0);
+  //buildSegway(0);
   var custom_pageContainer = document.createElement('div');
   custom_pageContainer.setAttribute('class', 'custom_pageContainer');
   // console.log(name);
@@ -663,6 +673,115 @@ function buildCustomPage() {
   customPage.appendChild(imgDiv);
   customPage.appendChild(custom_pageContainer);
   segwayApp.appendChild(customPage);
+}
+
+function setActiveBtns() {
+  console.log("We are gonna set the active buttons");
+  console.log(finalBoi);
+  if (finalBoi.Colour === "" && finalBoi.Tires === "" && finalBoi.Engine === "" && finalBoi.Customs.length === 0) {
+    console.log("Finalboi is empty");
+    buildSegway(0);
+  } else {
+    console.log(finalBoi);
+    tireStr = "url(images/" + finalBoi.Tires.toLowerCase() + "_Tires.png)";
+    for (var e = 0; e < engineBtns.length; e++) {
+      if (engineBtns[e].textContent === finalBoi.Engine) {
+        engineBtns[e].classList.add("active");
+      }
+    }
+    if (finalBoi.Colour === "") {
+      bodyStr = "url(images/deepfried.png)";
+      tireStr = "";
+      for (var i = 0; i < customBtns.length; i++) {
+        if (customBtns[i].textContent === "Deep Fried") {
+          customBtns[i].classList.add("active");
+        }
+      }
+    } else {
+      bodyStr = "url(images/" + finalBoi.Colour.toLowerCase() + "_Base.png)"; 
+      for (var i = 0; i < colourBtns.length; i++) {
+        if (colourBtns[i].textContent === finalBoi.Colour) {
+          colourBtns[i].classList.add("active");
+        }
+      }
+      for (var i = 0; i < tireBtns.length; i++) {
+        if (tireBtns[i].textContent === finalBoi.Tires) {
+          tireBtns[i].classList.add("active");
+        }
+      }
+    }
+    for (var i = 0; i < finalBoi.Customs.length; i++) {
+      console.log(finalBoi.Customs.length);
+      console.log(finalBoi.Customs[i]);
+      switch(finalBoi.Customs[i]) {
+        case "Cup Holder":
+          console.log("In cup Holder");
+          modsArr.push("url(images/cupHolder.png)");
+          for (var c = 0; c < customBtns.length; c++) {
+            if (customBtns[c].textContent === "Cup Holder") {
+              customBtns[c].classList.add("active");
+            }
+          }
+          break;
+        case "Tassels":
+          console.log("In tassels")
+          modsArr.push("url(images/tassels.png)");
+          for (var t = 0; t < customBtns.length; t++) {
+            if (customBtns[t].textContent === "Tassels") {
+              customBtns[t].classList.add("active");
+            }
+          }
+          break;
+        case "Extra Batteries":
+          console.log("In extra batteries")
+          for (var b = 0; b < customBtns.length; b++) {
+            if (customBtns[b].textContent === "Extra Batteries") {
+              customBtns[b].classList.add("active");
+            }
+          }
+          break;
+        case "Horn":
+          console.log("In horn")
+          modsArr.push("url(images/horn.png)");
+          for (var h = 0; h < customBtns.length; h++) {
+            if (customBtns[h].textContent === "Horn") {
+              customBtns[h].classList.add("active");
+            }
+          }
+          break;
+        case "Basket":
+          console.log("In basket")
+          modsArr.push("url(images/basket.png)");
+          for (var b = 0; b < customBtns.length; b++) {
+            if (customBtns[b].textContent === "Basket") {
+              customBtns[b].classList.add("active");
+            }
+          }
+          break;
+        case "Bluetooth Speakers":
+          console.log("In speakers")
+          modsArr.push("url(images/bluetoothlight.png)");
+          for (var s = 0; s < customBtns.length; s++) {
+            if (customBtns[s].textContent === "Bluetooth Speakers"){
+              customBtns[s].classList.add("active");
+            }
+          }
+          break;
+        case "Glitter":
+          console.log("In glitter");
+          modsArr.push("url(images/glitter.png)");
+          for (var g = 0; g < customBtns.length; g++) {
+            if (customBtns[g].textContent === "Glitter") {
+              customBtns[g].classList.add("active");
+            }
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    buildSegway(1);
+  }
 }
 
 function buildConfirmPage(segwayType) {
