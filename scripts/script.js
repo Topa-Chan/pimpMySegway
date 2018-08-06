@@ -5,11 +5,14 @@ var segwayApp = document.getElementById("segway");
 
 //User's Segway Object
 var finalBoi = {
-  Colour: "",
-  Tires: "",
-  Engine: "",
+  Colour: "Green",
+  Tires: "Tractor",
+  Engine: "Petrol",
   Customs: [
-  ]
+    "Cup Holder",
+    "Horn"
+  ],
+  Total: "$120"
 }
 
 //Segway Image Div & Img Canvases
@@ -34,9 +37,6 @@ var removeMod = "";
 
 //json
 var json;
-
-//segway options list
-var segway_options = ["Colour", "Tires", "Engine", "Customs", "Total"];
 
 //Pages List
 var pagesList = ['Segway Specials'];
@@ -101,10 +101,10 @@ function loadData() {
 
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  buildHomePage();
+  //buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
-  //buildCheckoutPage();
+  buildCheckoutPage();
   //buildCustomPage();
 }
 
@@ -691,147 +691,50 @@ function buildCheckoutPage() {
   segwayApp.innerHTML = '';
 
   var containerOutline = document.createElement("div");
-  containerOutline.setAttribute("class", "flex-row container outline");
+  containerOutline.setAttribute("class", "container outline");
 
-  var innerContainer = document.createElement("div");
-  innerContainer.setAttribute("class", "flex-col");
+  var keys = Object.keys(finalBoi);
+  var values = Object.values(finalBoi);
 
-  for (var index in segway_options) {
+  for (var index in keys) {
     var container = document.createElement("div");
-    container.setAttribute("id", segway_options[index] + "Area");
-    console.log(container.id);
-    container.setAttribute("class", "flex-row box-area");
+    container.setAttribute("id", keys[index] + "Area");
+    container.setAttribute("class", "check-flex-row box-area");
     
     var label = document.createElement("div");
-    label.setAttribute("class", "inner-box");
-    label.textContent = segway_options[index] + ": ";
+    label.setAttribute("class", "inner-box check-flex-col");
+    label.textContent = keys[index] + ": ";
 
     var value = document.createElement("div");
-    value.setAttribute("class", "inner-box");
+    value.setAttribute("class", "inner-box check-flex-col");
   
-    if (segway_options[index] != "Customs") {
-      console.log(segway_options[index]);
-      console.log(finalBoi.Colour);
-      value.textContent = finalBoi.segway_options[index];
+    if (keys[index] != "Customs") {
+      value.textContent = values[index];
     } else {
       value.classList.add("list");
       value.setAttribute("id", "customsList");
 
-      for (var i in segway_options[index]) {
+      for (var i in finalBoi.Customs) {
         var tempItem = document.createElement("div");
         tempItem.setAttribute("class", "list-item");
-        tempItem.textContent = segway_options[index][i];
+        tempItem.textContent = finalBoi.Customs[i];
         value.appendChild(tempItem);
       }
     }
-
     container.appendChild(label);
     container.appendChild(value);
-    console.log(segway_options[index]);
-
-    innerContainer.appendChild(container);
+    containerOutline.appendChild(container);
   }
-
-  // var colourContainer = document.createElement("div");
-  // colourContainer.setAttribute("id", "colourArea");
-  // colourContainer.setAttribute("class", "flex-row box-area");
-  
-  // var colourLabel = document.createElement("div");
-  // colourLabel.setAttribute("class", "inner-box");
-  // colourLabel.textContent = "Colour:";
-
-  // var colourValue = document.createElement("div");
-  // colourValue.setAttribute("class", "inner-box");
-  // colourValue.textContent = "Placeholder";
-
-  // colourContainer.appendChild(colourLabel);
-  // colourContainer.appendChild(colourValue);
-
-  // var tiresContainer = document.createElement("div");
-  // tiresContainer.setAttribute("id", "tiresArea");
-  // tiresContainer.setAttribute("class", "flex-row box-area");
-  
-  // var tiresLabel = document.createElement("div");
-  // tiresLabel.setAttribute("class", "inner-box");
-  // tiresLabel.textContent = "Tires:";
-
-  // var tiresValue = document.createElement("div");
-  // tiresValue.setAttribute("class", "inner-box");
-  // tiresValue.textContent = "Placeholder";
-
-  // tiresContainer.appendChild(tiresLabel);
-  // tiresContainer.appendChild(tiresValue);
-
-  // var engineContainer = document.createElement("div");
-  // engineContainer.setAttribute("id", "engineArea");
-  // engineContainer.setAttribute("class", "flex-row box-area");
-  
-  // var engineLabel = document.createElement("div");
-  // engineLabel.setAttribute("class", "inner-box");
-  // engineLabel.textContent = "Engine:";
-
-  // var engineValue = document.createElement("div");
-  // engineValue.setAttribute("class", "inner-box");
-  // engineValue.textContent = "Placeholder";
-
-  // engineContainer.appendChild(engineLabel);
-  // engineContainer.appendChild(engineValue);
-
-  // var customContainer = document.createElement("div");
-  // customContainer.setAttribute("id", "customArea");
-  // customContainer.setAttribute("class", "flex-row box-area");
-
-  // var customLabel = document.createElement("div");
-  // customLabel.setAttribute("class", "inner-box");
-  // customLabel.textContent = "Customs:";
-
-  // var customValue = document.createElement("div");
-  // customValue.setAttribute("id", "customsList");
-  // customValue.setAttribute("class", "inner-box list");
-
-  // for (var index in customs_list) {
-  //   var tempItem = document.createElement("div");
-  //   tempItem.setAttribute("class", "list-item");
-  //   tempItem.textContent = customs_list[index];
-  //   customValue.appendChild(tempItem);
-  // }
-
-  // customContainer.appendChild(customLabel);
-  // customContainer.appendChild(customValue);
-
-
-  var totalContainer = document.createElement("div");
-  totalContainer.setAttribute("id", "totalArea");
-  totalContainer.setAttribute("class", "flex-row box-area");
-  
-  var totalLabel = document.createElement("div");
-  totalLabel.setAttribute("class", "inner-box");
-  totalLabel.textContent = "Total:";
-
-  var totalValue = document.createElement("div");
-  totalValue.setAttribute("class", "inner-box");
-  totalValue.textContent = "Placeholder";
-
-  totalContainer.appendChild(totalLabel);
-  totalContainer.appendChild(totalValue);
 
   var btnContainer = document.createElement("div");
   btnContainer.setAttribute("id", "btnArea");
   btnContainer.setAttribute("class", "flex-row box-area more-space");
   
   for (var index in checkOutBtnList) {
-    //btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index], segName));
+    btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index]));
   }
 
-  // innerContainer.appendChild(colourContainer);
-  // innerContainer.appendChild(tiresContainer);
-  // innerContainer.appendChild(engineContainer);
-  // innerContainer.appendChild(customContainer);
-  innerContainer.appendChild(totalContainer);
-  innerContainer.appendChild(btnContainer);
-
-  containerOutline.appendChild(innerContainer);
-
+  containerOutline.appendChild(btnContainer);
   segwayApp.appendChild(containerOutline);
 }
 
