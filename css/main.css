@@ -162,7 +162,14 @@ h1 {
   height: 470px;
   width: 309px;
   border: 2px dashed chartreuse;
-  margin-right: 200px; }
+  margin-right: 200px;
+  position: relative; }
+
+canvas {
+  height: 470px;
+  width: 308px;
+  border: 3px dashed #f0c;
+  position: absolute; }
 
 .segwayPic {
   border-radius: 3px; }
