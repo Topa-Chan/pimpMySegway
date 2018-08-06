@@ -3,13 +3,25 @@ var request = new XMLHttpRequest();
 //Main Div
 var segwayApp = document.getElementById("segway");
 
-//Segway Image Div
-var imgDiv = document.createElement('canvas');
+//Segway Image Div & Img Canvases
+var imgDiv = document.createElement('div');
 imgDiv.setAttribute("class", "segboi_img");
+var tireImg = document.createElement('canvas');
+tireImg.style.zIndex = "1";
+var tireStr = "";
+var bodyImg = document.createElement('canvas');
+bodyImg.style.zIndex = "2";
+var bodyStr = "";
+var modsImg = document.createElement('canvas');
+modsImg.style.zIndex = "3";
+var modsStr = "";
+imgDiv.appendChild(tireImg);
+imgDiv.appendChild(bodyImg);
+imgDiv.appendChild(modsImg);
 
 //Segway Image []
-var segboi = [];
-var segboiStr = "";
+var modsArr = [];
+var removeMod = "";
 //var finalBoi = {};
 
 //json
@@ -30,6 +42,14 @@ var engineTypes = ['Electric', 'Petrol', 'Dual'];
 engineTypes.name = "Engines";
 var customAdds = ['Deep Fried', 'Cup Holder', 'Tassels', 'Extra Batteries', 'Horn', 'Basket', 'Bluetooth Speakers', 'Glitter'];
 customAdds.name = "Customs";
+
+//Segway CustomizePage Object for checking if pre-built is created
+var pre_built_CheckObj = {
+  Body: "",
+  Tires: "",
+  Engine: "",
+  Mods: []
+};
 
 //Page Button Options
 var thankYouBtnList = ["Back to Menu", "Checkout"];
@@ -215,6 +235,10 @@ function optionClicked(evt) {
   if (!isActive(evt)) {
     if (name === "colour") {
       console.log("Colour btn was clicked");
+      if (bodyStr.length > 0) {
+        bodyStr = "";
+      }
+      pre_built_CheckObj.Body = evt.target.textContent;
       //crustBtnNames.forEach(checkActive, evt);
       //evt.target.classList.add("active");
       colourBtns.forEach(multipleSingleOptions);
@@ -224,23 +248,33 @@ function optionClicked(evt) {
         document.getElementById("custom").classList.remove("active");
       }
       //'colour_base.png'
-      segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Base.png)");
+      bodyStr = "url(images/" + evt.target.textContent.toLowerCase() + "_Base.png)";
     } 
     if (name === "tire") {
       console.log("Tire");
+      if (tireStr.length > 0) {
+        tireStr = "";
+      }
+      pre_built_CheckObj.Tires = evt.target.textContent;
+      if (document.getElementById("custom").classList.contains("active")) {
+        console.log("THIS IS DEEP FRIED!");
+        document.getElementById("custom").classList.remove("active");
+        bodyStr = "";
+      }
       //cheeseBtnNames.forEach(checkActive, evt);
       //evt.target.classList.add("active");
       console.log(evt.target.textContent);
       tireBtns.forEach(multipleSingleOptions);
       evt.target.classList.add("active");
       //'tireType_Tires.png'
-      segboi.push("url(images/" + evt.target.textContent.toLowerCase() + "_Tires.png)");
+      tireStr = "url(images/" + evt.target.textContent.toLowerCase() + "_Tires.png)";
     }
     if (name === "engine") {
       console.log("Engine")
       //sauceBtnNames.forEach(checkActive, evt);
       console.log(evt.target.textContent);
       engineBtns.forEach(multipleSingleOptions);
+      pre_built_CheckObj.Engine = evt.target.textContent;
       evt.target.classList.add("active");
       //Don't need to change photo
     }
@@ -251,48 +285,107 @@ function optionClicked(evt) {
       evt.target.classList.add("active");
       switch(evt.target.textContent) {
         case "Deep Fried":
-        //DEEP FRIED
-        colourBtns.forEach(multipleSingleOptions);
-        evt.target.classList.add("active");
-        segboi.push("url(images/deepfried.png)");
-        console.log(document.getElementById("custom"));
-        break;
+          //DEEP FRIED
+          if (bodyStr.length > 0) {
+            bodyStr = "";
+            tireStr = "";
+          } if (tireStr.length > 0) {
+            tireStr = "";
+          }
+          pre_built_CheckObj.Body = evt.target.textContent;
+          pre_built_CheckObj.Tires = "Normal";
+          colourBtns.forEach(multipleSingleOptions);
+          evt.target.classList.add("active");
+          bodyStr = "url(images/deepfried.png)";
+          console.log(document.getElementById("custom"));
+          break;
         case "Cup Holder":
-        evt.target.classList.add("active");
-        segboi.push("url(images/cupHolder.png)");
-        break;
-      case "Tassels":
-        evt.target.classList.add("active");
-        segboi.push("url(images/tassels.png)");
-        break;
-      case "Extra Batteries":
-        evt.target.classList.add("active");
-        //Don't need to change picture
-        break;
+          evt.target.classList.add("active");
+          modsArr.push("url(images/cupHolder.png)");
+          pre_built_CheckObj.Mods.push(evt.target.textContent);
+          break;
+        case "Tassels":
+          evt.target.classList.add("active");
+          modsArr.push("url(images/tassels.png)");
+          pre_built_CheckObj.Mods.push(evt.target.textContent);
+          break;
+        case "Extra Batteries":
+          evt.target.classList.add("active");
+          //Don't need to change picture
+          pre_built_CheckObj.Mods.push(evt.target.textContent);
+          break;
         case "Horn":
-        evt.target.classList.add("active");
-        segboi.push("url(images/horn.png)");
-        break;
+          evt.target.classList.add("active");
+          modsArr.push("url(images/horn.png)");
+          pre_built_CheckObj.Mods.push(evt.target.textContent);
+          break;
         case "Basket":
-        evt.target.classList.add("active");
-        segboi.push("url(images/basket.png)");
-        break;
+          evt.target.classList.add("active");
+          modsArr.push("url(images/basket.png)");
+          pre_built_CheckObj.Mods.push(evt.target.textContent);
+          break;
         case "Bluetooth Speakers":
-        evt.target.classList.add("active");
-        segboi.push("url(images/bluetoothlight.png)");
-        break;
+          evt.target.classList.add("active");
+          modsArr.push("url(images/bluetoothlight.png)");
+          pre_built_CheckObj.Mods.push(evt.target.textContent);
+          break;
         case "Glitter":
-        evt.target.classList.add("active");
-        segboi.push("url(images/glitter.png)");
+          evt.target.classList.add("active");
+          modsArr.push("url(images/glitter.png)");
+          pre_built_CheckObj.Mods.push(evt.target.textContent);
+          break;
         default:
-        break;
+          break;
       }
     } 
     //Have to focus on text content of the button to see what pic is needed
   } else {
     // evt.target.classList.add("notActive");
     evt.target.classList.remove("active");
+    //console.log(evt);
+    console.log(evt.target.id);
+    switch(evt.target.id) {
+      case "colour":
+        console.log("colour");
+        bodyStr = "";
+        pre_built_CheckObj.Body = "";
+        break;
+      case "tire":
+        console.log("tire");
+        tireStr = "";
+        pre_built_CheckObj.Tires = "";
+        break;
+      default:
+        break;
+    }
+    if (evt.target.id === "custom" && evt.target.innerHTML === "Deep Fried") {
+      bodyStr = "";
+      pre_built_CheckObj.Body = "";
+    }
+    if (evt.target.id === "custom" && evt.target.innerHTML != "Deef Fried") {
+      console.log("THIS IS WHAT NEEDS TO BE REMOVED: " + evt.target.innerHTML);
+      if (evt.target.innerHTML === "Bluetooth Speakers") {
+        removeMod = "bluetoothlight";
+      } else if (evt.target.innerHTML === "Cup Holder") {
+        removeMod = "cupHolder";
+      } else {
+        removeMod = evt.target.innerHTML.toLowerCase();
+      }
+      console.log("Remove MOD: " + removeMod);
+      for (var i = 0; i < modsArr.length; i++) {
+        if (modsArr[i] === "url(images/" + removeMod + ".png)") {
+          console.log("THIS IS THE BOI");
+          console.log(modsArr[i]);
+          modsArr.splice(i, 1);
+          pre_built_CheckObj.Mods.splice(i, 1);
+        } else {
+          console.log("WE NEED A DIFFERENT BOI");
+        }
+      }
+    }
   }
+  console.log(modsArr);
+  console.log(pre_built_CheckObj);
   buildSegway(segboi_img_check);
 }
 
@@ -301,27 +394,55 @@ function buildSegway(x) {
   if (x === 0) {
     console.log("We are going to build the base segway");
     console.log(x);
-    imgDiv.style.background = "url(images/default_segboi.png)";
+    bodyImg.style.background = "url(images/default_segboi.png)";
   } else {
     console.log("Building custom segboi");
     //Logic for building image(s)
-    imgDiv.style.background = "none";
-    console.log("Segboi length: " + segboi.length);
-    for (var i = 0; i < segboi.length; i++) {
-      console.log("I: " + i);
-      console.log("Segboi arr: " + segboi[i]);
-      if (i === 0) {
-        console.log("In first url part");
-        segboiStr = segboi[i];
-        console.log("First url: " + segboi[i]);
-      } else {
-        console.log("Inside else");
-        segboiStr += ", " + segboi[i];
-        console.log(segboi[i]);
-      }
+    // imgDiv.style.background = "none";
+    tireImg.style.background = "none";
+    bodyImg.style.background = "none";
+    modsImg.style.background = "none";
+    console.log("Tire Str Length: " + tireStr.length);
+    if (tireStr.length > 0) {
+      tireImg.style.background = tireStr;
+      // bodyImg.style.display = "none";
+      // modsImg.style.display = "none";
+      console.log("Tire String: "  + tireStr);
     }
-    console.log("Segboi String: " + segboiStr);
-    imgDiv.style.background = segboiStr;
+    if (bodyStr.length > 0) {
+      bodyImg.style.background = bodyStr;
+      console.log(bodyStr); 
+    }
+    console.log("ModsArr Length: " + modsArr.length);
+    for (var i = 0; i < modsArr.length; i++) {
+      console.log("Mods arr: " + modsArr[i]);
+      if (i === 0) {
+        modsStr = modsArr[i];
+      } else {
+        modsStr += ", " + modsArr[i];
+      }
+      console.log("Mods Str: " + modsStr);
+    }
+    modsImg.style.background = modsStr;
+    if (modsArr.length === 0) {
+      modsImg.style.background = "none";
+    }
+    // console.log("Segboi length: " + segboi.length);
+    // for (var i = 0; i < segboi.length; i++) {
+    //   console.log("I: " + i);
+    //   console.log("Segboi arr: " + segboi[i]);
+    //   if (i === 0) {
+    //     console.log("In first url part");
+    //     segboiStr = segboi[i];
+    //     console.log("First url: " + segboi[i]);
+    //   } else {
+    //     console.log("Inside else");
+    //     segboiStr += ", " + segboi[i];
+    //     console.log(segboi[i]);
+    //   }
+    // }
+    // console.log("Segboi String: " + segboiStr);
+    // imgDiv.style.background = segboiStr;
   }
 }
 
