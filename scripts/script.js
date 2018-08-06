@@ -555,7 +555,7 @@ function buttonClicked(evt) {
 function createSegwaySpecial(imgSource, name, description, segId, isCustom, segwayType) {
   var divContainer = document.createElement("div");
   //divContainer.setAttribute("id", segId);
-  divContainer.setAttribute("class", "flex-row");
+  divContainer.setAttribute("class", "flex-col specialStyle");
 
   var img = document.createElement("img");
   img.setAttribute("class", "segwayPic");
@@ -565,9 +565,10 @@ function createSegwaySpecial(imgSource, name, description, segId, isCustom, segw
   divInfo.setAttribute("class", "flex-col");
 
   var divName = document.createElement("div");
-  divName.setAttribute("id", segId);
+  //divName.setAttribute("id", segId);
   divName.setAttribute("class", "segName");
   divName.textContent = name;
+  console.log(divName);
 
   var divDesc = document.createElement("div");
   divDesc.setAttribute("class", "segDesc");  
