@@ -5,7 +5,6 @@ var segwayApp = document.getElementById("segway");
 
 //User's Segway Object
 var finalBoi = {
-  Index: "5",
   Colour: "",
   Tires: "",
   Engine: "",
@@ -690,8 +689,6 @@ function buildConfirmPage(segwayType) {
 
 function buildCheckoutPage() {
   segwayApp.innerHTML = '';
-  console.log("final boi in checkout page");
-  console.log(finalBoi);
 
   var containerOutline = document.createElement("div");
   containerOutline.setAttribute("class", "flex-row container outline");
@@ -700,65 +697,97 @@ function buildCheckoutPage() {
   innerContainer.setAttribute("class", "flex-col");
 
   for (var index in segway_options) {
-    console.log(index);
+    var container = document.createElement("div");
+    container.setAttribute("id", segway_options[index] + "Area");
+    console.log(container.id);
+    container.setAttribute("class", "flex-row box-area");
+    
+    var label = document.createElement("div");
+    label.setAttribute("class", "inner-box");
+    label.textContent = segway_options[index] + ": ";
+
+    var value = document.createElement("div");
+    value.setAttribute("class", "inner-box");
+  
+    if (segway_options[index] != "Customs") {
+      console.log(segway_options[index]);
+      console.log(finalBoi.Colour);
+      value.textContent = finalBoi.segway_options[index];
+    } else {
+      value.classList.add("list");
+      value.setAttribute("id", "customsList");
+
+      for (var i in segway_options[index]) {
+        var tempItem = document.createElement("div");
+        tempItem.setAttribute("class", "list-item");
+        tempItem.textContent = segway_options[index][i];
+        value.appendChild(tempItem);
+      }
+    }
+
+    container.appendChild(label);
+    container.appendChild(value);
+    console.log(segway_options[index]);
+
+    innerContainer.appendChild(container);
   }
 
-  var colourContainer = document.createElement("div");
-  colourContainer.setAttribute("id", "colourArea");
-  colourContainer.setAttribute("class", "flex-row box-area");
+  // var colourContainer = document.createElement("div");
+  // colourContainer.setAttribute("id", "colourArea");
+  // colourContainer.setAttribute("class", "flex-row box-area");
   
-  var colourLabel = document.createElement("div");
-  colourLabel.setAttribute("class", "inner-box");
-  colourLabel.textContent = "Colour:";
+  // var colourLabel = document.createElement("div");
+  // colourLabel.setAttribute("class", "inner-box");
+  // colourLabel.textContent = "Colour:";
 
-  var colourValue = document.createElement("div");
-  colourValue.setAttribute("class", "inner-box");
-  colourValue.textContent = "Placeholder";
+  // var colourValue = document.createElement("div");
+  // colourValue.setAttribute("class", "inner-box");
+  // colourValue.textContent = "Placeholder";
 
-  colourContainer.appendChild(colourLabel);
-  colourContainer.appendChild(colourValue);
+  // colourContainer.appendChild(colourLabel);
+  // colourContainer.appendChild(colourValue);
 
-  var tiresContainer = document.createElement("div");
-  tiresContainer.setAttribute("id", "tiresArea");
-  tiresContainer.setAttribute("class", "flex-row box-area");
+  // var tiresContainer = document.createElement("div");
+  // tiresContainer.setAttribute("id", "tiresArea");
+  // tiresContainer.setAttribute("class", "flex-row box-area");
   
-  var tiresLabel = document.createElement("div");
-  tiresLabel.setAttribute("class", "inner-box");
-  tiresLabel.textContent = "Tires:";
+  // var tiresLabel = document.createElement("div");
+  // tiresLabel.setAttribute("class", "inner-box");
+  // tiresLabel.textContent = "Tires:";
 
-  var tiresValue = document.createElement("div");
-  tiresValue.setAttribute("class", "inner-box");
-  tiresValue.textContent = "Placeholder";
+  // var tiresValue = document.createElement("div");
+  // tiresValue.setAttribute("class", "inner-box");
+  // tiresValue.textContent = "Placeholder";
 
-  tiresContainer.appendChild(tiresLabel);
-  tiresContainer.appendChild(tiresValue);
+  // tiresContainer.appendChild(tiresLabel);
+  // tiresContainer.appendChild(tiresValue);
 
-  var engineContainer = document.createElement("div");
-  engineContainer.setAttribute("id", "engineArea");
-  engineContainer.setAttribute("class", "flex-row box-area");
+  // var engineContainer = document.createElement("div");
+  // engineContainer.setAttribute("id", "engineArea");
+  // engineContainer.setAttribute("class", "flex-row box-area");
   
-  var engineLabel = document.createElement("div");
-  engineLabel.setAttribute("class", "inner-box");
-  engineLabel.textContent = "Engine:";
+  // var engineLabel = document.createElement("div");
+  // engineLabel.setAttribute("class", "inner-box");
+  // engineLabel.textContent = "Engine:";
 
-  var engineValue = document.createElement("div");
-  engineValue.setAttribute("class", "inner-box");
-  engineValue.textContent = "Placeholder";
+  // var engineValue = document.createElement("div");
+  // engineValue.setAttribute("class", "inner-box");
+  // engineValue.textContent = "Placeholder";
 
-  engineContainer.appendChild(engineLabel);
-  engineContainer.appendChild(engineValue);
+  // engineContainer.appendChild(engineLabel);
+  // engineContainer.appendChild(engineValue);
 
-  var customContainer = document.createElement("div");
-  customContainer.setAttribute("id", "customArea");
-  customContainer.setAttribute("class", "flex-row box-area");
+  // var customContainer = document.createElement("div");
+  // customContainer.setAttribute("id", "customArea");
+  // customContainer.setAttribute("class", "flex-row box-area");
 
-  var customLabel = document.createElement("div");
-  customLabel.setAttribute("class", "inner-box");
-  customLabel.textContent = "Customs:";
+  // var customLabel = document.createElement("div");
+  // customLabel.setAttribute("class", "inner-box");
+  // customLabel.textContent = "Customs:";
 
-  var customValue = document.createElement("div");
-  customValue.setAttribute("id", "customsList");
-  customValue.setAttribute("class", "inner-box list");
+  // var customValue = document.createElement("div");
+  // customValue.setAttribute("id", "customsList");
+  // customValue.setAttribute("class", "inner-box list");
 
   // for (var index in customs_list) {
   //   var tempItem = document.createElement("div");
@@ -767,8 +796,8 @@ function buildCheckoutPage() {
   //   customValue.appendChild(tempItem);
   // }
 
-  customContainer.appendChild(customLabel);
-  customContainer.appendChild(customValue);
+  // customContainer.appendChild(customLabel);
+  // customContainer.appendChild(customValue);
 
 
   var totalContainer = document.createElement("div");
@@ -794,10 +823,10 @@ function buildCheckoutPage() {
     //btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index], segName));
   }
 
-  innerContainer.appendChild(colourContainer);
-  innerContainer.appendChild(tiresContainer);
-  innerContainer.appendChild(engineContainer);
-  innerContainer.appendChild(customContainer);
+  // innerContainer.appendChild(colourContainer);
+  // innerContainer.appendChild(tiresContainer);
+  // innerContainer.appendChild(engineContainer);
+  // innerContainer.appendChild(customContainer);
   innerContainer.appendChild(totalContainer);
   innerContainer.appendChild(btnContainer);
 
