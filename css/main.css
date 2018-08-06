@@ -78,6 +78,15 @@ h1 {
   height: 170px;
   padding: 20px; }
 
+.check-flex-col {
+  display: flex;
+  flex-direction: column;
+  padding: 20px; }
+
+.check-flex-row {
+  display: flex;
+  flex-direction: row; }
+
 .tab {
   border: 1px dashed #FAB;
   flex: 1;
