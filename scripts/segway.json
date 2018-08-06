@@ -96,15 +96,5 @@
         "Horn"
       ]
     }
-  ],
-  "finalBoi": {
-    "Colour": "Green",
-    "Tires": "Normal",
-    "Engine": "Electric",
-    "Customs": [
-      "Horn",
-      "Glitter",
-      "Basket"
-    ]
-  }
+  ]
 }
