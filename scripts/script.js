@@ -95,11 +95,11 @@ function loadData() {
 
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  //buildHomePage();
+  buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
   //buildCheckoutPage();
-  buildCustomPage();
+  //buildCustomPage();
 }
 
 //Tab Container
@@ -150,29 +150,19 @@ function buildOption(item, index, arr, isCustom){
 }
 
 //Build Order Button Function
-function buildOrderButton(isCustom, segwayName) {
+function buildOrderButton(isCustom, segwayType) {
   var buttonDiv = document.createElement("div");
   buttonDiv.setAttribute("class", "bottom-btn");
   buttonDiv.textContent = 'Add To Order';
   if (isCustom) {
-    buttonDiv.setAttribute("onclick", `buildCustomPage('${tabs}','${segwayName}')`);
+    buttonDiv.setAttribute("onclick", `buildCustomPage('${segwayType}')`);
   } else {
-    buttonDiv.setAttribute("onclick", `buildConfirmPage('${segwayName}')`);
+    buttonDiv.setAttribute("onclick", `buildConfirmPage('${segwayType}')`);
   }
-  // if (isCustom) {
-  //   buttonDiv.addEventListener('click', function(){
-  //     console.log("I click");
-  //     buildCustomPage(tabs, segwayName)
-  //   });
-  // } else {
-  //   buttonDiv.addEventListener('click', function(){
-  //     console.log("I click");
-  //     buildConfirmPage(segwayName, confirmBtnList);
-  //   });
-  // }
 
   return buttonDiv;
 }
+
 //Page Button Functions
 function thankYouCreateButtons(button) {
   var btn = document.createElement("div");
@@ -192,7 +182,7 @@ function confirmCreateButtons(button, segName) {
 
   if (button == "Modify") {
     btn.setAttribute("class", "bottom-btn");
-    btn.setAttribute("onclick", `buildCustomPage('${tabs}','${segName}')`);
+    btn.setAttribute("onclick", `buildCustomPage('${segName}')`);
   }
   else if (button == "Add To Order") {
     btn.setAttribute("class", "top-btn");
@@ -210,7 +200,7 @@ function checkoutCreateButton(button, segName) {
 
   if (button == "Modify") {
     btn.classList.add("right-mar");
-    btn.setAttribute("onclick", `buildCustomPage('${tabs}','${segName}')`);
+    btn.setAttribute("onclick", `buildCustomPage('${segName}')`);
   }
   else if (button == "Add To Order") {
     btn.setAttribute("onclick", `buildThanksPage()`);
@@ -389,6 +379,25 @@ function optionClicked(evt) {
   buildSegway(segboi_img_check);
 }
 
+//Getting Segway from Json
+function getJsonSegway(type) {
+  var finalBoi = {
+    Colour: "",
+    Tires: "",
+    Engine: "",
+    Customs: [
+    ]
+  }
+  finalBoi.Colour = json.preBuilt[type].Colour;
+  finalBoi.Tires = json.preBuilt[type].Tires;
+  finalBoi.Engine = json.preBuilt[type].Engine;
+  for (var item in json.preBuilt[type].Customs)
+    finalBoi.Customs.push(json.preBuilt[type].Customs[item]);
+    
+  console.log(finalBoi);
+  return finalBoi;
+}
+
 //Making Segway Picture
 function buildSegway(x) {
   if (x === 0) {
@@ -484,7 +493,6 @@ function tabClicked(evt) {
   }
 }
 
-
 //Set Display of Buttons
 function displayBtns(item, index, arr) {
   console.log("In display btns function");
@@ -522,7 +530,7 @@ function buttonClicked(evt) {
 }
 
 //Building Segway Specials
-function createSegwaySpecial(imgSource, name, description, segId, isCustom) {
+function createSegwaySpecial(imgSource, name, description, segId, isCustom, segwayType) {
   var divContainer = document.createElement("div");
   //divContainer.setAttribute("id", segId);
   divContainer.setAttribute("class", "flex-row");
@@ -543,7 +551,7 @@ function createSegwaySpecial(imgSource, name, description, segId, isCustom) {
   divDesc.setAttribute("class", "segDesc");  
   divDesc.textContent = description;
 
-  var orderButton = buildOrderButton(isCustom, name);
+  var orderButton = buildOrderButton(isCustom, segwayType);
   
   divInfo.appendChild(divName);
   divInfo.appendChild(divDesc);
@@ -578,14 +586,15 @@ function buildHomePage() {
   var html = '';
   for (var index in json.specials) {
     var isCustom = json.specials[index].Name == "Custom";
-    var div = createSegwaySpecial(json.specials[index].ImageSource, json.specials[index].Name, json.specials[index].Description, json.specials[index].Id, isCustom);
+    var div = createSegwaySpecial(json.specials[index].ImageSource, json.specials[index].Name, json.specials[index].Description, json.specials[index].Id, isCustom, index);
     // segwayApp.appendChild(div);
     html += div.outerHTML;
   }
   segwayApp.innerHTML = html;
 }
 
-function buildCustomPage(tab, segwayType) {
+function buildCustomPage(segwayType) {
+  var finalSegway = getJsonSegway(segwayType);
   console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
   buildSegway(0);
@@ -629,6 +638,7 @@ function buildCustomPage(tab, segwayType) {
 }
 
 function buildConfirmPage(segwayType) {
+  var finalSegway = getJsonSegway(segwayType);
   segwayApp.innerHTML = '';
   var divContainer = document.createElement("div");
   divContainer.setAttribute("class", "flex-row container");
@@ -653,7 +663,7 @@ function buildConfirmPage(segwayType) {
   segwayApp.appendChild(divContainer);
 }
 
-function buildCheckoutPage() {
+function buildCheckoutPage(segwayObject) {
   segwayApp.innerHTML = '';
 
   var containerOutline = document.createElement("div");
