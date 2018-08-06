@@ -102,10 +102,10 @@ function loadData() {
 
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
-  //buildHomePage();
+  buildHomePage();
   //buildThanksPage();
   //buildConfirmPage();
-  buildCheckoutPage();
+  //buildCheckoutPage();
   //buildCustomPage();
 }
 
@@ -162,9 +162,9 @@ function buildOrderButton(isCustom, segwayType) {
   buttonDiv.setAttribute("class", "bottom-btn");
   buttonDiv.textContent = 'Add To Order';
   if (isCustom) {
-    buttonDiv.setAttribute("onclick", `buildCustomPage('${segwayType}')`);
+    buttonDiv.setAttribute("onclick", `buildCustomPage()`);
   } else {
-    buttonDiv.setAttribute("onclick", `buildConfirmPage('${segwayType}')`);
+    buttonDiv.setAttribute("onclick", `buildConfirmPage(${segwayType})`);
   }
 
   return buttonDiv;
@@ -578,7 +578,6 @@ function createSegwaySpecial(imgSource, name, description, segId, isCustom, segw
   //divName.setAttribute("id", segId);
   divName.setAttribute("class", "segName");
   divName.textContent = name;
-  console.log(divName);
 
   var divDesc = document.createElement("div");
   divDesc.setAttribute("class", "segDesc");  
@@ -620,17 +619,12 @@ function buildHomePage() {
   for (var index in json.specials) {
     var isCustom = json.specials[index].Name == "Custom";
     var div = createSegwaySpecial(json.specials[index].ImageSource, json.specials[index].Name, json.specials[index].Description, json.specials[index].Id, isCustom, index);
-    // segwayApp.appendChild(div);
     html += div.outerHTML;
   }
-  console.log("final boi in home page");
-  console.log(finalBoi);
   segwayApp.innerHTML = html;
 }
 
 function buildCustomPage() {
-  var finalSegway = getJsonSegway();
-  console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
   buildSegway(0);
   var custom_pageContainer = document.createElement('div');
@@ -673,21 +667,17 @@ function buildCustomPage() {
 }
 
 function buildConfirmPage(segwayType) {
-  var finalSegway = getJsonSegway(segwayType);
+  getJsonSegway(segwayType);
   segwayApp.innerHTML = '';
   var divContainer = document.createElement("div");
   divContainer.setAttribute("class", "flex-row container");
-
-  //var canvas = document.createElement("canvas");
-  //canvas.setAttribute("id", "pizza");
-  //canvas.setAttribute("class", "");
 
   var btnArea = document.createElement("div");
   btnArea.setAttribute("name", "btn-area");
   btnArea.setAttribute("class", "flex-col");
 
   for (var index in confirmBtnList) {
-    var temp_btn = confirmCreateButtons(confirmBtnList[index], finalSegway);
+    var temp_btn = confirmCreateButtons(confirmBtnList[index]);
     btnArea.appendChild(temp_btn);
   }
 
