@@ -704,6 +704,31 @@ function isActive(evt) {
   } 
 }
 
+//Check to make sure user created a complete segway
+function isComplete() {
+  if ((pre_built_CheckObj.Body != "" && pre_built_CheckObj.Engine != "" && pre_built_CheckObj.Tires != "") || (pre_built_CheckObj.Body === "Deep Fried" && pre_built_CheckObj.Engine != "")) {
+    console.log("WE CAN CHECKOUT NOW!");
+    if (pre_built_CheckObj.Body === "Deep Fried") {
+      finalBoi.Colour = "";
+      finalBoi.Tires = "Normal";
+      finalBoi.Customs.push("Deep Fried");
+    } else {
+      finalBoi.Colour = pre_built_CheckObj.Body;
+      finalBoi.Tires = pre_built_CheckObj.Tires;
+    }
+    finalBoi.Engine = pre_built_CheckObj.Engine;
+    for (var i = 0; i < pre_built_CheckObj.Mods.length; i++) {
+      finalBoi.Customs.push(pre_built_CheckObj.Mods[i]);
+    }
+    finalBoi.Total = "$" + pre_built_CheckObj.Price;
+    console.log(finalBoi);
+    buildCheckoutPage();
+  } else {
+    console.log("Segway is missing components");
+    console.log("Please make sure that your segway has a chosen colour, tires, and engine");
+  }
+}
+
 //Check for single options
 function multipleSingleOptions(item, index, arr) {
   // console.log("Inside multipleSingleOptions")
@@ -841,6 +866,11 @@ function buildCustomPage() {
   segwayApp.innerHTML = '';
   createNavBar(pagesList);
   setActiveBtns();
+  var btn = document.createElement('div');
+  btn.setAttribute("class", "top-btn");
+  btn.setAttribute("id", "orderCustomBtn");
+  btn.setAttribute('onclick', 'isComplete()');
+  btn.textContent = "Add to Order";
   console.log("We are building a custom page.");
   //buildSegway(0);
   var custom_pageContainer = document.createElement('div');
@@ -875,11 +905,12 @@ function buildCustomPage() {
     //console.log(tab[i]);
     tabContainer.appendChild(tabs[i]);
   }
+  customPage.appendChild(priceDiv);
   custom_pageContainer.appendChild(tabContainer);
   custom_pageContainer.appendChild(btnContainer);
   customPage.appendChild(imgDiv);
-  customPage.appendChild(priceDiv);
   customPage.appendChild(custom_pageContainer);
+  customPage.appendChild(btn);
   segwayApp.appendChild(customPage);
 }
 
@@ -898,6 +929,7 @@ function setActiveBtns() {
     for (var e = 0; e < engineBtns.length; e++) {
       if (engineBtns[e].textContent === finalBoi.Engine) {
         engineBtns[e].classList.add("active");
+        pre_built_CheckObj.Engine = finalBoi.Engine;
       }
     }
     switch (finalBoi.Engine) {
@@ -917,7 +949,9 @@ function setActiveBtns() {
       bodyStr = "url(images/deepfried.png)";
       pre_built_CheckObj.Price += pricesObj.Deep_Fried;
       tireStr = "";
+      pre_built_CheckObj.Body = "Deep Fried";
       pre_built_CheckObj.Price += pricesObj.Normal;
+      pre_built_CheckObj.Tires = "Normal"
       for (var i = 0; i < customBtns.length; i++) {
         if (customBtns[i].textContent === "Deep Fried") {
           customBtns[i].classList.add("active");
@@ -928,6 +962,7 @@ function setActiveBtns() {
       for (var i = 0; i < colourBtns.length; i++) {
         if (colourBtns[i].textContent === finalBoi.Colour) {
           colourBtns[i].classList.add("active");
+          pre_built_CheckObj.Body = finalBoi.Colour;
         }
       }
       switch (finalBoi.Colour) {
@@ -949,6 +984,7 @@ function setActiveBtns() {
       for (var i = 0; i < tireBtns.length; i++) {
         if (tireBtns[i].textContent === finalBoi.Tires) {
           tireBtns[i].classList.add("active");
+          pre_built_CheckObj.Tires = finalBoi.Tires;
         }
       }
       switch (finalBoi.Tires) {
@@ -1041,6 +1077,9 @@ function setActiveBtns() {
         default:
           break;
       }
+    }
+    for (var fc = 0; fc < finalBoi.Customs.length; fc++) {
+      pre_built_CheckObj.Mods.push(finalBoi.Customs[i]);
     }
     setPriceDiv();
     buildSegway(1);
