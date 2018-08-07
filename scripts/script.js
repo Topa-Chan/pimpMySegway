@@ -726,10 +726,22 @@ function isActive(evt) {
 
 //Check to make sure user created a complete segway
 function isComplete() {
-  console.log(finalBoi);
   if ((pre_built_CheckObj.Body != "" && pre_built_CheckObj.Engine != "" && pre_built_CheckObj.Tires != "") || (pre_built_CheckObj.Body === "Deep Fried" && pre_built_CheckObj.Engine != "")) {
     console.log("WE CAN CHECKOUT NOW!");
-    //buildCheckoutPage();
+    if (pre_built_CheckObj.Body === "Deep Fried") {
+      finalBoi.Colour = "";
+      finalBoi.Tires = "Normal";
+      finalBoi.Customs.push("Deep Fried");
+    } else {
+      finalBoi.Colour = pre_built_CheckObj.Body;
+      finalBoi.Tires = pre_built_CheckObj.Tires;
+    }
+    finalBoi.Engine = pre_built_CheckObj.Engine;
+    for (var i = 0; i < pre_built_CheckObj.Mods.length; i++) {
+      finalBoi.Customs.push(pre_built_CheckObj.Mods[i]);
+    }
+    console.log(finalBoi);
+    buildCheckoutPage();
   } else {
     console.log("Segway is missing components");
     console.log("Please make sure that your segway has a chosen colour, tires, and engine");
@@ -861,6 +873,7 @@ function buildCustomPage() {
   setActiveBtns();
   var btn = document.createElement('div');
   btn.setAttribute("class", "top-btn");
+  btn.setAttribute("id", "orderCustomBtn");
   btn.setAttribute('onclick', 'isComplete()');
   btn.textContent = "Add to Order";
   console.log("We are building a custom page.");
