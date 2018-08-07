@@ -83,7 +83,7 @@ h1 {
   //display: flex;
   flex-direction: column;
   // padding-top: 25px;
-  padding-left: 225px;
+  padding-left: 175px;
 }
 
 .tabContainer {
@@ -276,4 +276,11 @@ li a:hover {
 
 .active {
   background-color: #21f;
+}
+
+.price {
+  border: 2px dashed #b300ff;  
+  height: 25px;
+  width: 100px;
+  text-align: center;
 }
