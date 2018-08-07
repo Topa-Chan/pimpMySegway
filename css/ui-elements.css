@@ -73,7 +73,7 @@ h1 {
 
 .custom_pageContainer {
   flex-direction: column;
-  padding-left: 225px; }
+  padding-left: 175px; }
 
 .tabContainer {
   display: flex;
@@ -164,13 +164,32 @@ canvas {
   margin-bottom: auto; }
 
 .nav {
-  overflow: hidden;
-  background-color: #ad1e1e; }
+  float: left; }
 
 .nav-item:hover {
-  color: #fff;
-  border-bottom: 5px solid #FFC76D;
-  margin-top: 10px; }
+  display: block;
+  padding: 8px;
+  background-color: #dddddd; }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333; }
+
+li {
+  float: left; }
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none; }
+
+li a:hover {
+  background-color: #111; }
 
 .container {
   height: 450px; }
@@ -188,3 +207,9 @@ canvas {
 
 .active {
   background-color: #21f; }
+
+.price {
+  border: 2px dashed #b300ff;
+  height: 25px;
+  width: 100px;
+  text-align: center; }
