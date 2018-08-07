@@ -5,12 +5,10 @@ var segwayApp = document.getElementById("segway");
 
 //User's Segway Object
 var finalBoi = {
-  Colour: "Green",
-  Tires: "Tractor",
-  Engine: "Petrol",
+  Colour: "",
+  Tires: "",
+  Engine: "",
   Customs: [
-    "Cup Holder",
-    "Horn"
   ],
   Total: "$120"
 }
@@ -395,6 +393,7 @@ function getJsonSegway(type) {
   finalBoi.Colour = json.preBuilt[type].Colour;
   finalBoi.Tires = json.preBuilt[type].Tires;
   finalBoi.Engine = json.preBuilt[type].Engine;
+  finalBoi.Customs = [];
   for (var item in json.preBuilt[type].Customs)
     finalBoi.Customs.push(json.preBuilt[type].Customs[item]);
     
@@ -601,18 +600,19 @@ function createSegwaySpecial(imgSource, name, description, segId, isCustom, segw
 
 //Building navbar
 function createNavBar(navItemsList) {
-  var navContainer = document.createElement("div");
-  navContainer.setAttribute("class", "nav");
+  // var navContainer = document.createElement("div");
+  // navContainer.setAttribute("class", "nav");
 
-  var homeLink = document.createElement("div");
-  homeLink.setAttribute("class", "nav-item");
-  homeLink.addEventListener('click', function(){
-    buildHomePage();
-  });
-  homeLink.textContent = "Segway Specials";
+  // var homeLink = document.createElement("div");
+  // homeLink.setAttribute("class", "nav-item");
+  // homeLink.addEventListener('click', function(){
+  //   buildHomePage();
+  // });
+  // homeLink.textContent = "Segway Specials";
 
-  navContainer.appendChild(homeLink);
-  segwayApp.appendChild(navContainer);
+  // navContainer.appendChild(homeLink);
+  // segwayApp.appendChild(navContainer);
+
 }
 
 //Building Pages
@@ -625,7 +625,7 @@ function buildHomePage() {
     var div = createSegwaySpecial(json.specials[index].ImageSource, json.specials[index].Name, json.specials[index].Description, json.specials[index].Id, isCustom, index);
     html += div.outerHTML;
   }
-  segwayApp.innerHTML = html;
+  segwayApp.innerHTML += html;
 }
 
 function buildCustomPage() {
