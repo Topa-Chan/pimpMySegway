@@ -73,6 +73,10 @@ h1 {
   padding: 50px;
   display: flex; }
 
+.custom_pageContainer {
+  margin-left: 750px;
+  margin-top: -511px; }
+
 .tabContainer {
   display: flex;
   flex-direction: row;
@@ -82,22 +86,22 @@ h1 {
   flex-direction: row;
   order: 1;
   border: 3px solid #000;
-  width: 235px;
+  width: 229px;
   padding-left: 115px;
   padding-top: 10px;
   padding-bottom: 10px; }
 
 .colourTab {
-  border: 3px solid #FAB; }
+  border: 3px solid #000; }
 
 .tireTab {
-  border: 3px solid #FAB; }
+  border: 3px solid #000; }
 
 .engineTab {
-  border: 3px solid #FAB; }
+  border: 3px solid #000; }
 
 .customTab {
-  border: 3px solid #FAB; }
+  border: 3px solid #000; }
 
 #tire {
   display: none; }
@@ -139,7 +143,8 @@ h1 {
 
 .segboi_img {
   height: 470px;
-  position: relative; }
+  position: relative;
+  width: 309px; }
 
 canvas {
   height: 470px;
@@ -222,13 +227,45 @@ li a:hover {
   background-color: #21f; }
 
 .price {
-  border: 2px dashed #b300ff;
+  border: 2px solid #b300ff;
   height: 25px;
   width: 100px;
-  text-align: center; }
+  text-align: center;
+  margin-left: 500px; }
 
 #orderCustomBtn {
-  margin-top: 50px;
-  margin-left: 20px; }
+  margin-left: 890px; }
+
+@media all and (max-width: 550px) {
+  .segboi_img {
+    height: 470px;
+    position: relative;
+    width: 309px;
+    margin-left: 40px; }
+
+  .price {
+    border: 2px solid #b300ff;
+    height: 25px;
+    width: 100px;
+    text-align: center;
+    margin-left: 165px; }
+
+  .custom_pageContainer {
+    margin-top: 85px;
+    margin-left: 15px; }
+
+  #orderCustomBtn {
+    margin-top: 100px;
+    margin-bottom: 15px;
+    margin-left: 150px; }
+
+  .btn-theme-1 {
+    /* padding: 25px 30px !important; */
+    width: 50px;
+    font-size: 1em;
+    margin: 40px;
+    /* text-align: center; */
+    height: 25px;
+    /* padding-top: 25px; */ } }
 
 /*# sourceMappingURL=ui-elements.css.map */

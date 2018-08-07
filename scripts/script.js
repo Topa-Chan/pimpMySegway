@@ -738,6 +738,7 @@ function isComplete() {
     for (var i = 0; i < pre_built_CheckObj.Mods.length; i++) {
       finalBoi.Customs.push(pre_built_CheckObj.Mods[i]);
     }
+    finalBoi.Total = "$" + pre_built_CheckObj.Price;
     console.log(finalBoi);
     buildCheckoutPage();
   } else {
@@ -906,12 +907,12 @@ function buildCustomPage() {
     //console.log(tab[i]);
     tabContainer.appendChild(tabs[i]);
   }
+  customPage.appendChild(priceDiv);
   custom_pageContainer.appendChild(tabContainer);
   custom_pageContainer.appendChild(btnContainer);
-  custom_pageContainer.appendChild(btn);
   customPage.appendChild(imgDiv);
-  customPage.appendChild(priceDiv);
   customPage.appendChild(custom_pageContainer);
+  customPage.appendChild(btn);
   segwayApp.appendChild(customPage);
 }
 
