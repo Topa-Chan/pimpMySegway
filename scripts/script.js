@@ -10,7 +10,7 @@ var finalBoi = {
   Engine: "",
   Customs: [
   ],
-  Total: "$120"
+  Total: ""
 }
 
 //Segway Image Div & Img Canvases
@@ -132,10 +132,6 @@ function loadData() {
 function loadComplete(evt) {
   json = JSON.parse(request.responseText);
   buildHomePage();
-  //buildThanksPage();
-  //buildConfirmPage();
-  //buildCheckoutPage();
-  //buildCustomPage();
 }
 
 //Tab Container
@@ -193,10 +189,15 @@ function buildOrderButton(isCustom, segwayType) {
   if (isCustom) {
     buttonDiv.setAttribute("onclick", `buildCustomPage()`);
   } else {
-    buttonDiv.setAttribute("onclick", `buildConfirmPage(${segwayType})`);
+    buttonDiv.setAttribute("onclick", `setFinalBoi(${segwayType})`);
   }
 
   return buttonDiv;
+}
+
+function setFinalBoi(type) {
+  getJsonSegway(type);
+  buildCheckoutPage();
 }
 
 //Page Button Functions
@@ -207,25 +208,6 @@ function thankYouCreateButtons(button) {
   btn.textContent = button
   btn.setAttribute("onclick", `buildHomePage()`);
   return btn;
-}
-
-function confirmCreateButtons(button) {
-  var btnRow = document.createElement("div");
-  btnRow.setAttribute("class", "flex-row");
-  var btn = document.createElement("div");
-  btn.setAttribute("class", "btn btn-theme-1");
-  btn.textContent = button;
-  if (button == "Modify") {
-    btn.setAttribute("class", "bottom-btn");
-    btn.setAttribute("onclick", `buildCustomPage()`);
-  }
-  else if (button == "Add To Order") {
-    btn.setAttribute("class", "top-btn");
-    btn.setAttribute("onclick", `buildCheckoutPage()`);
-  }
-  btnRow.appendChild(btn);
-
-  return btnRow;
 }
 
 function checkoutCreateButton(button) {
@@ -847,6 +829,21 @@ function createNavBar(navItemsList) {
   // navContainer.appendChild(homeLink);
   // segwayApp.appendChild(navContainer);
 
+  var navUl = document.createElement("ul");
+  navUl.setAttribute("class", "nav-container nav-flex-col");
+
+  for (var page in pagesList) {
+    var navLi = document.createElement("li");
+    //navLi.setAttribute("class", "nav-flex-row");
+    var navDiv = document.createElement("a");
+    navDiv.textContent = pagesList[page];
+    navDiv.setAttribute("onclick", "buildHomePage()");
+
+    navLi.appendChild(navDiv);
+    navUl.appendChild(navLi);
+  }
+
+  segwayApp.appendChild(navUl);
 }
 
 //Building Pages
@@ -866,6 +863,8 @@ function buildCustomPage() {
   //var finalSegway = getJsonSegway();
   //console.log(finalSegway);
   //Make new Method call here
+  segwayApp.innerHTML = '';
+  createNavBar(pagesList);
   setActiveBtns();
   var btn = document.createElement('div');
   btn.setAttribute("class", "top-btn");
@@ -873,7 +872,6 @@ function buildCustomPage() {
   btn.setAttribute('onclick', 'isComplete()');
   btn.textContent = "Add to Order";
   console.log("We are building a custom page.");
-  segwayApp.innerHTML = '';
   //buildSegway(0);
   var custom_pageContainer = document.createElement('div');
   custom_pageContainer.setAttribute('class', 'custom_pageContainer check-flex-col');
@@ -1092,30 +1090,9 @@ function setPriceDiv() {
   priceDiv.innerHTML = "$" + pre_built_CheckObj.Price;
 }
 
-function buildConfirmPage(segwayType) {
-  getJsonSegway(segwayType);
-  segwayApp.innerHTML = '';
-  var divContainer = document.createElement("div");
-  divContainer.setAttribute("class", "flex-row container");
-
-  var btnArea = document.createElement("div");
-  btnArea.setAttribute("name", "btn-area");
-  btnArea.setAttribute("class", "flex-col");
-
-  for (var index in confirmBtnList) {
-    var temp_btn = confirmCreateButtons(confirmBtnList[index]);
-    btnArea.appendChild(temp_btn);
-  }
-
-  //divContainer.appendChild(canvas);
-  divContainer.appendChild(btnArea);
-
-  //console.log("I work");
-  segwayApp.appendChild(divContainer);
-}
-
 function buildCheckoutPage() {
   segwayApp.innerHTML = '';
+  createNavBar(pagesList);
 
   var containerOutline = document.createElement("div");
   containerOutline.setAttribute("class", "container outline");
@@ -1167,6 +1144,8 @@ function buildCheckoutPage() {
 
 function buildThanksPage() {
   segwayApp.innerHTML = '';
+  createNavBar(pagesList);
+
   var container = document.createElement("div");
   container.setAttribute("class", "flex-col thanks");
 

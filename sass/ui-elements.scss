@@ -14,10 +14,9 @@ h1 {
 
 .outline {
   border: 3px solid #000;
-  // margin-left: 550px;
-  // margin-top: 100px;
-  margin: 70px auto;
-  padding: 100px;
+  margin: 50px auto;
+  padding: 50px;
+  align-items: center !important;
 }
 
 .flex-row {
@@ -41,7 +40,7 @@ h1 {
 .check-flex-col {
   display: flex !important;
   flex-direction: column !important;
-  padding: 20px !important;
+  padding: 15px !important;
 }
 
 .check-flex-row {
@@ -176,6 +175,7 @@ h1 {
 .specialStyle{
   width: 500px;
   height: fit-content;
+  margin: 0 auto !important;
 }
 #segway{
   display: flex;
@@ -221,7 +221,7 @@ canvas {
   padding: 20px;
   width: 150px;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 .top-btn {
@@ -229,27 +229,17 @@ canvas {
   margin-bottom: auto;
 }
 
-.nav {
-  // overflow: hidden;
-  // background-color: #ad1e1e;
-  float: left;
-}
-
-.nav-item:hover {
-  // color: #fff;
-  // border-bottom: 5px solid #FFC76D;
-  // margin-top: 10px;
-  display: block;
-  padding: 8px;
-  background-color: #dddddd;
-}
-
-ul {
+.nav-container {
+  height: fit-content;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: #333;
+}
+
+.nav-flex-col {
+  @extend .flex-col;
+  display: block;
 }
 
 li {
@@ -260,7 +250,7 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 20px;
   text-decoration: none;
 }
 
@@ -275,7 +265,7 @@ li a:hover {
 .inner-box {
   width: 50%;
   text-align: left;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .flex-tabs {
