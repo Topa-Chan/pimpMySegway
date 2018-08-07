@@ -15,7 +15,7 @@ var finalBoi = {
 
 //Segway Image Div & Img Canvases
 var imgDiv = document.createElement('div');
-imgDiv.setAttribute("class", "segboi_img");
+imgDiv.setAttribute("class", "segboi_img check-flex-col");
 var tireImg = document.createElement('canvas');
 tireImg.style.zIndex = "1";
 var tireStr = "";
@@ -116,7 +116,7 @@ homePage.setAttribute("id", "home_page");
 var confirmPage = document.createElement("div");
 confirmPage.setAttribute("id", "confirm_page");
 var customPage = document.createElement("div");
-customPage.setAttribute("id", "custom_page");
+customPage.setAttribute("id", "custom_page container check-flex-row");
 var checkoutPage = document.createElement("div");
 checkoutPage.setAttribute("id", "checkout_page");
 var thankYouPage = document.createElement("div");
@@ -230,7 +230,7 @@ function confirmCreateButtons(button) {
 
 function checkoutCreateButton(button) {
   var btn = document.createElement("div");
-  btn.setAttribute("class", "bottom-btn");
+  btn.setAttribute("class", "checkBtn");
   btn.textContent = button;
 
   if (button == "Modify") {
@@ -846,7 +846,7 @@ function buildCustomPage() {
   segwayApp.innerHTML = '';
   //buildSegway(0);
   var custom_pageContainer = document.createElement('div');
-  custom_pageContainer.setAttribute('class', 'custom_pageContainer');
+  custom_pageContainer.setAttribute('class', 'custom_pageContainer check-flex-col');
   // console.log(name);
   tabContainer.setAttribute('class', 'tabContainer');
   for (var i = 0; i < tabs.length; i++) {
@@ -1116,7 +1116,7 @@ function buildCheckoutPage() {
 
   var btnContainer = document.createElement("div");
   btnContainer.setAttribute("id", "btnArea");
-  btnContainer.setAttribute("class", "flex-row box-area more-space");
+  btnContainer.setAttribute("class", "flex-row");
   
   for (var index in checkOutBtnList) {
     btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index]));
