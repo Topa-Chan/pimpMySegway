@@ -5,17 +5,17 @@ var segwayApp = document.getElementById("segway");
 
 //User's Segway Object
 var finalBoi = {
-  Index: "5",
   Colour: "",
   Tires: "",
   Engine: "",
   Customs: [
-  ]
+  ],
+  Total: "$120"
 }
 
 //Segway Image Div & Img Canvases
 var imgDiv = document.createElement('div');
-imgDiv.setAttribute("class", "segboi_img");
+imgDiv.setAttribute("class", "segboi_img check-flex-col");
 var tireImg = document.createElement('canvas');
 tireImg.style.zIndex = "1";
 var tireStr = "";
@@ -35,9 +35,6 @@ var removeMod = "";
 
 //json
 var json;
-
-//segway options list
-var segway_options = ["Colour", "Tires", "Engine", "Customs", "Total"];
 
 //Pages List
 var pagesList = ['Segway Specials'];
@@ -119,7 +116,7 @@ homePage.setAttribute("id", "home_page");
 var confirmPage = document.createElement("div");
 confirmPage.setAttribute("id", "confirm_page");
 var customPage = document.createElement("div");
-customPage.setAttribute("id", "custom_page");
+customPage.setAttribute("id", "custom_page container check-flex-row");
 var checkoutPage = document.createElement("div");
 checkoutPage.setAttribute("id", "checkout_page");
 var thankYouPage = document.createElement("div");
@@ -194,9 +191,9 @@ function buildOrderButton(isCustom, segwayType) {
   buttonDiv.setAttribute("class", "bottom-btn");
   buttonDiv.textContent = 'Add To Order';
   if (isCustom) {
-    buttonDiv.setAttribute("onclick", `buildCustomPage('${segwayType}')`);
+    buttonDiv.setAttribute("onclick", `buildCustomPage()`);
   } else {
-    buttonDiv.setAttribute("onclick", `buildConfirmPage('${segwayType}')`);
+    buttonDiv.setAttribute("onclick", `buildConfirmPage(${segwayType})`);
   }
 
   return buttonDiv;
@@ -233,7 +230,7 @@ function confirmCreateButtons(button) {
 
 function checkoutCreateButton(button) {
   var btn = document.createElement("div");
-  btn.setAttribute("class", "bottom-btn");
+  btn.setAttribute("class", "checkBtn");
   btn.textContent = button;
 
   if (button == "Modify") {
@@ -560,6 +557,7 @@ function getJsonSegway(type) {
   finalBoi.Colour = json.preBuilt[type].Colour;
   finalBoi.Tires = json.preBuilt[type].Tires;
   finalBoi.Engine = json.preBuilt[type].Engine;
+  finalBoi.Customs = [];
   for (var item in json.preBuilt[type].Customs)
     finalBoi.Customs.push(json.preBuilt[type].Customs[item]);
     
@@ -816,7 +814,6 @@ function createSegwaySpecial(imgSource, name, description, segId, isCustom, segw
   //divName.setAttribute("id", segId);
   divName.setAttribute("class", "segName");
   divName.textContent = name;
-  console.log(divName);
 
   var divDesc = document.createElement("div");
   divDesc.setAttribute("class", "segDesc");  
@@ -836,18 +833,19 @@ function createSegwaySpecial(imgSource, name, description, segId, isCustom, segw
 
 //Building navbar
 function createNavBar(navItemsList) {
-  var navContainer = document.createElement("div");
-  navContainer.setAttribute("class", "nav");
+  // var navContainer = document.createElement("div");
+  // navContainer.setAttribute("class", "nav");
 
-  var homeLink = document.createElement("div");
-  homeLink.setAttribute("class", "nav-item");
-  homeLink.addEventListener('click', function(){
-    buildHomePage();
-  });
-  homeLink.textContent = "Segway Specials";
+  // var homeLink = document.createElement("div");
+  // homeLink.setAttribute("class", "nav-item");
+  // homeLink.addEventListener('click', function(){
+  //   buildHomePage();
+  // });
+  // homeLink.textContent = "Segway Specials";
 
-  navContainer.appendChild(homeLink);
-  segwayApp.appendChild(navContainer);
+  // navContainer.appendChild(homeLink);
+  // segwayApp.appendChild(navContainer);
+
 }
 
 //Building Pages
@@ -858,12 +856,9 @@ function buildHomePage() {
   for (var index in json.specials) {
     var isCustom = json.specials[index].Name == "Custom";
     var div = createSegwaySpecial(json.specials[index].ImageSource, json.specials[index].Name, json.specials[index].Description, json.specials[index].Id, isCustom, index);
-    // segwayApp.appendChild(div);
     html += div.outerHTML;
   }
-  console.log("final boi in home page");
-  console.log(finalBoi);
-  segwayApp.innerHTML = html;
+  segwayApp.innerHTML += html;
 }
 
 function buildCustomPage() {
@@ -880,7 +875,7 @@ function buildCustomPage() {
   segwayApp.innerHTML = '';
   //buildSegway(0);
   var custom_pageContainer = document.createElement('div');
-  custom_pageContainer.setAttribute('class', 'custom_pageContainer');
+  custom_pageContainer.setAttribute('class', 'custom_pageContainer check-flex-col');
   // console.log(name);
   tabContainer.setAttribute('class', 'tabContainer');
   for (var i = 0; i < tabs.length; i++) {
@@ -1097,21 +1092,17 @@ function setPriceDiv() {
 }
 
 function buildConfirmPage(segwayType) {
-  var finalSegway = getJsonSegway(segwayType);
+  getJsonSegway(segwayType);
   segwayApp.innerHTML = '';
   var divContainer = document.createElement("div");
   divContainer.setAttribute("class", "flex-row container");
-
-  //var canvas = document.createElement("canvas");
-  //canvas.setAttribute("id", "pizza");
-  //canvas.setAttribute("class", "");
 
   var btnArea = document.createElement("div");
   btnArea.setAttribute("name", "btn-area");
   btnArea.setAttribute("class", "flex-col");
 
   for (var index in confirmBtnList) {
-    var temp_btn = confirmCreateButtons(confirmBtnList[index], finalSegway);
+    var temp_btn = confirmCreateButtons(confirmBtnList[index]);
     btnArea.appendChild(temp_btn);
   }
 
@@ -1124,119 +1115,52 @@ function buildConfirmPage(segwayType) {
 
 function buildCheckoutPage() {
   segwayApp.innerHTML = '';
-  console.log("final boi in checkout page");
-  console.log(finalBoi);
 
   var containerOutline = document.createElement("div");
-  containerOutline.setAttribute("class", "flex-row container outline");
+  containerOutline.setAttribute("class", "container outline");
 
-  var innerContainer = document.createElement("div");
-  innerContainer.setAttribute("class", "flex-col");
+  var keys = Object.keys(finalBoi);
+  var values = Object.values(finalBoi);
 
-  for (var index in segway_options) {
-    console.log(index);
+  for (var index in keys) {
+    var container = document.createElement("div");
+    container.setAttribute("id", keys[index] + "Area");
+    container.setAttribute("class", "check-flex-row box-area");
+    
+    var label = document.createElement("div");
+    label.setAttribute("class", "inner-box check-flex-col");
+    label.textContent = keys[index] + ": ";
+
+    var value = document.createElement("div");
+    value.setAttribute("class", "inner-box check-flex-col");
+  
+    if (keys[index] != "Customs") {
+      value.textContent = values[index];
+    } else {
+      value.classList.add("list");
+      value.setAttribute("id", "customsList");
+
+      for (var i in finalBoi.Customs) {
+        var tempItem = document.createElement("div");
+        tempItem.setAttribute("class", "list-item");
+        tempItem.textContent = finalBoi.Customs[i];
+        value.appendChild(tempItem);
+      }
+    }
+    container.appendChild(label);
+    container.appendChild(value);
+    containerOutline.appendChild(container);
   }
-
-  var colourContainer = document.createElement("div");
-  colourContainer.setAttribute("id", "colourArea");
-  colourContainer.setAttribute("class", "flex-row box-area");
-  
-  var colourLabel = document.createElement("div");
-  colourLabel.setAttribute("class", "inner-box");
-  colourLabel.textContent = "Colour:";
-
-  var colourValue = document.createElement("div");
-  colourValue.setAttribute("class", "inner-box");
-  colourValue.textContent = "Placeholder";
-
-  colourContainer.appendChild(colourLabel);
-  colourContainer.appendChild(colourValue);
-
-  var tiresContainer = document.createElement("div");
-  tiresContainer.setAttribute("id", "tiresArea");
-  tiresContainer.setAttribute("class", "flex-row box-area");
-  
-  var tiresLabel = document.createElement("div");
-  tiresLabel.setAttribute("class", "inner-box");
-  tiresLabel.textContent = "Tires:";
-
-  var tiresValue = document.createElement("div");
-  tiresValue.setAttribute("class", "inner-box");
-  tiresValue.textContent = "Placeholder";
-
-  tiresContainer.appendChild(tiresLabel);
-  tiresContainer.appendChild(tiresValue);
-
-  var engineContainer = document.createElement("div");
-  engineContainer.setAttribute("id", "engineArea");
-  engineContainer.setAttribute("class", "flex-row box-area");
-  
-  var engineLabel = document.createElement("div");
-  engineLabel.setAttribute("class", "inner-box");
-  engineLabel.textContent = "Engine:";
-
-  var engineValue = document.createElement("div");
-  engineValue.setAttribute("class", "inner-box");
-  engineValue.textContent = "Placeholder";
-
-  engineContainer.appendChild(engineLabel);
-  engineContainer.appendChild(engineValue);
-
-  var customContainer = document.createElement("div");
-  customContainer.setAttribute("id", "customArea");
-  customContainer.setAttribute("class", "flex-row box-area");
-
-  var customLabel = document.createElement("div");
-  customLabel.setAttribute("class", "inner-box");
-  customLabel.textContent = "Customs:";
-
-  var customValue = document.createElement("div");
-  customValue.setAttribute("id", "customsList");
-  customValue.setAttribute("class", "inner-box list");
-
-  // for (var index in customs_list) {
-  //   var tempItem = document.createElement("div");
-  //   tempItem.setAttribute("class", "list-item");
-  //   tempItem.textContent = customs_list[index];
-  //   customValue.appendChild(tempItem);
-  // }
-
-  customContainer.appendChild(customLabel);
-  customContainer.appendChild(customValue);
-
-
-  var totalContainer = document.createElement("div");
-  totalContainer.setAttribute("id", "totalArea");
-  totalContainer.setAttribute("class", "flex-row box-area");
-  
-  var totalLabel = document.createElement("div");
-  totalLabel.setAttribute("class", "inner-box");
-  totalLabel.textContent = "Total:";
-
-  var totalValue = document.createElement("div");
-  totalValue.setAttribute("class", "inner-box");
-  totalValue.textContent = "Placeholder";
-
-  totalContainer.appendChild(totalLabel);
-  totalContainer.appendChild(totalValue);
 
   var btnContainer = document.createElement("div");
   btnContainer.setAttribute("id", "btnArea");
-  btnContainer.setAttribute("class", "flex-row box-area more-space");
+  btnContainer.setAttribute("class", "flex-row");
   
   for (var index in checkOutBtnList) {
-    //btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index], segName));
+    btnContainer.appendChild(checkoutCreateButton(checkOutBtnList[index]));
   }
 
-  innerContainer.appendChild(colourContainer);
-  innerContainer.appendChild(tiresContainer);
-  innerContainer.appendChild(engineContainer);
-  innerContainer.appendChild(customContainer);
-  innerContainer.appendChild(totalContainer);
-  innerContainer.appendChild(btnContainer);
-
-  containerOutline.appendChild(innerContainer);
-
+  containerOutline.appendChild(btnContainer);
   segwayApp.appendChild(containerOutline);
 }
 
