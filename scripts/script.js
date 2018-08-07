@@ -724,6 +724,18 @@ function isActive(evt) {
   } 
 }
 
+//Check to make sure user created a complete segway
+function isComplete() {
+  console.log(finalBoi);
+  if ((pre_built_CheckObj.Body != "" && pre_built_CheckObj.Engine != "" && pre_built_CheckObj.Tires != "") || (pre_built_CheckObj.Body === "Deep Fried" && pre_built_CheckObj.Engine != "")) {
+    console.log("WE CAN CHECKOUT NOW!");
+    //buildCheckoutPage();
+  } else {
+    console.log("Segway is missing components");
+    console.log("Please make sure that your segway has a chosen colour, tires, and engine");
+  }
+}
+
 //Check for single options
 function multipleSingleOptions(item, index, arr) {
   // console.log("Inside multipleSingleOptions")
@@ -847,6 +859,10 @@ function buildCustomPage() {
   //console.log(finalSegway);
   //Make new Method call here
   setActiveBtns();
+  var btn = document.createElement('div');
+  btn.setAttribute("class", "top-btn");
+  btn.setAttribute('onclick', 'isComplete()');
+  btn.textContent = "Add to Order";
   console.log("We are building a custom page.");
   segwayApp.innerHTML = '';
   //buildSegway(0);
@@ -884,6 +900,7 @@ function buildCustomPage() {
   }
   custom_pageContainer.appendChild(tabContainer);
   custom_pageContainer.appendChild(btnContainer);
+  custom_pageContainer.appendChild(btn);
   customPage.appendChild(imgDiv);
   customPage.appendChild(priceDiv);
   customPage.appendChild(custom_pageContainer);
@@ -905,6 +922,7 @@ function setActiveBtns() {
     for (var e = 0; e < engineBtns.length; e++) {
       if (engineBtns[e].textContent === finalBoi.Engine) {
         engineBtns[e].classList.add("active");
+        pre_built_CheckObj.Engine = finalBoi.Engine;
       }
     }
     switch (finalBoi.Engine) {
@@ -924,7 +942,9 @@ function setActiveBtns() {
       bodyStr = "url(images/deepfried.png)";
       pre_built_CheckObj.Price += pricesObj.Deep_Fried;
       tireStr = "";
+      pre_built_CheckObj.Body = "Deep Fried";
       pre_built_CheckObj.Price += pricesObj.Normal;
+      pre_built_CheckObj.Tires = "Normal"
       for (var i = 0; i < customBtns.length; i++) {
         if (customBtns[i].textContent === "Deep Fried") {
           customBtns[i].classList.add("active");
@@ -935,6 +955,7 @@ function setActiveBtns() {
       for (var i = 0; i < colourBtns.length; i++) {
         if (colourBtns[i].textContent === finalBoi.Colour) {
           colourBtns[i].classList.add("active");
+          pre_built_CheckObj.Body = finalBoi.Colour;
         }
       }
       switch (finalBoi.Colour) {
@@ -956,6 +977,7 @@ function setActiveBtns() {
       for (var i = 0; i < tireBtns.length; i++) {
         if (tireBtns[i].textContent === finalBoi.Tires) {
           tireBtns[i].classList.add("active");
+          pre_built_CheckObj.Tires = finalBoi.Tires;
         }
       }
       switch (finalBoi.Tires) {
@@ -1048,6 +1070,9 @@ function setActiveBtns() {
         default:
           break;
       }
+    }
+    for (var fc = 0; fc < finalBoi.Customs.length; fc++) {
+      pre_built_CheckObj.Mods.push(finalBoi.Customs[i]);
     }
     setPriceDiv();
     buildSegway(1);
