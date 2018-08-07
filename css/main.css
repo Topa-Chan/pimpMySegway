@@ -184,7 +184,8 @@ h1 {
 .specialStyle {
   width: 500px;
   height: fit-content;
-  margin: 0 auto !important; }
+  margin: 0 auto !important;
+  max-width: 60%; }
 
 #segway {
   display: flex;
@@ -253,7 +254,9 @@ li a:hover {
   background-color: #111; }
 
 .container {
-  height: 450px; }
+  height: 450px;
+  margin: 20px auto;
+  max-width: 60%; }
 
 .inner-box {
   width: 50%;
@@ -310,6 +313,7 @@ li a:hover {
     margin: 40px;
     /* text-align: center; */
     height: 25px;
-    /* padding-top: 25px; */ } }
+    /* padding-top: 25px; */ }
 
-/*# sourceMappingURL=main.css.map */
+  .segwayPic {
+    width: 90%; } }

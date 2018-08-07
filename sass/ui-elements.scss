@@ -176,6 +176,7 @@ h1 {
   width: 500px;
   height: fit-content;
   margin: 0 auto !important;
+  max-width: 60%;
 }
 #segway{
   display: flex;
@@ -260,6 +261,8 @@ li a:hover {
 
 .container {
   height: 450px;
+  margin: 20px auto;
+  max-width: 60%;
 }
 
 .inner-box {
@@ -331,5 +334,9 @@ li a:hover {
     /* text-align: center; */
     height: 25px;
     /* padding-top: 25px; */
-}
+  }
+
+  .segwayPic {
+    width: 90%;
+  }
 }
