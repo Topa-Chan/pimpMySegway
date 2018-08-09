@@ -734,6 +734,7 @@ function isComplete() {
     buildCheckoutPage();
   } else {
     console.log("Segway is missing components");
+    alert("Segway is missing components! Please make sure your segway has a colour(or body), tires, and engine")
     console.log("Please make sure that your segway has a chosen colour, tires, and engine");
   }
 }
@@ -858,6 +859,21 @@ function createNavBar(navItemsList) {
 //Building Pages
 function buildHomePage() {
   segwayApp.innerHTML = '';
+  finalBoi = {
+    Colour: "",
+    Tires: "",
+    Engine: "",
+    Customs: [
+    ],
+    Total: ""
+  };
+  pre_built_CheckObj = {
+    Body: "",
+    Tires: "",
+    Engine: "",
+    Mods: [],
+    Price: 0
+  };
   createNavBar(pagesList);
   var html = '';
   for (var index in json.specials) {
