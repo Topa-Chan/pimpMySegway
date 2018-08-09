@@ -70,10 +70,6 @@ h1 {
 .active {
   background-color: #32CD32; }
 
-#custom_page {
-  padding: 50px;
-  display: flex; }
-
 .custom_pageContainer {
   padding-top: 25px;
   margin-left: 750px;
@@ -231,12 +227,7 @@ li a:hover {
   border: 2px solid #b300ff;
   height: 25px;
   width: 100px;
-  text-align: center;
-  margin-left: 500px;
-  margin-top: 10px; }
-
-#orderCustomBtn {
-  margin-left: 882px; }
+  text-align: center; }
 
 @media all and (max-width: 550px) {
   .segboi_img {
@@ -286,5 +277,3 @@ li a:hover {
   #btnArea {
     margin: 0 !important;
     padding: 5px !important; } }
-
-/*# sourceMappingURL=ui-elements.css.map */

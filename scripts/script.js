@@ -16,6 +16,7 @@ var finalBoi = {
 //Segway Image Div & Img Canvases
 var imgDiv = document.createElement('div');
 imgDiv.setAttribute("class", "segboi_img check-flex-col");
+//imgDiv.setAttribute("class", "segboi_img check-flex-col");
 var tireImg = document.createElement('canvas');
 tireImg.style.zIndex = "1";
 var tireStr = "";
@@ -116,11 +117,13 @@ homePage.setAttribute("id", "home_page");
 var confirmPage = document.createElement("div");
 confirmPage.setAttribute("id", "confirm_page");
 var customPage = document.createElement("div");
-customPage.setAttribute("id", "custom_page container check-flex-row");
-customPage.style.marginLeft = '100px';
-customPage.style.marginTop = '25px';
+customPage.setAttribute("class", "container check-flex-row");
+//customPage.setAttribute("id", "custom_page container check-flex-row");
+//customPage.style.marginLeft = '100px';
+//customPage.style.marginTop = '25px';
 var custom_pageContainer = document.createElement('div');
-custom_pageContainer.setAttribute('class', 'custom_pageContainer check-flex-col');
+custom_pageContainer.setAttribute('class', 'check-flex-row');
+//custom_pageContainer.setAttribute('class', 'custom_pageContainer check-flex-col');
 var checkoutPage = document.createElement("div");
 checkoutPage.setAttribute("id", "checkout_page");
 var thankYouPage = document.createElement("div");
