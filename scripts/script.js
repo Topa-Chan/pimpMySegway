@@ -119,10 +119,17 @@ var customPage = document.createElement("div");
 customPage.setAttribute("id", "custom_page container check-flex-row");
 customPage.style.marginLeft = '100px';
 customPage.style.marginTop = '25px';
+var custom_pageContainer = document.createElement('div');
+custom_pageContainer.setAttribute('class', 'custom_pageContainer check-flex-col');
 var checkoutPage = document.createElement("div");
 checkoutPage.setAttribute("id", "checkout_page");
 var thankYouPage = document.createElement("div");
 thankYouPage.setAttribute("id", "thank_you_page");
+var atdbtn = document.createElement('div');
+atdbtn.setAttribute("class", "top-btn");
+atdbtn.setAttribute("id", "orderCustomBtn");
+atdbtn.setAttribute('onclick', 'isComplete()');
+atdbtn.textContent = "Add to Order";
 
 //Loading in JSON date
 function loadData() {
@@ -868,15 +875,8 @@ function buildCustomPage() {
   segwayApp.innerHTML = '';
   createNavBar(pagesList);
   setActiveBtns();
-  var btn = document.createElement('div');
-  btn.setAttribute("class", "top-btn");
-  btn.setAttribute("id", "orderCustomBtn");
-  btn.setAttribute('onclick', 'isComplete()');
-  btn.textContent = "Add to Order";
   console.log("We are building a custom page.");
   //buildSegway(0);
-  var custom_pageContainer = document.createElement('div');
-  custom_pageContainer.setAttribute('class', 'custom_pageContainer check-flex-col');
   // console.log(name);
   tabContainer.setAttribute('class', 'tabContainer');
   for (var i = 0; i < tabs.length; i++) {
@@ -912,7 +912,7 @@ function buildCustomPage() {
   custom_pageContainer.appendChild(btnContainer);
   customPage.appendChild(imgDiv);
   customPage.appendChild(custom_pageContainer);
-  customPage.appendChild(btn);
+  customPage.appendChild(atdbtn);
   segwayApp.appendChild(customPage);
 }
 
