@@ -85,8 +85,10 @@ h1 {
 
 .custom_pageContainer {
   // padding-top: 25px;
-  margin-left: 750px;
-  margin-top: -511px;
+  // margin-left: 750px;
+  // margin-top: -511px;
+  margin: 20px auto;
+  max-width: 60%;
 }
 
 .tabContainer {
@@ -150,11 +152,13 @@ h1 {
 }
 
 .thanks {
-  margin: auto;
+  //margin: auto;
   height: 50%;
   width: 80%;
   border-radius: 3px;
-  margin-top: 10%;
+  //margin-top: 10%;
+  margin: 20px auto;
+  max-width: 60%;
 }
 
 .right-mar {
@@ -339,5 +343,10 @@ li a:hover {
 
   .segwayPic {
     width: 90%;
+  }
+
+  .canvas {
+    height: 370px;
+    width: 208px;
   }
 }
