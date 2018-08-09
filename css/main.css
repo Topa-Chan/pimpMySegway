@@ -122,8 +122,9 @@ h1 {
   display: flex; }
 
 .custom_pageContainer {
-  margin: 20px auto;
-  max-width: 60%; }
+  padding-top: 25px;
+  margin-left: 750px;
+  margin-top: -511px; }
 
 .tabContainer {
   display: flex;
@@ -282,7 +283,7 @@ li a:hover {
   margin-top: 10px; }
 
 #orderCustomBtn {
-  margin-left: 890px; }
+  margin-left: 882px; }
 
 @media all and (max-width: 550px) {
   .segboi_img {

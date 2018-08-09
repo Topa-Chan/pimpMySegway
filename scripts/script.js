@@ -117,6 +117,8 @@ var confirmPage = document.createElement("div");
 confirmPage.setAttribute("id", "confirm_page");
 var customPage = document.createElement("div");
 customPage.setAttribute("id", "custom_page container check-flex-row");
+customPage.style.marginLeft = '100px';
+customPage.style.marginTop = '25px';
 var checkoutPage = document.createElement("div");
 checkoutPage.setAttribute("id", "checkout_page");
 var thankYouPage = document.createElement("div");
