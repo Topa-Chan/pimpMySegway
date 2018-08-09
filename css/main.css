@@ -162,14 +162,14 @@ h1 {
   display: none; }
 
 .btn-theme-1 {
-  padding: 25px 30px !important;
-  width: 150px;
+  padding: 20px;
+  width: 200px;
   font-size: 1.2em;
-  margin: 40px; }
+  margin: 10px; }
 
 #thanks-msg {
-  font-size: 2.5em;
-  padding: 20px;
+  font-size: 2em;
+  padding: 20px 0px;
   margin-top: 20px; }
 
 .thanks {
@@ -309,13 +309,12 @@ li a:hover {
     margin-left: 150px; }
 
   .btn-theme-1 {
-    /* padding: 25px 30px !important; */
-    width: 50px;
-    font-size: 1em;
-    margin: 40px;
-    /* text-align: center; */
-    height: 25px;
-    /* padding-top: 25px; */ }
+    margin: 10px;
+    padding: 15px !important;
+    width: 100px;
+    height: auto;
+    font-size: 0.9em;
+    text-align: center; }
 
   .segwayPic {
     width: 90%; }
