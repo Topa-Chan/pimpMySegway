@@ -116,23 +116,47 @@ var homePage = document.createElement("div");
 homePage.setAttribute("id", "home_page");
 var confirmPage = document.createElement("div");
 confirmPage.setAttribute("id", "confirm_page");
-var customPage = document.createElement("div");
-customPage.setAttribute("class", "container check-flex-row");
-//customPage.setAttribute("id", "custom_page container check-flex-row");
-//customPage.style.marginLeft = '100px';
-//customPage.style.marginTop = '25px';
+
+//Custom Page Set-ups
+//Price Flex Div
+var priceHolder = document.createElement("div");
+priceHolder.setAttribute("class", "priceHolder") 
+priceHolder.appendChild(priceDiv);
+//Button And Tab holder
 var custom_pageContainer = document.createElement('div');
-custom_pageContainer.setAttribute('class', 'check-flex-row');
+custom_pageContainer.setAttribute('class', 'tabsContainer check-flex-col');
 //custom_pageContainer.setAttribute('class', 'custom_pageContainer check-flex-col');
-var checkoutPage = document.createElement("div");
-checkoutPage.setAttribute("id", "checkout_page");
-var thankYouPage = document.createElement("div");
-thankYouPage.setAttribute("id", "thank_you_page");
+var optionDiv = document.createElement("div");
+optionDiv.setAttribute('class', "optionDiv customFlexContainer custom-flex-row");
+optionDiv.appendChild(imgDiv);
+optionDiv.appendChild(custom_pageContainer);
+
+//Order Btn
 var atdbtn = document.createElement('div');
 atdbtn.setAttribute("class", "top-btn");
 atdbtn.setAttribute("id", "orderCustomBtn");
 atdbtn.setAttribute('onclick', 'isComplete()');
 atdbtn.textContent = "Add to Order";
+var orderDiv = document.createElement("div");
+orderDiv.setAttribute('class', 'orderDiv custom-flex-row');
+orderDiv.appendChild(atdbtn);
+
+var customPage = document.createElement("div");
+customPage.setAttribute("class", "customFlexContainer check-flex-col");
+//Appending to customPage
+customPage.appendChild(priceHolder);
+customPage.appendChild(optionDiv);
+customPage.appendChild(orderDiv);
+//customPage.setAttribute("id", "custom_page container check-flex-row");
+//customPage.style.marginLeft = '100px';
+//customPage.style.marginTop = '25px';
+
+
+
+var checkoutPage = document.createElement("div");
+checkoutPage.setAttribute("id", "checkout_page");
+var thankYouPage = document.createElement("div");
+thankYouPage.setAttribute("id", "thank_you_page");
 
 //Loading in JSON date
 function loadData() {
@@ -926,12 +950,12 @@ function buildCustomPage() {
     //console.log(tab[i]);
     tabContainer.appendChild(tabs[i]);
   }
-  customPage.appendChild(priceDiv);
+  // customPage.appendChild(priceDiv);
   custom_pageContainer.appendChild(tabContainer);
   custom_pageContainer.appendChild(btnContainer);
-  customPage.appendChild(imgDiv);
-  customPage.appendChild(custom_pageContainer);
-  customPage.appendChild(atdbtn);
+  // customPage.appendChild(imgDiv);
+  // customPage.appendChild(custom_pageContainer);
+  // customPage.appendChild(atdbtn);
   segwayApp.appendChild(customPage);
 }
 

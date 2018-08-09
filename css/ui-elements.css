@@ -142,6 +142,7 @@ h1 {
   flex-wrap: wrap; }
 
 .segboi_img {
+  display: flex;
   height: 470px;
   position: relative;
   width: 309px; }
@@ -229,12 +230,33 @@ li a:hover {
   width: 100px;
   text-align: center; }
 
+.priceHolder {
+  flex: 1;
+  margin: 0 auto; }
+
+.orderDiv {
+  flex: 1;
+  margin: 0 auto; }
+
+.tabsContainer {
+  flex: 1; }
+
+.customFlexContainer {
+  display: flex;
+  margin: 20px auto; }
+
+.custom-flex-row {
+  display: flex;
+  flex-direction: row; }
+
 @media all and (max-width: 550px) {
   .segboi_img {
     height: 470px;
-    position: relative;
     width: 309px;
     margin-left: 40px; }
+    .segboi_img canvas {
+      width: 50%;
+      height: 50%; }
 
   .price {
     border: 2px solid #b300ff;
@@ -276,4 +298,9 @@ li a:hover {
 
   #btnArea {
     margin: 0 !important;
-    padding: 5px !important; } }
+    padding: 5px !important; }
+
+  .custom-flex-row {
+    flex-direction: column; } }
+
+/*# sourceMappingURL=ui-elements.css.map */

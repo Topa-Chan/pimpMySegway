@@ -188,6 +188,7 @@ h1 {
 }
 
 .segboi_img {
+  display: flex;
   height: 470px;
   position: relative;
   width: 309px;
@@ -303,13 +304,41 @@ li a:hover {
   // margin-left: 882px;
 }
 
+.priceHolder {
+  flex: 1;
+  margin: 0 auto;
+}
+
+.orderDiv {
+  flex: 1;
+  margin: 0 auto;
+}
+
+.tabsContainer {
+  flex: 1;
+}
+
+.customFlexContainer {
+  display: flex;
+  margin: 20px auto;
+}
+
+.custom-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 @media all and (max-width: 550px) {
 
   .segboi_img {
     height: 470px;
-    position: relative;
     width: 309px;
     margin-left: 40px;
+
+    canvas {
+      width: 50%;
+      height: 50%;
+    }
   }
 
   .price {
@@ -355,11 +384,16 @@ li a:hover {
   }
 
   .checkBtn {
-    font-size: 0.9em;
+    font-size: 0.9em; 
   }
 
   #btnArea {
     margin: 0 !important;
     padding: 5px !important;
+  }
+
+  .custom-flex-row {
+    // @extend .check-flex-col;
+    flex-direction: column;
   }
 }
