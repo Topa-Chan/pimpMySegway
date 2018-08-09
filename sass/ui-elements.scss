@@ -33,7 +33,7 @@ h1 {
   align-items: center;
   margin: 0 20px;
   width: 100%;
-  height: 170px;
+  height: fit-content;
   padding: 20px;
 }
 
@@ -348,5 +348,18 @@ li a:hover {
   .canvas {
     height: 370px;
     width: 208px;
+  }
+
+  .inner-box {
+    font-size: 0.9em;
+  }
+
+  .checkBtn {
+    font-size: 0.9em;
+  }
+
+  #btnArea {
+    margin: 0 !important;
+    padding: 5px !important;
   }
 }
