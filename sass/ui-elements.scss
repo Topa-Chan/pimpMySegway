@@ -14,10 +14,9 @@ h1 {
 
 .outline {
   border: 3px solid #000;
-  // margin-left: 550px;
-  // margin-top: 100px;
-  margin: 70px auto;
-  padding: 100px;
+  margin: 50px auto;
+  padding: 50px;
+  align-items: center !important;
 }
 
 .flex-row {
@@ -34,13 +33,14 @@ h1 {
   align-items: center;
   margin: 0 20px;
   width: 100%;
-  height: 170px;
+  height: fit-content;
   padding: 20px;
 }
+
 .check-flex-col {
   display: flex !important;
   flex-direction: column !important;
-  padding: 20px !important;
+  padding: 15px !important;
 }
 
 .check-flex-row {
@@ -84,7 +84,11 @@ h1 {
 }
 
 .custom_pageContainer {
-  // padding-top: 25px;
+  padding-top: 25px;
+  margin-left: 750px;
+  margin-top: -511px;
+  // margin: 20px auto;
+  // max-width: 60%;
 }
 
 .tabContainer {
@@ -97,26 +101,26 @@ h1 {
   flex-direction: row;
   order: 1;
   border: 3px solid #000;
-  width: 235px;
+  width: 229px;
   padding-left: 115px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .colourTab {
-  border: 3px solid #FAB;
+  border: 3px solid #000;
 }
 
 .tireTab {
-  border: 3px solid #FAB;
+  border: 3px solid #000;
 }
 
 .engineTab {
-  border: 3px solid #FAB;
+  border: 3px solid #000;
 }
 
 .customTab {
-  border: 3px solid #FAB;
+  border: 3px solid #000;
 }
 
 #colour {
@@ -148,11 +152,13 @@ h1 {
 }
 
 .thanks {
-  margin: auto;
+  //margin: auto;
   height: 50%;
   width: 80%;
   border-radius: 3px;
-  margin-top: 10%;
+  //margin-top: 10%;
+  margin: 20px auto;
+  max-width: 60%;
 }
 
 .right-mar {
@@ -173,6 +179,8 @@ h1 {
 .specialStyle{
   width: 500px;
   height: fit-content;
+  margin: 0 auto !important;
+  max-width: 60%;
 }
 #segway{
   display: flex;
@@ -182,6 +190,7 @@ h1 {
 .segboi_img {
   height: 470px;
   position: relative;
+  width: 309px;
 }
 
 canvas {
@@ -217,7 +226,7 @@ canvas {
   padding: 20px;
   width: 150px;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 .top-btn {
@@ -225,27 +234,17 @@ canvas {
   margin-bottom: auto;
 }
 
-.nav {
-  // overflow: hidden;
-  // background-color: #ad1e1e;
-  float: left;
-}
-
-.nav-item:hover {
-  // color: #fff;
-  // border-bottom: 5px solid #FFC76D;
-  // margin-top: 10px;
-  display: block;
-  padding: 8px;
-  background-color: #dddddd;
-}
-
-ul {
+.nav-container {
+  height: fit-content;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: #333;
+}
+
+.nav-flex-col {
+  @extend .flex-col;
+  display: block;
 }
 
 li {
@@ -256,7 +255,7 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 20px;
   text-decoration: none;
 }
 
@@ -266,12 +265,14 @@ li a:hover {
 
 .container {
   height: 450px;
+  margin: 20px auto;
+  max-width: 60%;
 }
 
 .inner-box {
   width: 50%;
   text-align: left;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .flex-tabs {
@@ -288,13 +289,77 @@ li a:hover {
 }
 
 .price {
-  border: 2px dashed #b300ff;  
+  border: 2px solid #b300ff;  
   height: 25px;
   width: 100px;
   text-align: center;
+  margin-left: 500px;
+  margin-top: 10px;
 }
 
 #orderCustomBtn {
-  margin-top: 115px;
-  margin-left: 116px;
+  // margin-top: 115px;
+  // margin-left: 116px;
+  margin-left: 882px;
+}
+
+@media all and (max-width: 550px) {
+
+  .segboi_img {
+    height: 470px;
+    position: relative;
+    width: 309px;
+    margin-left: 40px;
+  }
+
+  .price {
+    border: 2px solid #b300ff;  
+    height: 25px;
+    width: 100px;
+    text-align: center;
+    margin-left: 165px;
+  }
+
+  .custom_pageContainer {
+    margin-top: 85px;
+    margin-left: 15px;
+  }
+
+  #orderCustomBtn {
+    margin-top: 100px;
+    margin-bottom: 15px;
+    margin-left: 150px;
+  }
+
+  .btn-theme-1 {
+    /* padding: 25px 30px !important; */
+    width: 50px;
+    font-size: 1em;
+    margin: 40px;
+    /* text-align: center; */
+    height: 25px;
+    /* padding-top: 25px; */
+  }
+
+  .segwayPic {
+    width: 90%;
+  }
+
+  .canvas {
+    height: 370px;
+    width: 208px;
+  }
+
+  .inner-box {
+    font-size: 0.9em;
+  }
+
+  .checkBtn {
+    font-size: 0.9em;
+  }
+
+  #btnArea {
+    margin: 0 !important;
+    padding: 5px !important;
+  }
 }
